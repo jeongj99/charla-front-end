@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Form from "../components/Form";
 
 import "./Home.css";
 
@@ -8,7 +9,7 @@ export default function Home() {
       <div className="home-container">
         <Navbar />
         <section className="home-section">
-          This is home page!
+          <Form />
         </section>
       </div>
     </>
