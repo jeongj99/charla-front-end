@@ -1,12 +1,17 @@
+import { useState } from "react";
+
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
 
 export default function LoginForm(props) {
+  const [emailLogin, setEmailLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+
   return (
     <CommonContainer>
       <CommonForm>
-        <CommonInput type="email" placeholder="Email" />
-        <CommonInput type="password" placeholder="Password" />
+        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} />
+        <CommonInput name="password" type="password" placeholder="Password" value={passwordLogin} onChange={setPasswordLogin} />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
       <CommonLink muted href="#">Forgot your password?</CommonLink>
