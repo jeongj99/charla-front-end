@@ -13,20 +13,21 @@ export default function RegisterForm(props) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const register = () => {
-    axios.post('api/register', {
+  const register = async () => {
+    const response = await axios.post('api/register', {
       firstName: firstNameRegister,
       lastName: lastNameRegister,
       username: usernameRegister,
       email: emailRegister,
       password: passwordRegister
-    }).then(response => {
-      if (response.data.error) {
-        setErrorMessage(response.data.message);
-      } else {
-        setErrorMessage("");
-      }
     });
+
+    if (response.data.error) {
+      setErrorMessage(response.data.message);
+    } else {
+      console.log(response);
+      setErrorMessage("");
+    }
   };
 
   return (
@@ -41,7 +42,7 @@ export default function RegisterForm(props) {
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
       <Marginer direction="vertical" margin="1.6em" />
-      <CommonSubmitButton>Register</CommonSubmitButton>
+      <CommonSubmitButton onClick={register}>Register</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
       <CommonLink muted>Already have an account? <CommonLink bold onClick={props.switchForm}>Log In</CommonLink></CommonLink>
     </CommonContainer>

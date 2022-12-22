@@ -10,13 +10,17 @@ export default function LoginForm(props) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const login = async () => {
-    try {
-      const response = await axios.post('api/login', {
-        email: emailLogin,
-        password: passwordLogin
-      });
-    } catch {
+    const response = await axios.post('api/login', {
+      email: emailLogin,
+      password: passwordLogin
+    });
 
+    if (response.data.error) {
+      setErrorMessage(response.data.message);
+      console.log(response.data.message);
+    } else {
+      console.log(response);
+      setErrorMessage("");
     }
   };
 
@@ -34,4 +38,4 @@ export default function LoginForm(props) {
       <CommonLink muted>Don't have an account? <CommonLink bold onClick={props.switchForm}>Register</CommonLink></CommonLink>
     </CommonContainer>
   );
-}
+};
