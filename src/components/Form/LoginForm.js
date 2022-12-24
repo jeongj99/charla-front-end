@@ -1,10 +1,12 @@
-import { useState, useEffect, useContext } from "react"; //Require this line for importing auth with logged in contact details
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
-import AuthContext from "../../context/AuthProvider"; //Require this line for importing auth with logged in contact details
+import AuthContext from "../../context/AuthProvider";
+
+import { RiErrorWarningLine } from "react-icons/ri";
 
 export default function LoginForm(props) {
   const [emailLogin, setEmailLogin] = useState("");
@@ -46,6 +48,14 @@ export default function LoginForm(props) {
       <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton onClick={login}>Log in</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
+      {
+        errorMessage &&
+        <div className="login-validation">
+          <p>
+            <RiErrorWarningLine />{errorMessage}
+          </p>
+        </div>
+      }
       <CommonLink muted>Don't have an account? <CommonLink bold onClick={props.switchForm}>Register</CommonLink></CommonLink>
     </CommonContainer>
   );
