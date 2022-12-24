@@ -8,8 +8,8 @@ import RegisterForm from "./RegisterForm";
 
 const backdropVariants = {
   expanded: {
-    width: "233%",
-    height: "1050px",
+    width: "250%",
+    height: "1100px",
     borderRadius: "20%",
     transform: "rotate(60deg)"
   },

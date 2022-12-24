@@ -23,8 +23,8 @@ export default function LoginForm(props) {
         email: emailLogin,
         password: passwordLogin
       });
-      
-      setAuth(response.data.contact);
+
+      setAuth(response.data.authenticated);
       setEmailLogin("");
       setPasswordLogin("");
       setErrorMessage("");

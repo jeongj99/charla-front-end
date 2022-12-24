@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
+import AuthContext from "../../context/AuthProvider";
 
 export default function RegisterForm(props) {
   const [firstNameRegister, setFirstNameRegister] = useState("");
@@ -12,6 +14,8 @@ export default function RegisterForm(props) {
   const [passwordRegister, setPasswordRegister] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const register = async () => {
     const response = await axios.post('api/register', {
@@ -25,8 +29,14 @@ export default function RegisterForm(props) {
     if (response.data.error) {
       setErrorMessage(response.data.message);
     } else {
-      console.log(response);
+      setAuth(response.data.authenticated);
+      setFirstNameRegister("");
+      setLastNameRegister("");
+      setUsernameRegister("");
+      setPasswordRegister("");
+      setConfirmPassword("");
       setErrorMessage("");
+      navigate("/chat");
     }
   };
 
