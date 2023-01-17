@@ -5,6 +5,8 @@ export default function Chat() {
   const { id } = useParams();
 
   return (
-    <div>This is Chat page and id is {id}</div>
+    <>
+      {id ? <div>This is chat page and id is {id}</div> : <div>This is chat page and there is no id</div>}
+    </>
   );
 }
