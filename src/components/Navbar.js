@@ -1,7 +1,10 @@
-import React from 'react';
+import { IconContext } from "react-icons/lib";
 
 export default function Navbar() {
   return (
-    <div>Navbar</div>
+    <>
+      <IconContext.Provider value={{ color: "#fff" }}>
+      </IconContext.Provider>
+    </>
   );
 }
