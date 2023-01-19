@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
+import "./Navbar.css";
 import { IconContext } from "react-icons/lib";
 
 export default function Navbar() {
