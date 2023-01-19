@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { IconContext } from "react-icons/lib";
 
@@ -28,7 +28,6 @@ export default function Navbar() {
                 </NavLink>
               </li>
             </ul>
-
           </div>
         </nav>
       </IconContext.Provider>
