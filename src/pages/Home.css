@@ -1,0 +1,11 @@
+.home-container {
+  top: 70px;
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+}
+
+.home-section {
+  width: 100%;
+  height: 20%;
+}
