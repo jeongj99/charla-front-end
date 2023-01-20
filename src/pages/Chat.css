@@ -18,6 +18,11 @@
   height: 10%;
 }
 
+.sidebar-search {
+  background-color: magenta;
+  height: 5%;
+}
+
 .sidebar-chats {
   background-color: green;
   height: 80%
@@ -25,7 +30,7 @@
 
 .sidebar-profile {
   background-color: purple;
-  height: 10%;
+  height: 5%;
 }
 
 .chat {

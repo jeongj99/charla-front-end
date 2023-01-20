@@ -13,11 +13,14 @@ export default function Chat() {
           <div className="sidebar-logo">
             Charla
           </div>
+          <div className="sidebar-search">
+            Search person
+          </div>
           <div className="sidebar-chats">
             all the chats
           </div>
           <div className="sidebar-profile">
-            Alex Jeong
+            Alex Jeong with profile pic
           </div>
         </aside>
         <section className="chat">
