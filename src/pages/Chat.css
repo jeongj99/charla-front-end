@@ -1,0 +1,52 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 25%;
+}
+
+.sidebar-logo {
+  background-color: blue;
+  height: 10%;
+}
+
+.sidebar-chats {
+  background-color: green;
+  height: 80%
+}
+
+.sidebar-profile {
+  background-color: purple;
+  height: 10%;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  height: 100vh;
+  background-color: red;
+}
+
+.chat-info {
+  height: 10%;
+  background-color: aliceblue;
+}
+
+.chat-message {
+  height: 80%;
+  background-color: aqua;
+}
+
+.chat-input {
+  height: 10%;
+  background-color: bisque;
+}
