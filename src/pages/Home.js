@@ -4,7 +4,9 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div>This is home page!</div>
+      <section className="home-container">
+        This is home page!
+      </section>
     </>
   );
 }

@@ -8,7 +8,7 @@ export default function Chat() {
 
   return (
     <>
-      <div className="container">
+      <div className="chat-container">
         <aside className="sidebar">
           <div className="sidebar-logo">
             Charla
