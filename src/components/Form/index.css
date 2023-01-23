@@ -34,3 +34,27 @@
   background: rgb(36, 14, 121);
   background: linear-gradient(90deg, rgba(36, 14, 121, 1) 20%, rgba(95, 39, 192, 1) 100%);
 }
+
+.form-header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header-message {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.24;
+  color: white;
+  z-index: 10;
+  margin: 0;
+}
+
+.form-header-small-message {
+  color: white;
+  font-weight: 500;
+  font-size: 11px;
+  z-index: 10;
+  margin: 0;
+  margin-top: 7px;
+}
