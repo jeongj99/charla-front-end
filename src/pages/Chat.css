@@ -14,6 +14,9 @@
 }
 
 .sidebar-logo {
+  font-family: 'Shrikhand', cursive;
+  font-size: xx-large;
+  color: whitesmoke;
   background-color: rgb(36, 14, 121);
   background: linear-gradient(90deg, rgba(36, 14, 121, 1) 20%, rgba(95, 39, 192, 1) 100%);
   height: 10%;
