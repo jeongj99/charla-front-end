@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-
 import "./Chat.css";
+import { SiXdadevelopers } from "react-icons/si";
 
 export default function Chat() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ export default function Chat() {
       <div className="chat-container">
         <aside className="sidebar">
           <div className="sidebar-logo">
-            Charla
+            Charla <SiXdadevelopers className='charlaLogo' />
           </div>
           <div className="sidebar-search">
             Search person
