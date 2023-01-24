@@ -7,11 +7,13 @@ export default function LoginForm() {
       <CommonForm>
         <CommonInput type="email" placeholder="Email" />
         <CommonInput type="password" placeholder="Password" />
-        <Marginer direction="vertical" margin={5} />
-        <CommonLink muted href="#">Forgot your password?</CommonLink>
-        <Marginer direction="vertical" margin="1.3em" />
       </CommonForm>
+      <Marginer direction="vertical" margin={10} />
+      <CommonLink muted href="#">Forgot your password?</CommonLink>
+      <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton>Log in</CommonSubmitButton>
+      <Marginer direction="vertical" margin="1em" />
+      <CommonLink muted >Don't have an account? <CommonLink bold href="asdfweiufwephf">Register</CommonLink></CommonLink>
     </CommonContainer>
   );
 }
