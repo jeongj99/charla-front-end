@@ -3,6 +3,15 @@
   width: 100%;
   display: flex;
   align-items: center;
+  border-top: 0.070em;
+  border-top-style: solid;
+  border-bottom: 0.070em;
+  border-bottom-style: solid;
+  border-color: rgba(36, 36, 36, 0.942);
+}
+
+.chat-list-item-container:hover {
+  background-color: rgba(95, 39, 192, 1);
 }
 
 .chat-list-item-user-photo {
@@ -20,4 +29,8 @@
   padding-left: 1em;
   padding-right: 1em;
   overflow: hidden;
+}
+
+.chat-list-item-conversation:hover {
+  color: whitesmoke;
 }
