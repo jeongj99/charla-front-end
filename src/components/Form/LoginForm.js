@@ -1,7 +1,7 @@
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
 
-export default function LoginForm() {
+export default function LoginForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
@@ -13,7 +13,7 @@ export default function LoginForm() {
       <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton>Log in</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      <CommonLink muted >Don't have an account? <CommonLink bold href="asdfweiufwephf">Register</CommonLink></CommonLink>
+      <CommonLink muted>Don't have an account? <CommonLink bold onClick={props.switchForm}>Register</CommonLink></CommonLink>
     </CommonContainer>
   );
 }

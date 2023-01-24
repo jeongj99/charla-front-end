@@ -21,7 +21,7 @@ export function CommonLink(props) {
   });
 
   return (
-    <a className={commonLinkClass} href={props.href}>{props.children}</a>
+    <a className={commonLinkClass} href={props.href} onClick={props.onClick}>{props.children}</a>
   );
 }
 
