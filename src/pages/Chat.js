@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
+import "../components/chat_components/ChatListItem";
+import ChatListItem from '../components/chat_components/ChatListItem';
 
 export default function Chat() {
   const { id } = useParams();
@@ -17,6 +19,7 @@ export default function Chat() {
             Search person
           </div>
           <div className="sidebar-chats">
+            <ChatListItem />
             all the chats
           </div>
           <div className="sidebar-profile">

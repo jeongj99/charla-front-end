@@ -1,3 +1,5 @@
+import "./ChatListItem.css"
+
 export default function ChatListItem(props) {
 
   return (
