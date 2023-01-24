@@ -1,7 +1,6 @@
 .chat-list-item-container {
   height: 10%;
   width: 100%;
-  background-color: blue;
   display: flex;
   align-items: center;
 }
@@ -9,4 +8,16 @@
 .chat-list-item-user-photo {
   height: 90%;
   padding-left: 0.8em;
+}
+
+.chat-list-item-conversation {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: black;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  overflow: hidden;
 }
