@@ -1,3 +1,5 @@
+import LoginForm from "./LoginForm";
+
 import "./index.css";
 
 export default function Form() {
@@ -10,6 +12,9 @@ export default function Form() {
           <h2 className="form-header-message">Back</h2>
           <h5 className="form-header-small-message">Please log in to continue</h5>
         </div>
+      </div>
+      <div className="form-middle-container">
+        <LoginForm />
       </div>
     </div>
   );

@@ -58,3 +58,10 @@
   margin: 0;
   margin-top: 7px;
 }
+
+.form-middle-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1.8em;
+}

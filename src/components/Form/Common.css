@@ -35,11 +35,6 @@
   border-bottom: 1.4px solid transparent;
 }
 
-.form-input:focus {
-  outline: none;
-  border-bottom: 2px solid rgb(36, 14, 121);
-}
-
 .form-input::placeholder {
   color: rgba(200, 200, 200, 1);
 }
@@ -48,12 +43,18 @@
   border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
 }
 
+.form-input:focus {
+  outline: none;
+  border-bottom: 2px solid rgb(36, 14, 121);
+}
+
 .form-submit {
   width: 100%;
   padding: 11px 40%;
   color: white;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
+  overflow: visible;
   border: none;
   border-radius: 100px;
   cursor: pointer;
@@ -63,5 +64,5 @@
 }
 
 .form-submit:hover {
-  filter: brightness(1.03);
+  filter: brightness(1.5);
 }
