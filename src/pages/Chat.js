@@ -11,32 +11,36 @@ export default function Chat() {
   return (
     <>
       <div className="chat-container">
-        <aside className="sidebar">
-          <div className="sidebar-logo">
+        <div className="top-bar">
+          <div className="topbar-logo">
             Charla <SiXdadevelopers className='charlaLogo' />
           </div>
-          <div className="sidebar-search">
-            Search person
-          </div>
-          <div className="sidebar-chats">
-            <ChatListItem />
-            all the chats
-          </div>
-          <div className="sidebar-profile">
-            Alex Jeong with profile pic
-          </div>
-        </aside>
-        <section className="chat">
           <div className="chat-info">
             John
           </div>
-          <div className="chat-message">
-            {id ? <h2>This is chat page and id is {id}</h2> : <h2>This is chat page and there is no id</h2>}
-          </div>
-          <div className="chat-input">
-            Type a message
-          </div>
-        </section>
+        </div>
+        <div className="chat-main-container">
+          <aside className="sidebar">
+            <div className="sidebar-search">
+              Search person
+            </div>
+            <div className="sidebar-chats">
+              <ChatListItem />
+              all the chats
+            </div>
+            <div className="sidebar-profile">
+              Alex Jeong with profile pic
+            </div>
+          </aside>
+          <section className="chat">
+            <div className="chat-message">
+              {id ? <h2>This is chat page and id is {id}</h2> : <h2>This is chat page and there is no id</h2>}
+            </div>
+            <div className="chat-input">
+              Type a message
+            </div>
+          </section>
+        </div>
       </div>
     </>
   );

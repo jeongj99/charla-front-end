@@ -2,6 +2,43 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+}
+
+.top-bar {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  background: rgb(36, 14, 121);
+  background: linear-gradient(90deg, rgba(36, 14, 121, 1) 20%, rgba(95, 39, 192, 1) 100%);
+}
+
+.topbar-logo {
+  font-family: 'Shrikhand', cursive;
+  font-size: xx-large;
+  color: whitesmoke;
+  display: flex;
+  padding-left: 20px;
+  align-items: center;
+  background-attachment: fixed;
+  height: 100%;
+  width: 25%;
+}
+
+.charlaLogo {
+  padding-left: 5px;
+}
+
+.chat-info {
+  height: 100%;
+  width: 75%;
+}
+
+.chat-main-container {
+  width: 100%;
+  height: 90%;
+  display: flex;
   flex-direction: row;
 }
 
@@ -13,29 +50,13 @@
   width: 25%;
 }
 
-.sidebar-logo {
-  font-family: 'Shrikhand', cursive;
-  font-size: xx-large;
-  color: whitesmoke;
-  display: flex;
-  padding-left: 20px;
-  align-items: center;
-  background-color: rgb(36, 14, 121);
-  background: linear-gradient(90deg, rgba(36, 14, 121, 1) 20%, rgba(95, 39, 192, 1) 100%);
-  height: 10%;
-}
-
-.charlaLogo {
-  padding-left: 5px;
-}
-
 .sidebar-search {
   background-color: magenta;
   height: 5%;
 }
 
 .sidebar-chats {
-  height: 80%
+  height: 90%
 }
 
 .sidebar-profile {
@@ -47,18 +68,11 @@
   display: flex;
   flex-direction: column;
   width: 75%;
-  height: 100vh;
   background-color: red;
 }
 
-.chat-info {
-  height: 10%;
-  background-color: rgb(36, 14, 121);
-  background: linear-gradient(90deg, rgba(95, 39, 192, 1) 100%, rgba(36, 14, 121, 1) 20%);
-}
-
 .chat-message {
-  height: 80%;
+  height: 90%;
   background-color: aqua;
 }
 
