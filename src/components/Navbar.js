@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import "./Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { SiXdadevelopers } from "react-icons/si";
 import { IconContext } from "react-icons/lib";
 
 export default function Navbar() {
@@ -18,7 +19,7 @@ export default function Navbar() {
         <nav className="navbar">
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              Charla
+              Charla <SiXdadevelopers className='charlaLogo'/>
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}

@@ -35,13 +35,19 @@
 }
 
 .navbar-logo {
-  color: #fff;
+  font-family: 'Shrikhand', cursive;
+  font-size: xx-large;
+  color: whitesmoke;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
   display: flex;
   align-items: center;
+}
+
+.charlaLogo {
+  padding-left: 5px;
 }
 
 .navbar-icon {
@@ -67,7 +73,9 @@
 }
 
 .nav-links {
+  font-family: 'Shrikhand', cursive;
   color: #fff;
+  font-size: x-large;
   display: flex;
   align-items: center;
   text-decoration: none;
