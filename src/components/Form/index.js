@@ -61,8 +61,8 @@ export default function Form() {
         />
         {activeForm === "login" && <div className="form-header-container">
           <h2 className="form-header-message">Welcome</h2>
-          <h2 className="form-header-message">Back</h2>
-          <h5 className="form-header-small-message">Please log in to continue</h5>
+          <h2 className="form-header-message">Back!</h2>
+          <h5 className="form-header-small-message">Please log in to continue.</h5>
         </div>}
         {activeForm === "register" && <div className="form-header-container">
           <h2 className="form-header-message">Create</h2>
