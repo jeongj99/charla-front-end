@@ -2,4 +2,11 @@
   height: 10%;
   width: 100%;
   background-color: blue;
+  display: flex;
+  align-items: center;
+}
+
+.chat-list-item-user-photo {
+  height: 90%;
+  padding-left: 0.8em;
 }
