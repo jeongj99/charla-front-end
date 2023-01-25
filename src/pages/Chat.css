@@ -51,12 +51,13 @@
 }
 
 .sidebar-search {
-  background-color: magenta;
+  background: rgb(36, 14, 121);
   height: 5%;
 }
 
 .sidebar-chats {
-  height: 90%
+  height: 90%;
+  background: rgb(36, 14, 121);
 }
 
 .sidebar-profile {
@@ -68,12 +69,14 @@
   display: flex;
   flex-direction: column;
   width: 75%;
-  background-color: red;
+  
 }
 
 .chat-message {
   height: 90%;
-  background-color: aqua;
+  background-color: #003e4d;
+background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
 .chat-input {

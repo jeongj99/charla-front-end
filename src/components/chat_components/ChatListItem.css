@@ -3,11 +3,8 @@
   width: 100%;
   display: flex;
   align-items: center;
-  border-top: 0.070em;
-  border-top-style: solid;
-  border-bottom: 0.070em;
-  border-bottom-style: solid;
-  border-color: rgba(36, 36, 36, 0.942);
+  background: rgb(36, 14, 121);
+  color: whitesmoke;
 }
 
 .chat-list-item-container:hover {
@@ -23,7 +20,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  color: black;
+  color: whitesmoke;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
   padding-left: 1em;
