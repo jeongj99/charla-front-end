@@ -1,4 +1,9 @@
-.sidebar-search {
+.sidebar-search-container {
   background: rgb(36, 14, 121);
   height: 5%;
+  width: 100%;
+  background-color: #ddd;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
 }
