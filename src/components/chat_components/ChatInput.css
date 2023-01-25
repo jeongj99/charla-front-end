@@ -1,6 +1,7 @@
 .text-area {
   height: 15%;
   background-color: #ddd;
+  color: #666;
   font-family: 'Shrikhand', cursive;
   font-size: large;
   padding: 1em;
@@ -8,9 +9,15 @@
   border-radius: 10px;
   outline: none;
   line-height: 1.4;
+  transition: all 0.2s;
   
 }
 
 .text-area:hover {
   cursor: pointer;
+}
+
+.text-area:focus {
+  cursor: text;
+  color: #333;
 }
