@@ -4,6 +4,7 @@ import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
 import "../components/chat_components/ChatListItem";
 import ChatListItem from '../components/chat_components/ChatListItem';
+import ChatInput from '../components/chat_components/ChatInput';
 
 export default function Chat() {
   const { id } = useParams();
@@ -36,9 +37,7 @@ export default function Chat() {
             <div className="chat-message">
               {id ? <h2>This is chat page and id is {id}</h2> : <h2>This is chat page and there is no id</h2>}
             </div>
-            <div className="chat-input">
-              Type a message
-            </div>
+            <ChatInput />
           </section>
         </div>
       </div>
