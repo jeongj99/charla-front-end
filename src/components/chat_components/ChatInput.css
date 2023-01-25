@@ -1,4 +1,16 @@
-.chat-input {
-  height: 10%;
-  background-color: bisque;
+.text-area {
+  height: 15%;
+  background-color: #ddd;
+  font-family: 'Shrikhand', cursive;
+  font-size: large;
+  padding: 1em;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  line-height: 1.4;
+  
+}
+
+.text-area:hover {
+  cursor: pointer;
 }
