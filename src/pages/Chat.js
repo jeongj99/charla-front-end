@@ -4,7 +4,7 @@ import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
 import "../components/chat_components/ChatListItem";
 import ChatListItem from '../components/chat_components/ChatListItem';
-import ChatInput from '../components/chat_components/ChatInput';
+import ChatInput from '../components/chat_components/ChatInput'
 
 export default function Chat() {
   const { id } = useParams();

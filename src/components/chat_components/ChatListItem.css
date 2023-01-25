@@ -1,5 +1,5 @@
 .chat-list-item-container {
-  height: 10%;
+  height: 11%;
   width: 100%;
   display: flex;
   align-items: center;
@@ -21,8 +21,10 @@
 
 .chat-list-item-conversation {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
   height: 100%;
+  font-family: inherit;
   color: whitesmoke;
   padding-top: 0.2em;
   padding-bottom: 0.2em;
@@ -31,6 +33,7 @@
   overflow: hidden;
 }
 
-.chat-list-item-conversation:hover {
-  color: whitesmoke;
+.chat-list-item-conversation p {
+  font-size: medium;
+
 }
