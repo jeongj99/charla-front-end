@@ -5,6 +5,7 @@ import { SiXdadevelopers } from "react-icons/si";
 import "../components/chat_components/ChatListItem";
 import ChatListItem from '../components/chat_components/ChatListItem';
 import ChatInput from '../components/chat_components/ChatInput'
+import SideBarSearch from '../components/chat_components/SideBarSearch';
 
 export default function Chat() {
   const { id } = useParams();
@@ -22,9 +23,7 @@ export default function Chat() {
         </div>
         <div className="chat-main-container">
           <aside className="sidebar">
-            <div className="sidebar-search">
-              Search person
-            </div>
+            <SideBarSearch />
             <div className="sidebar-chats">
               <ChatListItem />
               all the chats
