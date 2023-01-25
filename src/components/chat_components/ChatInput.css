@@ -20,4 +20,5 @@
 .text-area:focus {
   cursor: text;
   color: #333;
+  border-color: #333;
 }
