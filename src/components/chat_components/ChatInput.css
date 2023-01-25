@@ -23,6 +23,6 @@
   border-color: #333;
 }
 
-::placeholder {
+.text-area::placeholder {
   font-family: 'Shrikhand', cursive;
 }
