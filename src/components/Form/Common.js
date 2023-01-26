@@ -10,7 +10,7 @@ export function CommonContainer(props) {
 
 export function CommonForm(props) {
   return (
-    <form className="common-form-container">{props.children}</form>
+    <form className="common-form-container" autoComplete="off" onSubmit={event => event.preventDefault()}>{props.children}</form>
   );
 }
 
