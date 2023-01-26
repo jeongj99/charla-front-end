@@ -6,6 +6,7 @@ import "../components/chat_components/ChatListItem";
 import ChatListItem from '../components/chat_components/ChatListItem';
 import ChatInput from '../components/chat_components/ChatInput'
 import SideBarSearch from '../components/chat_components/SideBarSearch';
+import ChatList from '../components/chat_components/ChatList';
 
 export default function Chat() {
   const { id } = useParams();
