@@ -25,10 +25,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch />
-            <div className="sidebar-chats">
-              <ChatListItem />
-              all the chats
-            </div>
+            <ChatList />
             <div className="sidebar-profile">
               Alex Jeong with profile pic
             </div>
