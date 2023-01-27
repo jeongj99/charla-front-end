@@ -2,11 +2,16 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
-import "../components/chat_components/ChatListItem";
-import ChatListItem from '../components/chat_components/ChatListItem';
+import SideBarSearch from '../components/sidebar_components/SideBarSearch'
+import ChatList from '../components/sidebar_components/ChatList';
+import ChatListItem from '../components/sidebar_components/ChatListItem';
+
+
+
 import ChatInput from '../components/chat_components/ChatInput'
-import SideBarSearch from '../components/chat_components/SideBarSearch';
-import ChatList from '../components/chat_components/ChatList';
+
+
+// import SideBarSearch from '../components/chat_components/SideBarSearch';
 
 export default function Chat() {
   const { id } = useParams();
