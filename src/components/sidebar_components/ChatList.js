@@ -1,22 +1,15 @@
 import { useState, useEffect } from 'react';
-
+import axios from "axios";
 import './ChatList.css'
 
 export default function ChatList(props) {
 
-    useEffect(() => {
-    async function fetchData() {
-      let response = await fetch(`http://localhost:8001/api/chat/list`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        // body: JSON.stringify({ user_id: userID }) // This line will be used later where we will pass the userID of individual logged in to acquire all the chats.
-      });
-      //Store new game information from DB in a variable
-      let chatListData = await response.json();
-      console.log(chatListData)
-    }
-
-    fetchData();
+  useEffect(() => {
+    axios.get('http://localhost:8001/api/chat/list')
+    .then(response => {
+      console.log(response.data)
+    })
+    .catch(err => console.log(err));
   }, []);
 
   return (
