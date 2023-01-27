@@ -13,15 +13,18 @@ export default function ChatList(props) {
         setChatListState(response);
       })
       .catch(err => console.log(err));
-  }, [chatListState]);
-
+  }, []);
 
   const listOfChats = chatListState.data?.map((chatObj) => {
     console.log('Hello from ChatObj', chatObj);
 
     return (
       <ChatListItem 
-      
+      convoID={chatObj.conversation_id}
+      firstName={chatObj.first_name}
+      lastName={chatObj.last_name}
+      message={chatObj.message_text}
+      profilePic={chatObj.profile_photo_url}
       />
     );
   });
