@@ -6,12 +6,7 @@ import SideBarSearch from '../components/sidebar_components/SideBarSearch'
 import ChatList from '../components/sidebar_components/ChatList';
 import ChatListItem from '../components/sidebar_components/ChatListItem';
 
-
-
 import ChatInput from '../components/chat_components/ChatInput'
-
-
-// import SideBarSearch from '../components/chat_components/SideBarSearch';
 
 export default function Chat() {
   const { id } = useParams();
