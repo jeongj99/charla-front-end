@@ -3,11 +3,13 @@ import axios from "axios";
 import './ChatList.css'
 
 export default function ChatList(props) {
+  const [chatListState, setChatListState] = useState(null)
 
   useEffect(() => {
     axios.get('http://localhost:8001/api/chat/list')
     .then(response => {
-      console.log(response.data)
+      setChatListState(response.data)
+      console.log(setChatListState);
     })
     .catch(err => console.log(err));
   }, []);
