@@ -7,12 +7,17 @@ import Marginer from "../Marginer";
 export default function LoginForm(props) {
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const login = () => {
-    axios.post('api/login', {
-      email: emailLogin,
-      password: passwordLogin
-    });
+  const login = async () => {
+    try {
+      const response = await axios.post('api/login', {
+        email: emailLogin,
+        password: passwordLogin
+      });
+    } catch {
+
+    }
   };
 
   return (
