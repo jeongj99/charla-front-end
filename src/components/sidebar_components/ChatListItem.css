@@ -5,6 +5,7 @@
   align-items: center;
   background: rgb(36, 14, 121);
   color: whitesmoke;
+  margin-bottom: 0.5em;
 }
 
 .chat-list-item-container:hover {
@@ -16,10 +17,9 @@
 
 .chat-list-item-user-photo {
   height: 90%;
+  width: 30%;
   padding-left: 0.8em;
-  height: 90px;
-  width: 100px;
-  border-radius: 60px;
+  border-radius: 50%;
 }
 
 .chat-list-item-conversation {
