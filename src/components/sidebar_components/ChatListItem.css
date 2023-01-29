@@ -16,8 +16,8 @@
 }
 
 .chat-list-item-user-photo {
-  height: 90%;
-  width: 30%;
+  height: 90px;
+  width: 90px;
   padding-left: 0.8em;
   border-radius: 50%;
 }
