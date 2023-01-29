@@ -5,6 +5,8 @@ export default function RegisterForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
+        <CommonInput type="text" placeholder="First Name" />
+        <CommonInput type="text" placeholder="Last Name" />
         <CommonInput type="text" placeholder="Username" />
         <CommonInput type="email" placeholder="Email" />
         <CommonInput type="password" placeholder="Password" />
