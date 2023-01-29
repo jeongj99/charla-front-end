@@ -15,9 +15,14 @@
   border-radius: 10px;
 }
 
+/* .chat-list-item-user-photo-container {
+  padding-left: 0.8em;
+  border-radius: 50%;
+} */
+
 .chat-list-item-user-photo {
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   padding-left: 0.8em;
   border-radius: 50%;
 }
