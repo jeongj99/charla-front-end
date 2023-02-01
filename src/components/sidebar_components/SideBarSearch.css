@@ -17,10 +17,12 @@
 }
 
 .sidebar-search-container input {
+  font-family: inherit;
   width: 0;
   outline: none;
   border: none;
-  font-weight: 600;
+  font-size: small;
+  font-weight: 500;
   transition: 0.7s;
   background: transparent;
 }
