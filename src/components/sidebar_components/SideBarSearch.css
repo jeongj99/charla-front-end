@@ -1,11 +1,15 @@
 .sidebar-search-container {
-  background: rgb(36, 14, 121);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background: #ddd;
   height: 5%;
-  background-color: #ddd;
   border: 2px solid transparent;
-  border-radius: 10px;
+  border-radius: 20px;
   outline: none;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .sidebar-search-container:hover input {
@@ -16,11 +20,11 @@
   width: 0;
   outline: none;
   border: none;
-  font-weight: 500;
-  transition: 0.8s;
+  font-weight: 600;
+  transition: 0.7s;
   background: transparent;
 }
 
-.sidebar-search-container a .fas {
-
+.sidebar-search-container i {
+  color: rgb(36, 14, 121);
 }
