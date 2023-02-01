@@ -4,7 +4,10 @@ export default function SideBarSearch(props) {
 
   return (
     <div className="sidebar-search-container">
-    Search person
+      <input type="text" placeholder="Search..."/>
+        <a href="#">
+          <i className="fas fa search"></i>
+        </a>
   </div>
   );
 }
