@@ -13,21 +13,21 @@ export default function RegisterForm(props) {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const register = () => {
-    axios.post('api/register', {
+  const register = async () => {
+    const response = await axios.post('api/register', {
       firstName: firstNameRegister,
       lastName: lastNameRegister,
       username: usernameRegister,
       email: emailRegister,
       password: passwordRegister
-    }).then(response => {
-      if (response.data.error) {
-        setErrorMessage(response.data.message);
-      } else {
-        console.log(response);
-        setErrorMessage("");
-      }
     });
+
+    if (response.data.error) {
+      setErrorMessage(response.data.message);
+    } else {
+      console.log(response);
+      setErrorMessage("");
+    }
   };
 
   return (
