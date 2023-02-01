@@ -1,9 +1,26 @@
 .sidebar-search-container {
   background: rgb(36, 14, 121);
   height: 5%;
-  width: 100%;
   background-color: #ddd;
   border: 2px solid transparent;
   border-radius: 10px;
   outline: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-search-container:hover input {
+  width:100%
+}
+
+.sidebar-search-container input {
+  width: 0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: transparent;
+}
+
+.sidebar-search-container a .fas {
+
 }
