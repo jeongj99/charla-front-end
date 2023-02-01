@@ -33,6 +33,6 @@ export function CommonInput(props) {
 
 export function CommonSubmitButton(props) {
   return (
-    <button className="form-submit">{props.children}</button>
+    <button className="form-submit" onClick={props.onClick}>{props.children}</button>
   );
 }
