@@ -19,6 +19,7 @@ export default function ChatList(props) {
 
     return (
       <ChatListItem 
+      key={chatObj.conversation_id}
       convoID={chatObj.conversation_id}
       firstName={chatObj.first_name}
       lastName={chatObj.last_name}
