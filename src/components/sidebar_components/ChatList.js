@@ -16,7 +16,6 @@ export default function ChatList(props) {
   }, []);
 
   const listOfChats = chatListState.data?.map((chatObj) => {
-    console.log('Hello from ChatObj', chatObj);
 
     return (
       <ChatListItem 
@@ -30,7 +29,7 @@ export default function ChatList(props) {
   });
 
   return (
-    <div className="chat-list-container">All the chats!
+    <div className="chat-list-container">
     <ul>
       {listOfChats}
     </ul>
