@@ -22,7 +22,7 @@
   background-color: white;
   margin-left: 1em;
   border-radius: 50%;
-  overflow:hidden;
+  overflow: hidden; /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
 }
 /* Ensure that photo is made to perfectly fit the parent div container  */
 .chat-list-item-user-photo {
