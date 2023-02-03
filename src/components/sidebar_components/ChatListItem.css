@@ -15,16 +15,20 @@
   border-radius: 10px;
 }
 
-/* .chat-list-item-user-photo-container {
-  padding-left: 0.8em;
+/* Created a photo container with height, width and rounded corners. It acts as a frame for photo so that rounded corners look proper and not distorted  */
+.chat-list-item-user-photo-container {
+  width: 110px;
+  height: 110px;
+  background-color: white;
+  margin-left: 1em;
   border-radius: 50%;
-} */
-
+  overflow:hidden;
+}
+/* Ensure that photo is made to perfectly fit the parent div container  */
 .chat-list-item-user-photo {
-  height: 100px;
-  width: 100px;
-  padding-left: 0.8em;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .chat-list-item-conversation {
