@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
+import axios from "axios";
 import "./SideBarSearch.css"
 
 export default function SideBarSearch(props) {
-  const [searchUser, setSearchUser] = useState(null)
+  const [searchUser, setSearchUser] = useState("")
 
   function SearchForUser(event) {
     setSearchUser(event.target.value)
     console.log(event.target.value)
+    console.log('Hello from searchSTATE', searchUser)
   }
 
   return (
     <div className="sidebar-search-container">
-      <input type="text" placeholder="Search..." onChange={SearchForUser}/>
+      <input type="text" placeholder="Search..." value={searchUser} onChange={SearchForUser}/>
         <a href="#">
         <i className="fa-solid fa-magnifying-glass"></i>
         </a>
