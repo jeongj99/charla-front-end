@@ -3,7 +3,7 @@ import axios from "axios";
 import "./SideBarSearch.css"
 
 export default function SideBarSearch(props) {
-  const [searchUser, setSearchUser] = useState("TESTING")
+  const [searchUser, setSearchUser] = useState("")
 
   useEffect(() => {
     axios.get('http://localhost:8001/api/searchuser', {
