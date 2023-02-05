@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
 
 export default function LoginForm(props) {
+  const userRef = useRef();
+  const errRef = useRef();
+
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [emailLogin, passwordLogin]);
 
   const login = async () => {
     const response = await axios.post('api/login', {
@@ -27,7 +34,7 @@ export default function LoginForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
-        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} />
+        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} ref={userRef} />
         <CommonInput name="password" type="password" placeholder="Password" value={passwordLogin} onChange={setPasswordLogin} />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />

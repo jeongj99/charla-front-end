@@ -27,7 +27,13 @@ export function CommonLink(props) {
 
 export function CommonInput(props) {
   return (
-    <input className="form-input" name={props.name} type={props.type} placeholder={props.placeholder} value={props.value} onChange={event => props.onChange(event.target.value)} />
+    <input
+      className="form-input"
+      name={props.name} type={props.type}
+      placeholder={props.placeholder} value={props.value}
+      onChange={event => props.onChange(event.target.value)}
+      ref={props.ref}
+    />
   );
 }
 
