@@ -6,6 +6,7 @@ export default function SideBarSearch(props) {
   const [searchUser, setSearchUser] = useState("");
 
   useEffect(() => {
+    //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
     if (searchUser.length > 0) {
       axios.get('api/searchuser', {
         params: {
