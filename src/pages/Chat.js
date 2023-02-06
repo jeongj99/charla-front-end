@@ -5,6 +5,7 @@ import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
 import SideBarSearch from '../components/sidebar_components/SideBarSearch'
 import ChatList from '../components/sidebar_components/ChatList';
+import SearchList from '../components/sidebar_components/SearchList'
 import ChatInput from '../components/chat_components/ChatInput'
 
 export default function Chat() {
@@ -12,7 +13,7 @@ export default function Chat() {
   const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
 
-  //Axios Request for Search Bar in SideBar. Lifted into this Chat Page so that either ChatList or SearchList can be loaded based on state of search.
+  //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded based on state of search.
   useEffect(() => {
     //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
     if (searchUser.length > 0) {
@@ -48,7 +49,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            <ChatList />
+            {searchUser ? <SearchList usersFound={usersFound}/> : <ChatList />}
             <div className="sidebar-profile">
               Alex Jeong with profile pic
             </div>
