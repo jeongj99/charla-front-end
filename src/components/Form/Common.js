@@ -32,7 +32,6 @@ export function CommonInput(props) {
       name={props.name} type={props.type}
       placeholder={props.placeholder} value={props.value}
       onChange={event => props.onChange(event.target.value)}
-      ref={props.ref}
     />
   );
 }
