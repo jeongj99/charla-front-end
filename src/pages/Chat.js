@@ -25,7 +25,6 @@ export default function Chat() {
         .then(response => {
           console.log('Hello from axios', response.data);
           setUsersFound(response)
-          console.log('Hello from the new STATE', usersFound)
         })
         .catch(err => console.log(err));
     }

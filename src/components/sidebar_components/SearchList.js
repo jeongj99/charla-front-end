@@ -2,8 +2,8 @@ import ChatListItem from './ChatListItem';
 import './SearchList.css';
 
 export default function SearchList(props) {
-  console.log('Hello from SEARCHLIST COMP USERSFOUND STATE', props.usersFound)
 
+  //Map over array of usersFound Response and render a ChatListItem for each user object in array.
   const listOfSearchedUsers = props.usersFound.data?.map((searchedUsersObj) => {
 
     return (
