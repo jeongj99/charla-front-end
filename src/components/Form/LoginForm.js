@@ -1,13 +1,10 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
 
 export default function LoginForm(props) {
-  const userRef = useRef();
-  const errRef = useRef();
-
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,7 +23,8 @@ export default function LoginForm(props) {
       setErrorMessage(response.data.message);
       console.log(response.data.message);
     } else {
-      console.log(response);
+      setEmailLogin("");
+      setPasswordLogin("");
       setErrorMessage("");
     }
   };
@@ -34,7 +32,7 @@ export default function LoginForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
-        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} ref={userRef} />
+        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} />
         <CommonInput name="password" type="password" placeholder="Password" value={passwordLogin} onChange={setPasswordLogin} />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
