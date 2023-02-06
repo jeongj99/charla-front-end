@@ -4,6 +4,7 @@ import "./SideBarSearch.css";
 
 export default function SideBarSearch(props) {
   const [searchUser, setSearchUser] = useState("");
+  const [usersFound, setUsersFound] = useState("")
 
   useEffect(() => {
     //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
@@ -15,7 +16,8 @@ export default function SideBarSearch(props) {
       })
         .then(response => {
           console.log('Hello from axios', response.data);
-          return;
+          setUsersFound(response.data)
+          console.log('Hello from the new STATE', usersFound)
         })
         .catch(err => console.log(err));
     }
