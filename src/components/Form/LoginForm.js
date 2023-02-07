@@ -14,18 +14,18 @@ export default function LoginForm(props) {
   }, [emailLogin, passwordLogin]);
 
   const login = async () => {
-    const response = await axios.post('api/login', {
-      email: emailLogin,
-      password: passwordLogin
-    });
+    try {
+      const response = await axios.post('api/login', {
+        email: emailLogin,
+        password: passwordLogin
+      });
 
-    if (response.data.error) {
-      setErrorMessage(response.data.message);
-      console.log(response.data.message);
-    } else {
       setEmailLogin("");
       setPasswordLogin("");
       setErrorMessage("");
+    } catch ({ response }) {
+      console.log(response.data.error);
+      setErrorMessage(response.data.error);
     }
   };
 
