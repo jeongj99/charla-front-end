@@ -7,7 +7,7 @@ export default function ChatListItem(props) {
   const navigate = useNavigate();
   
   const navigateToChat = function() {
-    navigate("/");
+    navigate(`/chat/${props.convoID}`);
   };
 
   return (
