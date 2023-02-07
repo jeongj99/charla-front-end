@@ -1,14 +1,38 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from "axios";
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
 import SideBarSearch from '../components/sidebar_components/SideBarSearch'
 import ChatList from '../components/sidebar_components/ChatList';
-
+import SearchList from '../components/sidebar_components/SearchList'
 import ChatInput from '../components/chat_components/ChatInput'
 
 export default function Chat() {
   const { id } = useParams();
+  const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
+  const [usersFound, setUsersFound] = useState(""); //State for response of searched user
+
+  //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
+  useEffect(() => {
+    //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
+    if (searchUser.length > 0) {
+      axios.get('api/searchuser', {
+        params: {
+          searchedUser: searchUser
+        }
+      })
+        .then(response => {
+          console.log('Hello from axios', response.data);
+          setUsersFound(response)
+        })
+        .catch(err => console.log(err));
+    }
+  }, [searchUser]);
+
+  const SearchForUser = function(event) {
+    setSearchUser(event.target.value);
+  };
 
   return (
     <>
@@ -23,8 +47,8 @@ export default function Chat() {
         </div>
         <div className="chat-main-container">
           <aside className="sidebar">
-            <SideBarSearch />
-            <ChatList />
+            <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
+            {searchUser ? <SearchList usersFound={usersFound}/> : <ChatList />}
             <div className="sidebar-profile">
               Alex Jeong with profile pic
             </div>
