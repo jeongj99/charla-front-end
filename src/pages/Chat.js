@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from "axios";
+import axios from "../api/axios";
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
-import SideBarSearch from '../components/sidebar_components/SideBarSearch'
+import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
-import SearchList from '../components/sidebar_components/SearchList'
-import ChatInput from '../components/chat_components/ChatInput'
+import SearchList from '../components/sidebar_components/SearchList';
+import ChatInput from '../components/chat_components/ChatInput';
 
 export default function Chat() {
   const { id } = useParams();
@@ -15,14 +15,17 @@ export default function Chat() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`api/chattest`)
-      .then(response => {
-        console.log('Hello from axios fro NEW CONVERSATION', response.data);
+      axios.get('api/chat', {
+        params: {
+          id: id
+        }
       })
-      .catch(err => console.log(err));
+        .then(response => {
+          console.log('Hello from axios fro NEW CONVERSATION', response.data);
+        })
+        .catch(err => console.log(err));
     }
-    
-  }, []);
+  }, [id]);
 
   //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   useEffect(() => {
@@ -35,7 +38,7 @@ export default function Chat() {
       })
         .then(response => {
           console.log('Hello from axios', response.data);
-          setUsersFound(response)
+          setUsersFound(response);
         })
         .catch(err => console.log(err));
     }
@@ -59,14 +62,14 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList usersFound={usersFound}/> : <ChatList />}
+            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList />}
             <div className="sidebar-profile">
               Alex Jeong with profile pic
             </div>
           </aside>
           <section className="chat">
             <div className="chat-message">
-              {id ? <h2>This is chat page and id is {id}</h2> : <h2>This is chat page and there is no id</h2>}
+              <h2>This is chat page and there is no id</h2>
             </div>
             <ChatInput />
           </section>
