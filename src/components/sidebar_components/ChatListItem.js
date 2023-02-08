@@ -4,28 +4,28 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function ChatListItem(props) {
-  const [conversationSelected, setConversationSelected] = useState("")
+  // const [conversationSelected, setConversationSelected] = useState("")
+  
+  // useEffect(() => {
+  //   axios.get(`api/chat`, {
+  //     params: {
+  //       ID: props.convoID
+  //     }
+  //   })
+  //   .then(response => {
+  //     console.log('Hello from axios fro NEW CONVERSATION', response.data);
+  //   })
+  //   .catch(err => console.log(err));
+    
+  // }, []);
   
   const navigate = useNavigate();
-  
+
   const navigateToChat = function() {
     navigate(`/chat/${props.convoID}`);
-    setConversationSelected(props.convoID);
+    // setConversationSelected(props.convoID);
   };
   
-  useEffect(() => {
-      axios.get(`api/chat/${props.convoID}`, {
-        params: {
-          ID: props.convoID
-        }
-      })
-        .then(response => {
-          console.log('Hello from axios fro NEW CONVERSATION', response.data);
-        })
-        .catch(err => console.log(err));
-
-  }, [conversationSelected]);
-
   return (
     <main className="chat-list-item-container" onClick={navigateToChat}>
       <div className="chat-list-item-user-photo-container">
