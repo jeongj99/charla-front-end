@@ -1,7 +1,6 @@
 import { Profiler, useEffect, useState } from "react";
 import "./ChatListItem.css"
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 export default function ChatListItem(props) {
   // const [conversationSelected, setConversationSelected] = useState("")

@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../api/axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";

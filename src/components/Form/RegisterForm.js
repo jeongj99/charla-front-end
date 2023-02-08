@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "../../api/axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";

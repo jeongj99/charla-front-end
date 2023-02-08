@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import axios from "../../api/axios";
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
@@ -8,7 +8,7 @@ export default function ChatList(props) {
   const [chatListState, setChatListState] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:8001/api/chat/list')
+    axios.get('api/chat/list')
       .then(response => {
         setChatListState(response);
       })
