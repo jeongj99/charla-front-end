@@ -7,6 +7,7 @@ import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
 import SearchList from '../components/sidebar_components/SearchList';
 import ChatInput from '../components/chat_components/ChatInput';
+import ChatMessages from '../components/chat_components/ChatMessages';
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
@@ -70,9 +71,7 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            <div className="chat-message">
-              <h2>This is chat page and there is no id</h2>
-            </div>
+            <ChatMessages />
             <ChatInput />
           </section>
         </div>
