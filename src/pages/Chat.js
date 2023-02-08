@@ -13,6 +13,17 @@ export default function Chat() {
   const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
 
+  useEffect(() => {
+    if (id) {
+      axios.get(`api/chattest`)
+      .then(response => {
+        console.log('Hello from axios fro NEW CONVERSATION', response.data);
+      })
+      .catch(err => console.log(err));
+    }
+    
+  }, []);
+
   //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   useEffect(() => {
     //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
