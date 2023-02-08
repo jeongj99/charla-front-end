@@ -1,13 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
+import AuthContext from "../../context/AuthProvider";
 
 export default function LoginForm(props) {
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { setAuth } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setErrorMessage("");
@@ -20,9 +24,11 @@ export default function LoginForm(props) {
         password: passwordLogin
       });
 
+      setAuth(response.data.contact);
       setEmailLogin("");
       setPasswordLogin("");
       setErrorMessage("");
+      navigate("/chat");
     } catch ({ response }) {
       console.log(response.data.error);
       setErrorMessage(response.data.error);
