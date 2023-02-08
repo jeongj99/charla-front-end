@@ -1,5 +1,5 @@
-import { useContext, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,31 +11,17 @@ import AuthContext from "./context/AuthProvider";
 import './App.css';
 
 function App() {
-  const { auth, setAuth } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   axios.post("/api/authenticate", {}).then(response => {
-  //     if (!response.data.error) {
-  //       localStorage.setItem('user', response.data.user.user_name);
-  //       localStorage.setItem('userID', response.data.user.id);
-  //       setAuth(response.data.contact);
-
-  //     } else {
-  //       localStorage.removeItem('user');
-  //       localStorage.removeItem('userID');
-  //     }
-  //   });
-  // });
+  const { auth } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={auth ? <Chat /> : <Home />} />
+        <Route path="/" element={auth ? <Navigate to="/chat" /> : <Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/chat/:id" element={<Chat />} />
+        <Route path="/chat" element={auth ? <Chat /> : <Navigate to="/" />} />
+        <Route path="/chat/:id" element={auth ? <Chat /> : <Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
   );
