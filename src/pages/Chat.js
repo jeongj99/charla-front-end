@@ -22,7 +22,8 @@ export default function Chat() {
         }
       })
         .then(response => {
-          console.log('Hello from axios fro NEW CONVERSATION', response.data);
+          setConvoMessages(response.data);
+          console.log('Hello from Convo Messages STATE', convoMessages);
         })
         .catch(err => console.log(err));
     }
