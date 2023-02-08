@@ -71,7 +71,7 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            <ChatMessages />
+            <ChatMessages convoMessages={convoMessages} />
             <ChatInput />
           </section>
         </div>
