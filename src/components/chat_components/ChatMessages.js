@@ -9,6 +9,7 @@ export default function ChatMessages(props) {
       <ChatBubble 
       key={msgObj.id}
       messages={msgObj.message_text}
+      contact={msgObj.contact_id}
       dateTime={msgObj.sent_datetime}
       />
     )
