@@ -3,10 +3,23 @@ import ChatBubble from './ChatBubble';
 
 export default function ChatMessages(props) {
 
+  const listOfMessages = props.convoMessages?.map((msgObj) => {
+
+    return (
+      <ChatBubble 
+      key={msgObj.id}
+      messages={msgObj.message_text}
+      dateTime={msgObj.sent_datetime}
+      />
+    )
+  })
+
   return (
     <div className="chat-messages">
       <h2>This is chat page and there is no id</h2>
-      <ChatBubble />
+      <ul>
+      {listOfMessages}
+    </ul>
     </div>
   );
 }
