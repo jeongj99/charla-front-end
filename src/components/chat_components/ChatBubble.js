@@ -1,10 +1,10 @@
-
+import './ChatBubble.css'
 
 export default function ChatBubble(props) {
 
   return (
 
-    <div>
+    <div className="chat-bubble">
       Hello from within the chat Bubble!
     </div>
   )
