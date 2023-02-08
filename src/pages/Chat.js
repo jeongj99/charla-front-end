@@ -9,7 +9,7 @@ import SearchList from '../components/sidebar_components/SearchList';
 import ChatInput from '../components/chat_components/ChatInput';
 
 export default function Chat() {
-  const { id } = useParams();
+  const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
   const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
 
