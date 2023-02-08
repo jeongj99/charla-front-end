@@ -23,7 +23,7 @@ export default function Chat() {
         }
       })
         .then(response => {
-          setConvoMessages(response.data);
+          setConvoMessages(response);
           console.log('Hello from Convo Messages STATE', convoMessages);
         })
         .catch(err => console.log(err));

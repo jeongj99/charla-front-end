@@ -3,13 +3,13 @@ import ChatBubble from './ChatBubble';
 
 export default function ChatMessages(props) {
 
-  const listOfMessages = props.convoMessages?.map((msgObj) => {
+  const listOfMessages = props.convoMessages.data?.map((msgObj) => {
 
     return (
       <ChatBubble 
       key={msgObj.id}
       messages={msgObj.message_text}
-      contact={msgObj.contact_id}
+      contact={msgObj.contact}
       dateTime={msgObj.sent_datetime}
       />
     )

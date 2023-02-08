@@ -1,3 +1,7 @@
 .chat-bubble {
-  background-color: yellow
+  margin: 1em;
+  color: whitesmoke;
+  background-color: rgba(95, 39, 192, 1);
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  font-family: inherit;
 }
