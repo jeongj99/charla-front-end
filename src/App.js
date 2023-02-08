@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
@@ -12,6 +12,20 @@ import './App.css';
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
+
+  // useEffect(() => {
+  //   axios.post("/api/authenticate", {}).then(response => {
+  //     if (!response.data.error) {
+  //       localStorage.setItem('user', response.data.user.user_name);
+  //       localStorage.setItem('userID', response.data.user.id);
+  //       setAuth(response.data.contact);
+
+  //     } else {
+  //       localStorage.removeItem('user');
+  //       localStorage.removeItem('userID');
+  //     }
+  //   });
+  // });
 
   return (
     <BrowserRouter>
