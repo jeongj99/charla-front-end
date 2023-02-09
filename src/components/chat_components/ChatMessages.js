@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import AuthContext from "../../context/AuthProvider";
 import './ChatMessages.css';
 import ChatBubble from './ChatBubble';
 import classNames from "classnames";
@@ -11,10 +13,12 @@ import classNames from "classnames";
 // }
 
 export default function ChatMessages(props) {
-  let chatMessageClass = classNames('')
-
+  const { auth } = useContext(AuthContext);
+  console.log(auth.id)
+  // let chatMessageClass = classNames('chat-messages-default', { "chat-messages-sent-by-you": msgObj.contact === auth.id })
+  
   const listOfMessages = props.convoMessages.data?.map((msgObj) => {
-
+    console.log(props.convoMessages.data)
     return (
       <ChatBubble 
       key={msgObj.id}
@@ -22,14 +26,17 @@ export default function ChatMessages(props) {
       contact={msgObj.contact}
       dateTime={msgObj.sent_datetime}
       />
-    )
-  })
+      )
+    })
+    
 
   return (
     <div className="chat-messages">
-      <ul className="chat-messages-from-contact">
+      <ul>
       {listOfMessages}
     </ul>
     </div>
   );
 }
+
+// className={chatMessageClass}
