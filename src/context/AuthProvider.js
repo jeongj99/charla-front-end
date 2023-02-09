@@ -4,15 +4,15 @@ import axios from "../api/axios";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState(false);
 
   const authenticate = async () => {
     try {
       const response = await axios.post('api/authenticate', {});
-      setAuth(response.data.contact);
+      setAuth(response.data.authenticated);
     } catch (error) {
       console.log(error);
-      setAuth(null);
+      setAuth(false);
     }
   };
 
