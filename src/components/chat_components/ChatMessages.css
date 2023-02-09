@@ -4,6 +4,12 @@
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
 
+/* This CSS sets the default column appearance to all Chat Message UL elements. */
+.chat-messages-default {
+  display: flex;
+  flex-direction: column;
+}
+
 /* This CSS floats messages from one of your contacts to the left of the chat screen */
 .chat-messages-from-contact {
   display: flex;
@@ -16,5 +22,4 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 90%;
 }
