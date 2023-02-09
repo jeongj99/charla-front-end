@@ -9,8 +9,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
 
 /* This CSS aligns messages that were sent by you to the right side of the chat screen */
@@ -19,6 +17,4 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 90%;
-  background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
