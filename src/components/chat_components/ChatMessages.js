@@ -11,7 +11,7 @@ import classNames from "classnames";
 // }
 
 export default function ChatMessages(props) {
-  // let chatMessageClass = classNames('')
+  let chatMessageClass = classNames('')
 
   const listOfMessages = props.convoMessages.data?.map((msgObj) => {
 
