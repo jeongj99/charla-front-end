@@ -1,22 +1,22 @@
 .chat-messages {
-  display: flex;
   height: 90%;
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
 
+/* This CSS floats messages from one of your contacts to the left of the chat screen */
 .chat-messages-from-contact {
   display: flex;
-  /* This CSS floats messages from one of your contacts to the left of the chat screen */
-  justify-content: flex-start;
-  height: 90%;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
 
+/* This CSS aligns messages that were sent by you to the right side of the chat screen */
 .chat-messages-sent-by-you {
   display: flex;
-  /* This CSS aligns messages that were sent by you to the right side of the chat screen */
+  flex-direction: column;
   justify-content: flex-end;
   height: 90%;
   background-color: #ffffff;

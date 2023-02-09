@@ -11,6 +11,7 @@ import classNames from "classnames";
 // }
 
 export default function ChatMessages(props) {
+  // let chatMessageClass = classNames('')
 
   const listOfMessages = props.convoMessages.data?.map((msgObj) => {
 
@@ -26,7 +27,7 @@ export default function ChatMessages(props) {
 
   return (
     <div className="chat-messages">
-      <ul>
+      <ul className="chat-messages-from-contact">
       {listOfMessages}
     </ul>
     </div>
