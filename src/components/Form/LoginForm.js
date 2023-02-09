@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react"; //Require this line for importing auth with logged in contact details
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
-import AuthContext from "../../context/AuthProvider";
+import AuthContext from "../../context/AuthProvider"; //Require this line for importing auth with logged in contact details
 
 export default function LoginForm(props) {
   const [emailLogin, setEmailLogin] = useState("");
