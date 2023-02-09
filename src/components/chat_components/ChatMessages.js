@@ -1,5 +1,14 @@
 import './ChatMessages.css';
 import ChatBubble from './ChatBubble';
+import classNames from "classnames";
+
+//The bottom of this document contains extended notes related to this button component
+
+// export default function Button(props) {
+//   let buttonClass = classNames('button', { "button--confirm": props.confirm, "button--danger": props.danger });
+
+//   return (<button className={buttonClass} onClick={props.onClick} disabled={props.disabled}>{props.children}</button>);
+// }
 
 export default function ChatMessages(props) {
 
