@@ -1,4 +1,4 @@
-.chat-bubble {
+.chat-bubble-user-1 {
   display: flex;
   align-items: center;
   width: fit-content;
@@ -10,9 +10,11 @@
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   font-family: inherit;
   font-size: large;
+  position: relative;
+  margin-right: auto;
 }
 
-.chat-bubble-2 {
+.chat-bubble-user-2 {
   display: flex;
   align-items: center;
   width: fit-content;
@@ -24,6 +26,8 @@
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   font-family: inherit;
   font-size: large;
+  position: relative;
+  margin-left: auto;
 
 }
 
