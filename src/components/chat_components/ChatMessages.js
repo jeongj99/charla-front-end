@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import './ChatMessages.css';
 import ChatBubble from './ChatBubble';
@@ -14,29 +14,37 @@ import classNames from "classnames";
 
 export default function ChatMessages(props) {
   const { auth } = useContext(AuthContext);
-  console.log(auth.id)
-  // let chatMessageClass = classNames('chat-messages-default', { "chat-messages-sent-by-you": msgObj.contact === auth.id })
+  // const [chatMessageAuthIdMatch, setchatMessageAuthIdMatch] = useState(false); //State for a chatMessages corresponding Contact ID.
+  let controlVariable = null;
+
+  let chatMessageClass = classNames('chat-messages-default', { "chat-messages-sent-by-you": controlVariable });
+
+  console.log('HELLO FROM ALL DATA', props.convoMessages.data)
   
   const listOfMessages = props.convoMessages.data?.map((msgObj) => {
-    console.log(props.convoMessages.data)
+    if (msgObj.contact_id === auth.id) {
+      controlVariable = true;
+    } else {
+      controlVariable = null;
+    }
+    
+    console.log("Hello from True or False statement", msgObj.contact_id === auth.id )
     return (
-      <ChatBubble 
+      <ChatBubble
       key={msgObj.id}
       messages={msgObj.message_text}
-      contact={msgObj.contact}
+      contact={msgObj.contact_id}
       dateTime={msgObj.sent_datetime}
       />
-      )
-    })
+      );
+    });
     
 
   return (
     <div className="chat-messages">
-      <ul>
-      {listOfMessages}
-    </ul>
+      <ul className={chatMessageClass}>
+        {listOfMessages}
+      </ul>
     </div>
   );
 }
-
-// className={chatMessageClass}

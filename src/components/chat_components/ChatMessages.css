@@ -8,14 +8,15 @@
 .chat-messages-default {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 /* This CSS floats messages from one of your contacts to the left of the chat screen */
-.chat-messages-from-contact {
+/* .chat-messages-from-contact {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
 /* This CSS aligns messages that were sent by you to the right side of the chat screen */
 .chat-messages-sent-by-you {
