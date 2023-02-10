@@ -6,6 +6,8 @@ import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButto
 import Marginer from "../Marginer";
 import AuthContext from "../../context/AuthProvider";
 
+import { RiErrorWarningLine } from "react-icons/ri";
+
 export default function RegisterForm(props) {
   const [firstNameRegister, setFirstNameRegister] = useState("");
   const [lastNameRegister, setLastNameRegister] = useState("");
@@ -40,6 +42,14 @@ export default function RegisterForm(props) {
     }
   };
 
+  const validateConfirmPassword = () => {
+    if (passwordRegister !== confirmPassword) {
+      setErrorMessage("Passwords do not match!");
+    } else {
+      register();
+    }
+  };
+
   return (
     <CommonContainer>
       <CommonForm>
@@ -52,8 +62,16 @@ export default function RegisterForm(props) {
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
       <Marginer direction="vertical" margin="1.6em" />
-      <CommonSubmitButton onClick={register}>Register</CommonSubmitButton>
+      <CommonSubmitButton onClick={validateConfirmPassword}>Register</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
+      {
+        errorMessage &&
+        <div className="register-validation">
+          <p>
+            <RiErrorWarningLine /> {errorMessage}
+          </p>
+        </div>
+      }
       <CommonLink muted>Already have an account? <CommonLink bold onClick={props.switchForm}>Log In</CommonLink></CommonLink>
     </CommonContainer>
   );
