@@ -5,11 +5,11 @@
 }
 
 /* This CSS sets the default column appearance to all Chat Message UL elements. */
-.chat-messages-default {
+/* .chat-messages-default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-}
+} */
 
 /* This CSS floats messages from one of your contacts to the left of the chat screen */
 /* .chat-messages-from-contact {
@@ -19,8 +19,8 @@
 } */
 
 /* This CSS aligns messages that were sent by you to the right side of the chat screen */
-.chat-messages-sent-by-you {
+/* .chat-messages-sent-by-you {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-}
+} */

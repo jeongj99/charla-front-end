@@ -5,11 +5,27 @@
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
-  /* Possibly use box-shadow later to indicate newly sent message */
-  /* box-shadow: 5px 20px 10px rgba(95, 39, 192, 1); */
   color: whitesmoke;
   background-color: rgba(95, 39, 192, 1);
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   font-family: inherit;
   font-size: large;
 }
+
+.chat-bubble-2 {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  color: whitesmoke;
+  background-color: blue;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  font-family: inherit;
+  font-size: large;
+
+}
+
+/* Possibly use box-shadow later to indicate newly sent message */
+/* box-shadow: 5px 20px 10px rgba(95, 39, 192, 1); */
