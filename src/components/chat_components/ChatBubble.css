@@ -22,13 +22,12 @@
   padding: 1em;
   border-radius: 1em;
   color: whitesmoke;
-  background-color: blue;
+  background-color: rgb(36, 14, 121);
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   font-family: inherit;
   font-size: large;
   position: relative;
   margin-left: auto;
-
 }
 
 /* Possibly use box-shadow later to indicate newly sent message */
