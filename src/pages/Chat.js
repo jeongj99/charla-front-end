@@ -18,6 +18,7 @@ export default function Chat() {
   const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
+  const [userID, setUserId] = useState("") //This state holds the ID of the user who is currently logged in
   const { setAuth } = useContext(AuthContext);
 
   useEffect(() => {
@@ -28,8 +29,10 @@ export default function Chat() {
         }
       })
         .then(response => {
-          setConvoMessages(response);
+          setConvoMessages(response.data);
           console.log('Hello from Convo Messages STATE', convoMessages);
+          setUserId(response.data.contact.id);
+          console.log('Hello from USER ID in CHAT', userID);
         })
         .catch(err => console.log(err));
     }
@@ -88,7 +91,7 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            <ChatMessages convoMessages={convoMessages} />
+            <ChatMessages userID={userID} convoMessages={convoMessages} />
             <ChatInput />
           </section>
         </div>
