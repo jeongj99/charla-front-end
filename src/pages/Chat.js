@@ -31,7 +31,7 @@ export default function Chat() {
         .then(response => {
           setConvoMessages(response.data);
           console.log('Hello from Convo Messages STATE', convoMessages);
-          setUserId(response.data.contact.id);
+          setUserId(response.data.id);
           console.log('Hello from USER ID in CHAT', userID);
         })
         .catch(err => console.log(err));
