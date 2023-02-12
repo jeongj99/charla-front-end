@@ -9,8 +9,6 @@ export default function ChatList(props) {
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message');
 
-    console.log(chatInfo.data);
-
     for (const element of chatInfo.data) {
       const response = await axios.get('api/chat/list/profile', {
         params: {
@@ -18,10 +16,8 @@ export default function ChatList(props) {
         }
       });
 
-      element.contact_id = response.data.contact_id;
+      element.contact = response.data;
     }
-    console.log(chatInfo.data);
-
     setChatListState(chatInfo);
   };
 
@@ -39,10 +35,12 @@ export default function ChatList(props) {
       <ChatListItem
         key={chatObj.conversation_id}
         convoID={chatObj.conversation_id}
-        firstName={chatObj.first_name}
-        lastName={chatObj.last_name}
+        profileID={chatObj.contact.id}
+        firstName={chatObj.contact.first_name}
+        lastName={chatObj.contact.last_name}
+        messageOwnerID={chatObj.message_owner_id}
         message={chatObj.message_text}
-        profilePic={chatObj.profile_photo_url}
+        profilePic={chatObj.contact.profile_photo_url}
       />
     );
   });
