@@ -2,4 +2,5 @@
   height: 90%;
   background-color: #ffffff;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  overflow: auto;
 }
