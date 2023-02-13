@@ -3,8 +3,8 @@ import axios from "../../api/axios";
 import "./ChatInput.css";
 
 export default function ChatInput(props) {
-  const [userMessage, setUserMessage] = useState("")
-  const [messageSubmitted, setMessageSubmitted] = useState("")
+  const [userMessage, setUserMessage] = useState("") //This state holds the current user Message being typed and represents what is being seen on the textarea value
+  const [messageSubmitted, setMessageSubmitted] = useState("") //This state confirms whether a messaege has been submitted via clicking the enter button
 
   const userMessageInput = function(event) {
       setUserMessage(event.target.value)
@@ -20,7 +20,7 @@ export default function ChatInput(props) {
       return;
     }
   }
-  
+  //IF enter button clicked, then make AXIOS post request and deposit userMessage into the database
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
       axios.post('api/messagesubmission', {
@@ -28,7 +28,7 @@ export default function ChatInput(props) {
         convoID: props.convoID
       })
       .then(response => {
-        setUserMessage("")
+        setUserMessage("") //Reset states upon response to prepare for next message to be sent
         setMessageSubmitted("")
         props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
       })

@@ -19,7 +19,7 @@ export default function Chat() {
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
   const [userID, setUserId] = useState("") //This state holds the ID of the user who is currently logged in
-  const [refreshMessages, setRefreshMessages] = useState("")
+  const [refreshMessages, setRefreshMessages] = useState("") //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
   const { setAuth } = useContext(AuthContext);
 
   useEffect(() => {
