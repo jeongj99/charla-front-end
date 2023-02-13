@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import axios from "../../api/axios";
 import "./ChatInput.css";
 
 export default function ChatInput(props) {
   const [userMessage, setUserMessage] = useState("")
   const [messageSubmitted, setMessageSubmitted] = useState("")
-  const [textAreaValue, setTextAreaValue] = useState(undefined);
+  // const [textAreaValue, setTextAreaValue] = useState(undefined);
 
   const userMessageInput = function(event) {
       setUserMessage(event.target.value)
@@ -14,6 +15,7 @@ export default function ChatInput(props) {
   const handleKeyDown = function(event) {
     if (event.key === 'Enter') {
       setMessageSubmitted('Message Submitted')
+      // setUserMessage("")
       console.log('Handle Key down was executed')
     } else {
       return;
@@ -22,14 +24,19 @@ export default function ChatInput(props) {
   
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
-      setTextAreaValue('') 
-      console.log('Hello from inside useEffect')
+      axios.post('api/messagesubmission', {
+        messageSubmitted: userMessage
+      })
+      .then(response => {
+        console.log('Hello from MESSAGE BUILDING', response.data);
+      })
+      .catch(err => console.log(err));
     }
 
   }, [messageSubmitted])
 
 
   return (
-    <textarea value={textAreaValue} className="text-area" placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown}></textarea>
+    <textarea value={userMessage} className="text-area" placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown}></textarea>
   );
 }
