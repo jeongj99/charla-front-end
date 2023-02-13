@@ -19,6 +19,7 @@ export default function Chat() {
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
   const [userID, setUserId] = useState("") //This state holds the ID of the user who is currently logged in
+  const [refreshMessages, setRefreshMessages] = useState("")
   const { setAuth } = useContext(AuthContext);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function Chat() {
         })
         .catch(err => console.log(err));
     }
-  }, [id]);
+  }, [id, refreshMessages]);
 
   //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function Chat() {
           </aside>
           <section className="chat">
             <ChatMessages userID={userID} convoMessages={convoMessages} />
-            <ChatInput convoID={id}/>
+            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id}/>
           </section>
         </div>
       </div>

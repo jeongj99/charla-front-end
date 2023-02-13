@@ -3,11 +3,8 @@ import axios from "../../api/axios";
 import "./ChatInput.css";
 
 export default function ChatInput(props) {
-  console.log('Hello from the convoID', props.convoID)
-  const convoID = props.convoID
   const [userMessage, setUserMessage] = useState("")
   const [messageSubmitted, setMessageSubmitted] = useState("")
-  // const [textAreaValue, setTextAreaValue] = useState(undefined);
 
   const userMessageInput = function(event) {
       setUserMessage(event.target.value)
@@ -33,6 +30,7 @@ export default function ChatInput(props) {
       .then(response => {
         setUserMessage("")
         setMessageSubmitted("")
+        props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
       })
       .catch(err => console.log(err));
     }
