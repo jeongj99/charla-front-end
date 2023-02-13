@@ -3,6 +3,8 @@ import axios from "../../api/axios";
 import "./ChatInput.css";
 
 export default function ChatInput(props) {
+  console.log('Hello from the convoID', props.convoID)
+  const convoID = props.convoID
   const [userMessage, setUserMessage] = useState("")
   const [messageSubmitted, setMessageSubmitted] = useState("")
   // const [textAreaValue, setTextAreaValue] = useState(undefined);
@@ -25,10 +27,12 @@ export default function ChatInput(props) {
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
       axios.post('api/messagesubmission', {
-        messageSubmitted: userMessage
+        messageSubmitted: userMessage,
+        convoID: props.convoID
       })
       .then(response => {
-        console.log('Hello from MESSAGE BUILDING', response.data);
+        setUserMessage("")
+        setMessageSubmitted("")
       })
       .catch(err => console.log(err));
     }
