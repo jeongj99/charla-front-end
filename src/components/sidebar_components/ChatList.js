@@ -27,7 +27,7 @@ export default function ChatList(props) {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [props.refreshMessages]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 

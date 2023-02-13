@@ -83,7 +83,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList />}
+            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList refreshMessages={refreshMessages} />}
             <div className="sidebar-profile">
               Alex Jeong with profile pic
               <button className='logout-button' onClick={logout}>
