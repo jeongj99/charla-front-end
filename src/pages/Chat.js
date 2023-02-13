@@ -92,7 +92,7 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            <ChatMessages userID={userID} convoMessages={convoMessages} />
+            <ChatMessages userID={userID} convoMessages={convoMessages} refreshMessages={refreshMessages} />
             <ChatInput setRefreshMessages={setRefreshMessages} convoID={id}/>
           </section>
         </div>
