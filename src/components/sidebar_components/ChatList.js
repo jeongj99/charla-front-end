@@ -4,12 +4,10 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
-  // const [chatListState, setChatListState] = useState(false);
   const { chatListState, setChatListState, refreshMessages } = props;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message');
-    console.log('Hello form chat info', chatInfo.data)
     for (const element of chatInfo.data) {
       const response = await axios.get('api/chat/list/profile', {
         params: {
@@ -20,7 +18,6 @@ export default function ChatList(props) {
       element.contact = response.data;
     }
     setChatListState(chatInfo);
-    console.log('Hello from chat list state', chatListState)
   };
 
   useEffect(() => {
