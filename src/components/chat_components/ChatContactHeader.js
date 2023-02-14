@@ -12,7 +12,7 @@ export default function ChatContactHeader(props) {
     //   }
     // }
 
-  console.log('Hello from all the info inside your chat contact header', chatListState.data)
+  // console.log('Hello from all the info inside your chat contact header', chatListState.data)
 
   return (
     <div className="chat-contact-header">
