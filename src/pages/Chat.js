@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "../api/axios";
 
@@ -7,20 +7,18 @@ import ChatList from '../components/sidebar_components/ChatList';
 import SearchList from '../components/sidebar_components/SearchList';
 import ChatInput from '../components/chat_components/ChatInput';
 import ChatMessages from '../components/chat_components/ChatMessages';
-import AuthContext from '../context/AuthProvider';
+import SidebarProfile from '../components/sidebar_components/SidebarProfile';
 
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
-import { BiLogOut } from "react-icons/bi";
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
   const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
-  const [userID, setUserId] = useState("") //This state holds the ID of the user who is currently logged in
-  const [refreshMessages, setRefreshMessages] = useState("") //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
-  const { setAuth } = useContext(AuthContext);
+  const [userID, setUserId] = useState(""); //This state holds the ID of the user who is currently logged in
+  const [refreshMessages, setRefreshMessages] = useState(""); //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
 
   useEffect(() => {
     if (id) {
@@ -60,15 +58,6 @@ export default function Chat() {
     setSearchUser(event.target.value);
   };
 
-  const logout = async () => {
-    try {
-      const response = await axios.post("/api/logout", {});
-      setAuth(response.data.auth);
-    } catch ({ response }) {
-      console.log(response.data.error);
-    }
-  };
-
   return (
     <>
       <div className="chat-container">
@@ -85,15 +74,12 @@ export default function Chat() {
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
             {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList refreshMessages={refreshMessages} />}
             <div className="sidebar-profile">
-              Alex Jeong with profile pic
-              <button className='logout-button' onClick={logout}>
-                <BiLogOut />
-              </button>
+              <SidebarProfile />
             </div>
           </aside>
           <section className="chat">
             <ChatMessages userID={userID} convoMessages={convoMessages} refreshMessages={refreshMessages} />
-            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id}/>
+            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} />
           </section>
         </div>
       </div>
