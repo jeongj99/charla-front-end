@@ -5,7 +5,7 @@ import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
   // const [chatListState, setChatListState] = useState(false);
-  const { chatListState, setChatListState } = props;
+  const { chatListState, setChatListState, refreshMessages } = props;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message');
@@ -29,7 +29,7 @@ export default function ChatList(props) {
     } catch (err) {
       console.log(err);
     }
-  }, [props.refreshMessages]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
+  }, [refreshMessages]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 
