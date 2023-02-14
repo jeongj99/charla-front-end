@@ -4,7 +4,8 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
-  const [chatListState, setChatListState] = useState(false);
+  // const [chatListState, setChatListState] = useState(false);
+  const { chatListState, setChatListState } = props;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message');

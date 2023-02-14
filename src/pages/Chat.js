@@ -20,6 +20,7 @@ export default function Chat() {
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
   const [userID, setUserId] = useState(""); //This state holds the ID of the user who is currently logged in
   const [refreshMessages, setRefreshMessages] = useState(""); //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
+  const [chatListState, setChatListState] = useState(false); //State used for housing axios get request information to fill Chat List Items. This info will also be passed to Chat Contact Header to display contact profile picture and name.
 
   useEffect(() => {
     if (id) {
@@ -71,7 +72,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList refreshMessages={refreshMessages} />}
+            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
