@@ -5,6 +5,7 @@ import { useEffect, useRef } from 'react';
 export default function ChatMessages(props) {
   const messageEndRef = useRef(null);
   
+  //This function when called will scroll to the location of the dummy div messageEndRef, which is at the bottom of the chat messages
   const scrollToBottom = () => {
     messageEndRef.current?.scrollIntoView({
       behaviour: "smooth",
@@ -12,6 +13,7 @@ export default function ChatMessages(props) {
     })
   }
 
+  //Use Effect hook allows for scroll to bottom function to be triggered each time messages are refreshed!
   useEffect(() => {
     if (props.refreshMessages !== null) {
       scrollToBottom();
