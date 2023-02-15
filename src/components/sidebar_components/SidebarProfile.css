@@ -1,0 +1,29 @@
+.sidebar-profile-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background: rgb(36, 14, 121);
+  padding-top: 4px;
+  border-top: solid rgb(25, 8, 91) 1px
+}
+
+.sidebar-profile-name {
+  color: white;
+  font-family: inherit;
+}
+
+.logout-button {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: solid rgb(25, 8, 91) 1px;
+  color: black;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2px;
+  cursor: pointer;
+}

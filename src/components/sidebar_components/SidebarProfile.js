@@ -8,12 +8,12 @@ import { BiLogOut } from "react-icons/bi";
 
 export default function SidebarProfile() {
   const { setAuth } = useContext(AuthContext);
-  const [loggedIn, setLoggedIn] = useState(null);
+  const [loggedInName, setLoggedInName] = useState(null);
 
   useEffect(() => {
     axios.get("api/loggedin")
       .then(response => {
-        console.log(response.data.loggedInUser);
+        setLoggedInName(`${response.data.loggedInUser.firstName} ${response.data.loggedInUser.lastName}`);
       })
       .catch(error => {
         console.log('Hello', error);
@@ -30,7 +30,8 @@ export default function SidebarProfile() {
   };
 
   return (
-    <main>
+    <main className="sidebar-profile-container">
+      <p className="sidebar-profile-name">{loggedInName}</p>
       <button className='logout-button' onClick={logout}>
         <BiLogOut />
       </button>
