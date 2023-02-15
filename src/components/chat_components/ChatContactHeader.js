@@ -20,7 +20,9 @@ export default function ChatContactHeader(props) {
 
   return (
     <div className="chat-contact-header-container">
+      <div className='chat-contact-header-contact-image-container'>
       <img className='chat-contact-header-contact-image' src={contactHeaderPic}></img>
+      </div>
       <div className='chat-contact-header-contact-name'>
       {contactHeaderFirstName} {contactHeaderLastName}
       </div>

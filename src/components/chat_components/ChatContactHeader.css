@@ -1,4 +1,6 @@
 .chat-contact-header-container {
+  display: flex;
+  align-items: center;
   height: 100%;
   width: 75%;
 }
@@ -6,4 +8,23 @@
 .chat-contact-header-contact-name {
   font-family: inherit;
   color: whitesmoke;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: large;
+  font-weight: bold;
+}
+
+.chat-contact-header-contact-image-container {
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  margin-left: 1em;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chat-contact-header-contact-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
