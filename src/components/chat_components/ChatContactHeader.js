@@ -9,11 +9,11 @@ export default function ChatContactHeader(props) {
     return;
   } else {
     for (const contactObject of chatListState.data) {
-      console.log('Hello from your contact object that should match the id you are on', typeof contactObject)
-      console.log('Hello from your ID PARAMS IN THE HEADER', typeof Number(id))
-      if (contactObject.contact.id === Number(id)) {
-        // setContactInfoForHeader(contactObject.contact)
-        (console.log('converting ID to number worked and it now matches id in object'))
+      console.log('Hello from your contact objects conversation id', contactObject.conversation_id)
+      if (contactObject.conversation_id === Number(id)) {
+        console.log('This is the contact object that matched params id', contactObject.conversation_id, id)
+        // setContactInfoForHeader('This is the contact object that matched params id', contactObject.contact)
+        // (console.log('converting ID to number worked and it now matches id in object'))
       }
     }
   }
