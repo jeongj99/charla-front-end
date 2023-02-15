@@ -51,8 +51,8 @@
 }
 
 .sidebar-profile {
-  background-color: purple;
   height: 5%;
+  color: inherit;
 }
 
 .chat {
