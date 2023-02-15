@@ -12,11 +12,12 @@ import './App.css';
 
 function App() {
   const { auth } = useContext(AuthContext);
+  console.log(auth);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={auth ? <Navigate to="/chat" /> : <Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
