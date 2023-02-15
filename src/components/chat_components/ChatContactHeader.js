@@ -3,7 +3,7 @@ import './ChatContactHeader.css'
 
 export default function ChatContactHeader(props) {
   const { chatListState, id } = props;
-  let contactInfoVariable = null;
+  let contactInfoVariable = "";
   // const [contactInfoForHeader, setContactInfoForHeader] = useState("") //This state will hold the contact object that matches the current ID/ChatListItem selected
 
   if (!chatListState) {
@@ -26,7 +26,7 @@ export default function ChatContactHeader(props) {
 
   return (
     <div className="chat-contact-header">
-    
+      {contactInfoVariable.first_name} {contactInfoVariable.last_name}
   </div>
   );
 }
