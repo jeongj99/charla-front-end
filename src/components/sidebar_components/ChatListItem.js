@@ -21,7 +21,11 @@ export default function ChatListItem(props) {
   const navigate = useNavigate();
 
   const navigateToChat = function() {
-    navigate(`/chat/${props.convoID}`);
+    if (props.convoID) {
+      navigate(`/chat/${props.convoID}`);
+    } else {
+      
+    }
     // setConversationSelected(props.convoID);
   };
 
