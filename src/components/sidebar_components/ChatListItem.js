@@ -26,8 +26,11 @@ export default function ChatListItem(props) {
       navigate(`/chat/${props.convoID}`);
     } else {
       axios.post('api/newconversation', {
-
-      }) 
+        contactid: props.contactID
+      })
+      .then(response => {
+      })
+      .catch(err => console.log(err));
     }
     // setConversationSelected(props.convoID);
   };
