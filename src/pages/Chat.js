@@ -67,7 +67,7 @@ export default function Chat() {
           <div className="topbar-logo">
             Charla <SiXdadevelopers className='charlaLogo' />
           </div>
-          <ChatContactHeader chatListState={chatListState} id={id} />
+          {id && <ChatContactHeader chatListState={chatListState} id={id} />}
         </div>
         <div className="chat-main-container">
           <aside className="sidebar">
