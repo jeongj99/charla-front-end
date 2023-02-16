@@ -1,5 +1,6 @@
 import { Profiler, useEffect, useState } from "react";
 import "./ChatListItem.css";
+import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
@@ -24,7 +25,9 @@ export default function ChatListItem(props) {
     if (props.convoID) {
       navigate(`/chat/${props.convoID}`);
     } else {
-      
+      axios.post('api/newconversation', {
+
+      }) 
     }
     // setConversationSelected(props.convoID);
   };
