@@ -16,12 +16,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={auth ? <Navigate to="/chat" /> : <Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
-        <Route path="/chat" element={auth ? <Chat /> : <Navigate to="/" />} />
-        <Route path="/chat/:id" element={auth ? <Chat /> : <Navigate to="/" />} />
+        <Route path="/chat" element={auth && <Chat />} />
+        <Route path="/chat/:id" element={auth && <Chat />} />
       </Routes>
     </BrowserRouter>
   );
