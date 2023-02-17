@@ -14,7 +14,15 @@
   font-family: inherit;
 }
 
-.logout-button {
+.sidebar-profile-buttons {
+  width: 4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-profile-buttons button {
   width: 25px;
   height: 25px;
   border-radius: 50%;

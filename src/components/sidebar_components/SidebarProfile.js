@@ -1,14 +1,16 @@
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 
 import AuthContext from '../../context/AuthProvider';
 
 import "./SidebarProfile.css";
-import { BiLogOut } from "react-icons/bi";
+import { BiHome, BiLogOut } from "react-icons/bi";
 
 export default function SidebarProfile() {
   const { setAuth } = useContext(AuthContext);
   const [loggedInName, setLoggedInName] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("api/loggedin")
@@ -19,6 +21,10 @@ export default function SidebarProfile() {
         console.log('Hello', error);
       });
   }, []);
+
+  const backHome = () => {
+    navigate("/");
+  };
 
   const logout = async () => {
     try {
@@ -32,9 +38,14 @@ export default function SidebarProfile() {
   return (
     <main className="sidebar-profile-container">
       <p className="sidebar-profile-name">{loggedInName}</p>
-      <button className='logout-button' onClick={logout}>
-        <BiLogOut />
-      </button>
+      <div className="sidebar-profile-buttons">
+        <button onClick={backHome}>
+          <BiHome />
+        </button>
+        <button onClick={logout}>
+          <BiLogOut />
+        </button>
+      </div>
     </main>
   );
 }
