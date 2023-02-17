@@ -10,7 +10,7 @@ export default function SearchList(props) {
     return (
       <ChatListItem 
       key={searchedUsersObj.id}
-      contactID={searchedUsersObj.id}
+      contactID={searchedUsersObj.id} //Pass down contact ID so that it can be provided from end to back end when clicking on searched user to start a new conversation with them.
       firstName={searchedUsersObj.first_name}
       lastName={searchedUsersObj.last_name}
       profilePic={searchedUsersObj.profile_photo_url}

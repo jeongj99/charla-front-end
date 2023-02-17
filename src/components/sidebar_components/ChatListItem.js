@@ -27,8 +27,10 @@ export default function ChatListItem(props) {
     } else {
       axios.post('api/newconversation', {
         contactid: props.contactID
+        //Here we may need to send the logged in user ID or could just access that in the back end with the validate token.
       })
       .then(response => {
+        console.log(response)
       })
       .catch(err => console.log(err));
     }
