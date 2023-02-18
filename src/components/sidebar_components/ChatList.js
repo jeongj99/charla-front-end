@@ -7,7 +7,7 @@ export default function ChatList(props) {
   const { chatListState, setChatListState, refreshMessages } = props;
 
   const fetchChatListInfo = async () => {
-    const chatInfo = await axios.get('api/chat/list/message');
+    const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
     for (const element of chatInfo.data) {
       const response = await axios.get('api/chat/list/profile', {
         params: {
@@ -19,7 +19,7 @@ export default function ChatList(props) {
     }
     setChatListState(chatInfo);
   };
-
+  
   useEffect(() => {
     try {
       fetchChatListInfo();
@@ -33,7 +33,7 @@ export default function ChatList(props) {
     return (
       <ChatListItem
         key={chatObj.conversation_id}
-        convoID={chatObj.conversation_id}
+        convoID={chatObj.conversation_id} //From each conversation object in the chatListState, we are going to pass down the conversation ID to the Chat List Item component.
         profileID={chatObj.contact.id}
         firstName={chatObj.contact.first_name}
         lastName={chatObj.contact.last_name}

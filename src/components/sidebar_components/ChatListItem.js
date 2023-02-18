@@ -4,6 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
+  const [userID, setUserID] = useState("") //This state will house the userID of the logged in individual retrieved from the back end.
   // const [conversationSelected, setConversationSelected] = useState("")
 
   // useEffect(() => {
@@ -21,16 +22,31 @@ export default function ChatListItem(props) {
 
   const navigate = useNavigate();
 
+  //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation.
+  const getTheNewlyCreatedConversation = function(userID) {
+    axios.get('api/getthenewconversation', {
+      params: {
+        id: userID, //This is the ID of the individual logged in.
+        contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both ID to db query and get correct conversation.
+      }
+    })
+    .then(response => {
+      console.log('Hello stranger')
+    })
+    .catch(err => console.log(err));
+  }
+
+  //The navigate to chat function will check if a convoID exists for this chatListItem component. If so, it will open the conversation, if not POST request to create new conversation with the selected contact from search.
   const navigateToChat = function() {
     if (props.convoID) {
       navigate(`/chat/${props.convoID}`);
     } else {
       axios.post('api/newconversation', {
-        contactid: props.contactID
-        //Here we may need to send the logged in user ID or could just access that in the back end with the validate token.
+        contactid: props.contactID //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
       })
       .then(response => {
-        console.log(response)
+        setUserID(response.data.id) //This sets the state of the userID to the ID of the user who is logged in, sent from backend.
+        getTheNewlyCreatedConversation(userID) //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
       })
       .catch(err => console.log(err));
     }
