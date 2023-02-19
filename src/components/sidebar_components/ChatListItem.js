@@ -4,6 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
+  const { setSearchUser } = props;
   const [userID, setUserID] = useState("") //This state will house the userID of the logged in individual retrieved from the back end.
   let newConvoID = ""; //This state will house the conversation ID of the newly created conversation via POST route, plugged in to useNavigate to load/start conversation with this individual.
 
@@ -35,6 +36,7 @@ export default function ChatListItem(props) {
     .then(response => {
       newConvoID = response.data.rows[0].conversation_id;
       navigate(`/chat/${newConvoID}`);
+      setSearchUser("")
     })
     .catch(err => console.log(err));
   }

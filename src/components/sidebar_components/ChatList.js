@@ -4,7 +4,7 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
-  const { chatListState, setChatListState, refreshMessages, refreshChatListState, setRefreshChatListState } = props;
+  const { chatListState, setChatListState, refreshMessages } = props;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
@@ -26,7 +26,7 @@ export default function ChatList(props) {
     } catch (err) {
       console.log(err);
     }
-  }, [refreshMessages, refreshChatListState]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
+  }, [refreshMessages]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 
@@ -40,7 +40,6 @@ export default function ChatList(props) {
         messageOwnerID={chatObj.message_owner_id}
         message={chatObj.message_text}
         profilePic={chatObj.contact.profile_photo_url}
-        setRefreshChatListState={setRefreshChatListState} //Pass down setRefreshChatListState which will be called on selecting chat list item and starting new convo. It will reload the chatListState with newly added conversation and allow this users contact header to be loaded (since contact header dependent on contact info in chatListState). 
       />
     );
   });

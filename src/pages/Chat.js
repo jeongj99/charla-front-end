@@ -15,13 +15,12 @@ import { SiXdadevelopers } from "react-icons/si";
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
-  const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar
+  const [searchUser, setSearchUser] = useState(""); //State for searching a user in search bar. If value "", then no chat list items rendered.
   const [usersFound, setUsersFound] = useState(""); //State for response of searched user
   const [convoMessages, setConvoMessages] = useState(""); //This state holds all the messages for the selected Chat List Item.
   const [userID, setUserId] = useState(""); //This state holds the ID of the user who is currently logged in
   const [refreshMessages, setRefreshMessages] = useState(""); //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
   const [chatListState, setChatListState] = useState(false); //State used for housing axios get request contact information to fill Chat List Items. This info will also be passed to Chat Contact Header to display contact profile picture and name.
-  const [refreshChatListState, setRefreshChatListState] = useState("") //State used for refreshing the chat list state/list of chat list items upon creating a new conversation.
 
   useEffect(() => {
     if (id) {
@@ -73,7 +72,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList usersFound={usersFound} /> : <ChatList setRefreshChatListState={setRefreshChatListState} refreshChatListState={refreshChatListState} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
+            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
