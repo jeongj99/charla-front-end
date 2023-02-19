@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
   const [userID, setUserID] = useState("") //This state will house the userID of the logged in individual retrieved from the back end.
+  let newConvoID = ""; //This state will house the conversation ID of the newly created conversation via POST route, plugged in to useNavigate to load/start conversation with this individual.
+
   // const [conversationSelected, setConversationSelected] = useState("")
 
   // useEffect(() => {
@@ -22,7 +24,7 @@ export default function ChatListItem(props) {
 
   const navigate = useNavigate();
 
-  //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation.
+  //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
   const getTheNewlyCreatedConversation = function(userID) {
     axios.get('api/getthenewconversation', {
       params: {
@@ -31,7 +33,8 @@ export default function ChatListItem(props) {
       }
     })
     .then(response => {
-      console.log('Hello stranger')
+      newConvoID = response.data.rows[0].conversation_id;
+      navigate(`/chat/${newConvoID}`);
     })
     .catch(err => console.log(err));
   }
