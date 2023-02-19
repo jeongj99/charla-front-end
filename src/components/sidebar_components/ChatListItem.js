@@ -39,6 +39,9 @@ export default function ChatListItem(props) {
     .catch(err => console.log(err));
   }
 
+  //NEED TO ADD AN ELSE IF STATEMENT BEFORE ELSE WHERE YOU DO A GET REQUEST AND SEE IF THAT CONVERSATION ALREADY EXISTS, IF SO THEN YOU NAVIGATE TO THAT SECTION!
+  //ALSO CAN USE STATE On creation of new conersation and pass down stat to chat message sto open up a new YYou have started a converstion wtih said person convo
+
   //The navigate to chat function will check if a convoID exists for this chatListItem component. If so, it will open the conversation, if not POST request to create new conversation with the selected contact from search.
   const navigateToChat = function() {
     if (props.convoID) {
