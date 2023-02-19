@@ -30,5 +30,23 @@
   margin-left: auto;
 }
 
+.chat-bubble-admin-message {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  color: whitesmoke;
+  background-color: rgb(36, 14, 121);
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  font-family: inherit;
+  font-size: large;
+  position: relative;
+  /* Use margin-left auto and margin-right auto to position chat bubble in the middle. */
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Possibly use box-shadow later to indicate newly sent message */
 /* box-shadow: 5px 20px 10px rgba(95, 39, 192, 1); */
