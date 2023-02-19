@@ -30,7 +30,7 @@ export default function ChatListItem(props) {
     axios.get('api/getthenewconversation', {
       params: {
         id: userID, //This is the ID of the individual logged in.
-        contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both ID to db query and get correct conversation.
+        contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both IDs to db query and get correct conversation.
       }
     })
     .then(response => {
@@ -50,7 +50,9 @@ export default function ChatListItem(props) {
       navigate(`/chat/${props.convoID}`);
     } else {
       axios.post('api/newconversation', {
-        contactid: props.contactID //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
+        contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
+        firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
+        lastName: props.lastName
       })
       .then(response => {
         setUserID(response.data.id) //This sets the state of the userID to the ID of the user who is logged in, sent from backend.
