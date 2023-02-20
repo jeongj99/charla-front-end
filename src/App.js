@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 import Chat from "./pages/Chat";
 import AuthContext from "./context/AuthProvider";
 
@@ -12,7 +13,6 @@ import './App.css';
 
 function App() {
   const { auth } = useContext(AuthContext);
-  console.log(auth);
 
   return (
     <BrowserRouter>
@@ -21,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/chat" element={auth ? <Chat /> : <Navigate to="/" />} />
         <Route path="/chat/:id" element={auth ? <Chat /> : <Navigate to="/" />} />
       </Routes>

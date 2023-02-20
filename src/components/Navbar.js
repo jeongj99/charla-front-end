@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+
+import AuthContext from "../context/AuthProvider";
 
 import "./Navbar.css";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -13,13 +15,15 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setClick(false);
 
+  const { auth } = useContext(AuthContext);
+
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>
         <nav className="navbar">
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              Charla <SiXdadevelopers className='charlaLogo'/>
+              Charla <SiXdadevelopers className='charlaLogo' />
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
@@ -31,15 +35,26 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
-                  Log In
+                <NavLink to="/contact-us" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                  Contact Us
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
-                  Register
-                </NavLink>
-              </li>
+              {
+                !auth &&
+                <li className="nav-item">
+                  <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                    Log In
+                  </NavLink>
+                </li>
+              }
+              {
+                !auth &&
+                <li className="nav-item">
+                  <NavLink to="/register" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                    Register
+                  </NavLink>
+                </li>
+              }
             </ul>
           </div>
         </nav>
