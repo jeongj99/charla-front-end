@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import axios from "../api/axios";
 
 import AuthContext from "../context/AuthProvider";
 
@@ -15,7 +16,16 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setClick(false);
 
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const logout = async () => {
+    try {
+      const response = await axios.post("/api/logout", {});
+      setAuth(response.data.auth);
+    } catch ({ response }) {
+      console.log(response.data.error);
+    }
+  };
 
   return (
     <>
@@ -53,6 +63,14 @@ export default function Navbar() {
                   <NavLink to="/register" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
                     Register
                   </NavLink>
+                </li>
+              }
+              {
+                auth &&
+                <li className="nav-item">
+                  <div className="nav-links logout" onClick={logout}>
+                    Log Out
+                  </div>
                 </li>
               }
             </ul>
