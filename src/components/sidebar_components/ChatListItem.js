@@ -86,6 +86,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
+      <i className="fa-solid fa-xmark"></i>
     </main>
 
   );
