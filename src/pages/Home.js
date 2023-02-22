@@ -17,7 +17,8 @@ export default function Home() {
         <Navbar />
         <section className="home-section">
           <div className="home-section-left">
-
+            <h1>Charla</h1>
+            <p>Experience the power of online conversation with Charla</p>
           </div>
           <div className="home-section-right">
             {auth ? <button onClick={() => navigate("/chat")}>Go to your chats </button> : <Form />}
