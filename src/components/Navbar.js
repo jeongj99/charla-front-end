@@ -40,19 +40,19 @@ export default function Navbar() {
             </div>
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <NavLink to="/about" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                <NavLink to="/about" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
                   About
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact-us" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                <NavLink to="/contact-us" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
                   Contact Us
                 </NavLink>
               </li>
               {
                 !auth &&
                 <li className="nav-item">
-                  <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                  <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
                     Log In
                   </NavLink>
                 </li>
@@ -60,7 +60,7 @@ export default function Navbar() {
               {
                 !auth &&
                 <li className="nav-item">
-                  <NavLink to="/register" className={({ isActive }) => "nav-links" + (isActive ? "activated" : "")} onClick={closeMobileMenu} >
+                  <NavLink to="/register" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
                     Register
                   </NavLink>
                 </li>
