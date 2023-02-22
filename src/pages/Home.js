@@ -16,9 +16,14 @@ export default function Home() {
       <div className="home-container">
         <Navbar />
         <section className="home-section">
-          {auth ? <button onClick={() => navigate("/chat")}>Go to your chats </button> : <Form />}
+          <div className="home-section-left">
+
+          </div>
+          <div className="home-section-right">
+            {auth ? <button onClick={() => navigate("/chat")}>Go to your chats </button> : <Form />}
+          </div>
         </section>
-      </div>
+      </div >
     </>
   );
 }
