@@ -1,7 +1,14 @@
-import React from 'react';
+import Navbar from "../components/Navbar";
 
 export default function ContactUs() {
   return (
-    <div>This is the contact us page!</div>
+    <>
+      <div className="contactus-container">
+        <Navbar />
+        <section className="contactus-section">
+          This is contact us page!
+        </section>
+      </div >
+    </>
   );
 }
