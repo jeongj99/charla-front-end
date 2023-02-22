@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 import AuthContext from "../context/AuthProvider";
@@ -18,10 +18,13 @@ export default function Navbar() {
 
   const { auth, setAuth } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const logout = async () => {
     try {
       const response = await axios.post("/api/logout", {});
       setAuth(response.data.auth);
+      navigate("/");
     } catch ({ response }) {
       console.log(response.data.error);
     }
