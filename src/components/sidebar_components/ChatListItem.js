@@ -74,7 +74,11 @@ export default function ChatListItem(props) {
   };
 
   const deleteConvo = function() {
-    axios.delete('api/deleteparticipant')
+    axios.delete('api/deleteparticipant', {
+      params: {
+        convoID: props.convoID
+      }
+    })
     .then(response => {
       console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
     })
