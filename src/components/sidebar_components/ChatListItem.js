@@ -74,8 +74,11 @@ export default function ChatListItem(props) {
   };
 
   const deleteConvo = function() {
-    
-
+    axios.delete('api/deleteparticipant')
+    .then(response => {
+      console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
+    })
+    .catch(err => console.log(err));
   };
 
   return (
@@ -89,7 +92,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-      <i onClick={() => { console.log('TESTING FROM THE X BUTTON x 2'); }} className="fa-solid fa-xmark"></i>
+      <i onClick={deleteConvo} className="fa-solid fa-xmark"></i>
     </main>
   );
 }
