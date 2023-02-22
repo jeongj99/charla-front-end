@@ -71,7 +71,10 @@ export default function ChatListItem(props) {
         })
         .catch(err => console.log(err));
     }
-    //Axios get request will check that when clicking on searched contact, do you already have a convo with them. If so, navigate to that EXISTING convo.
+  };
+
+  const deleteConvo = function() {
+    
 
   };
 
@@ -86,7 +89,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-      <i onClick={() => {console.log('TESTING FROM THE X BUTTON x 2')}} className="fa-solid fa-xmark"></i>
+      <i onClick={() => { console.log('TESTING FROM THE X BUTTON x 2'); }} className="fa-solid fa-xmark"></i>
     </main>
   );
 }
