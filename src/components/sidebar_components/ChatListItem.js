@@ -82,7 +82,6 @@ export default function ChatListItem(props) {
     .then(response => {
       console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
       setConvoDeleted(response);
-      setConvoMessages("")
       navigate('/chat')
     })
     .catch(err => console.log(err));

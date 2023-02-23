@@ -21,6 +21,7 @@ export default function Chat() {
   const [userID, setUserId] = useState(""); //This state holds the ID of the user who is currently logged in
   const [refreshMessages, setRefreshMessages] = useState(""); //State for messages submission. If message submitted, state updated, and chat list item and chat messages dynamically updated.
   const [chatListState, setChatListState] = useState(false); //State used for housing axios get request contact information to fill Chat List Items. This info will also be passed to Chat Contact Header to display contact profile picture and name.
+  const [convoDeleted, setConvoDeleted] = useState(""); //This state is triggered when the delete convo button is clicked, and is used in the useEffect to refresh the chat list when delte convo occurs. 
 
   useEffect(() => {
     if (id) {
@@ -31,7 +32,7 @@ export default function Chat() {
       })
         .then(response => {
           setConvoMessages(response.data);
-          console.log('Hello from Convo Messages STATE', convoMessages);
+          console.log('Hello from Convo Messages STATE on THURSDAY AFTER INTERVIEW', convoMessages);
           setUserId(response.data.id);
           console.log('Hello from USER ID in CHAT', userID);
         })
@@ -72,13 +73,13 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
+            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList convoDeleted={convoDeleted} setConvoDeleted={setConvoDeleted} setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
           </aside>
           <section className="chat">
-            <ChatMessages userID={userID} convoMessages={convoMessages} refreshMessages={refreshMessages} />
+            <ChatMessages convoDeleted={convoDeleted} userID={userID} setConvoMessages={setConvoMessages} convoMessages={convoMessages} refreshMessages={refreshMessages} />
             <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} />
           </section>
         </div>
