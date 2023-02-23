@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
-  const { setSearchUser, setConvoDeleted, setConvoMessages } = props;
+  const { setSearchUser, setConvoDeleted, message } = props;
   let newConvoID = ""; //This state will house the conversation ID of the newly created conversation via POST route, plugged in to useNavigate to load/start conversation with this individual.
 
   // const [conversationSelected, setConversationSelected] = useState("")
@@ -98,7 +98,9 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-      <i onClick={deleteConvo} className="fa-solid fa-xmark"></i>
+        { //Here if a message is present in the chat list item component, this means it is in the chat list not the search list. Only apply X for delte convo when in chat list.
+          message ? <i onClick={deleteConvo} className={'fa-solid fa-xmark'}></i> : <i className={''}></i> 
+        }
     </main>
   );
 }
