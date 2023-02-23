@@ -4,8 +4,8 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
-  const { chatListState, setChatListState, refreshMessages } = props;
-  const [convoDeleted, setConvoDeleted] = useState("");
+  const { chatListState, setChatListState, refreshMessages, setConvoMessages } = props;
+  const [convoDeleted, setConvoDeleted] = useState(""); //This state is triggered when the delete convo button is clicked, and is used in the useEffect to refresh the chat list when delte convo occurs. 
   
 
   const fetchChatListInfo = async () => {
@@ -20,18 +20,6 @@ export default function ChatList(props) {
       element.contact = response.data;
     }
     setChatListState(chatInfo);
-  };
-
-  const deleteConvo = function() {
-    axios.delete('api/deleteparticipant', {
-      params: {
-        convoID: props.convoID
-      }
-    })
-    .then(response => {
-      console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
-    })
-    .catch(err => console.log(err));
   };
   
   useEffect(() => {
@@ -55,6 +43,7 @@ export default function ChatList(props) {
         message={chatObj.message_text}
         profilePic={chatObj.contact.profile_photo_url}
         setConvoDeleted={setConvoDeleted}
+        setConvoMessages={setConvoMessages}
       />
     );
   });

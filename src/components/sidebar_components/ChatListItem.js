@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
-  const { setSearchUser, setConvoDeleted } = props;
+  const { setSearchUser, setConvoDeleted, setConvoMessages } = props;
   let newConvoID = ""; //This state will house the conversation ID of the newly created conversation via POST route, plugged in to useNavigate to load/start conversation with this individual.
 
   // const [conversationSelected, setConversationSelected] = useState("")
@@ -82,7 +82,8 @@ export default function ChatListItem(props) {
     .then(response => {
       console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
       setConvoDeleted(response);
-      navigate('/chat/')
+      setConvoMessages("")
+      navigate('/chat')
     })
     .catch(err => console.log(err));
   };
