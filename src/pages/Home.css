@@ -2,12 +2,37 @@
   top: 70px;
   width: 100vw;
   height: 100vh;
-
 }
 
 .home-section {
   width: 100%;
-  height: 475px;
+  height: 684px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.home-section {
+  width: 100%;
+  height: 684px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-section-left {
+  /* width: 100%; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-section-right {
+  /* width: 100%; */
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

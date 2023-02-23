@@ -87,8 +87,16 @@
   color: #09bef0;
 }
 
+.fa-bars {
+  color: #fff;
+}
+
 .menu-icon {
   display: none;
+}
+
+.logout {
+  cursor: pointer
 }
 
 @media screen and (max-width: 960px) {
