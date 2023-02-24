@@ -13,8 +13,9 @@ export default function Home() {
 
   const navigate = useNavigate();
 
-  const homeSectionClass = classNames("home-section", {
-    "logged-in": auth,
+  const homeSectionClass = classNames({
+    "home-section-loggedIn": auth,
+    "home-section": !auth
   });
 
   return (
