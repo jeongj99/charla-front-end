@@ -47,6 +47,13 @@ export default function ChatInput(props) {
             props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
           })
           .catch(err => console.log(err));
+        } else {
+          axios.post('api/addparticipantbacktoconvo', {
+            convoID: props.convoID
+          })
+          .then(response => {
+          })
+          .catch(err => console.log(err));
         }
       })
       .catch(err => console.log(err));
