@@ -20,11 +20,12 @@ export default function ChatInput(props) {
       return;
     }
   }
-  //IF enter button clicked, then make AXIOS post request and deposit userMessage into the database
+  
+  //If enter button clicked, we change messageSubmitted state and trigger axios post request.
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
 
-      //Upon message being submitted we first make a get request to check that both individuals are present within the conversation.
+      //Upon message submitted state being properly updated we first make a get request to check that both individuals are present within the conversation before sending a new message.
       axios.get('api/participantspresent', {
         params: {
           convoID: props.convoID
@@ -34,8 +35,8 @@ export default function ChatInput(props) {
         let loggedInUserID = response.data.loggedInUserID;
         let firstParticipant = response.data.rows[0];
         let secondParticipant = response.data.rows[1];
-        console.log('Hello from LOGGED IN USER ID AND BOTH CONTACT IDS ON FRONT END', loggedInUserID, firstParticipant, secondParticipant)
 
+        //Check if BOTH the first participant and second participant are in the convo (not null), and if one of their ids are equal to the loggedinUserID. If so, then loggedInUser is a participant in convo and as a result can send message.
         if ((firstParticipant && secondParticipant) && (firstParticipant.contact_id === loggedInUserID || secondParticipant.contact_id === loggedInUserID)) {
           axios.post('api/messagesubmission', {
             messageSubmitted: userMessage,
@@ -48,6 +49,7 @@ export default function ChatInput(props) {
           })
           .catch(err => console.log(err));
         } else {
+          //If the logged in user did not match any of the returning participants, or if one of the values is null, then we post request to add the logged in user as participant back to the convo, and then once they are added back, make same post request for message submission.
           axios.post('api/addparticipantbacktoconvo', {
             convoID: props.convoID
           })
