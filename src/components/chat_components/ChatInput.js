@@ -23,16 +23,36 @@ export default function ChatInput(props) {
   //IF enter button clicked, then make AXIOS post request and deposit userMessage into the database
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
-      axios.post('api/messagesubmission', {
-        messageSubmitted: userMessage,
-        convoID: props.convoID
+
+      //Upon message being submitted we first make a get request to check that both individuals are present within the conversation.
+      axios.get('api/participantspresent', {
+        params: {
+          convoID: props.convoID
+        }
       })
       .then(response => {
-        setUserMessage("") //Reset states upon response to prepare for next message to be sent
-        setMessageSubmitted("")
-        props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+        const loggedInUserID = response.data.loggedInUserID;
+        const firstParticipant = response.data.rows[0].contact_id;
+        const secondParticipant = response.data.rows[1].contact_id;
+        console.log('Hello from LOGGED IN USER ID AND BOTH CONTACT IDS ON FRONT END', loggedInUserID, firstParticipant, secondParticipant)
+
+        if (firstParticipant === loggedInUserID || secondParticipant === loggedInUserID) {
+          axios.post('api/messagesubmission', {
+            messageSubmitted: userMessage,
+            convoID: props.convoID
+          })
+          .then(response => {
+            setUserMessage("") //Reset states upon response to prepare for next message to be sent
+            setMessageSubmitted("")
+            props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+          })
+          .catch(err => console.log(err));
+        }
       })
       .catch(err => console.log(err));
+
+
+
     }
 
   }, [messageSubmitted])
