@@ -4,7 +4,9 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
-  const { chatListState, setChatListState, refreshMessages } = props;
+  const { chatListState, setChatListState, refreshMessages, setConvoMessages } = props;
+  const [convoDeleted, setConvoDeleted] = useState(""); //This state is triggered when the delete convo button is clicked, and is used in the useEffect to refresh the chat list when delte convo occurs. 
+  
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
@@ -26,7 +28,7 @@ export default function ChatList(props) {
     } catch (err) {
       console.log(err);
     }
-  }, [refreshMessages]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
+  }, [refreshMessages, convoDeleted]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 
@@ -40,6 +42,8 @@ export default function ChatList(props) {
         messageOwnerID={chatObj.message_owner_id}
         message={chatObj.message_text}
         profilePic={chatObj.contact.profile_photo_url}
+        setConvoDeleted={setConvoDeleted}
+        setConvoMessages={setConvoMessages}
       />
     );
   });

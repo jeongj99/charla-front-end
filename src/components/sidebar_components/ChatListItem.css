@@ -48,3 +48,22 @@
 .chat-list-item-conversation p {
   font-size: medium;
 }
+
+.chat-list-item-container i {
+  visibility: hidden;
+  position: relative;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 5%;
+  margin-top: 3%;
+}
+
+.chat-list-item-container:hover i {
+  visibility: visible;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: 5%;
+  margin-top: 3%;
+}

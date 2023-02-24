@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function ChatListItem(props) {
-  const { setSearchUser } = props;
+  const { setSearchUser, setConvoDeleted, setConvoMessages } = props;
   let newConvoID = ""; //This state will house the conversation ID of the newly created conversation via POST route, plugged in to useNavigate to load/start conversation with this individual.
 
   // const [conversationSelected, setConversationSelected] = useState("")
@@ -71,8 +71,21 @@ export default function ChatListItem(props) {
         })
         .catch(err => console.log(err));
     }
-    //Axios get request will check that when clicking on searched contact, do you already have a convo with them. If so, navigate to that EXISTING convo.
+  };
 
+  const deleteConvo = function() {
+    axios.delete('api/deleteparticipant', {
+      params: {
+        convoID: props.convoID
+      }
+    })
+    .then(response => {
+      console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
+      setConvoDeleted(response);
+      setConvoMessages("")
+      navigate('/chat')
+    })
+    .catch(err => console.log(err));
   };
 
   return (
@@ -86,8 +99,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
+      <i onClick={deleteConvo} className="fa-solid fa-xmark"></i>
     </main>
-
   );
-
 }
