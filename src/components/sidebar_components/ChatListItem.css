@@ -3,13 +3,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  background: rgb(36, 14, 121);
+  background-color: #1c1e21;
   color: whitesmoke;
   margin-bottom: 0.5em;
 }
 
 .chat-list-item-container:hover {
-  background-color: rgba(95, 39, 192, 1);
+  background-color: #37393d;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
   transform: translateY(-7px);
   border-radius: 10px;
@@ -22,8 +22,10 @@
   background-color: white;
   margin-left: 1em;
   border-radius: 50%;
-  overflow: hidden; /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
+  overflow: hidden;
+  /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
 }
+
 /* Ensure that photo is made to perfectly fit the parent div container  */
 .chat-list-item-user-photo {
   width: 100%;
