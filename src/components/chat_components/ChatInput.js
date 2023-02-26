@@ -12,6 +12,14 @@ export default function ChatInput(props) {
   }
 
   const handleKeyDown = function(event) {
+    //If message is length or message lenth is 0 and enter is hit, use event prevvent default to stop a space (which is a not null value) to be entered and don't allow submission of message.
+    if ((!userMessage || userMessage.length === 0) && event.key === 'Enter') {
+      event.preventDefault();
+      return;
+    }
+    if (userMessage === " ") {
+      return;
+    }
     if (event.key === 'Enter') {
       setMessageSubmitted('Message Submitted')
       // setUserMessage("")
