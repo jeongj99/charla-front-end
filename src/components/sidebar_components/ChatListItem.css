@@ -23,6 +23,7 @@
   margin-left: 1em;
   border-radius: 50%;
   overflow: hidden; /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
+  min-width: 110px; /* This prevents piiture from shrinking on screen resizing*/
 }
 /* Ensure that photo is made to perfectly fit the parent div container  */
 .chat-list-item-user-photo {
