@@ -39,20 +39,24 @@ export default function ChatListItem(props) {
       .catch(err => console.log(err));
   };
 
-  //The navigate to chat function will check if a convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the Chat List and it will open the conversation. If not POST request will be made to create new conversation with the user(chat list item) you clicked on.
+  //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not POST request will be made to create new conversation with the user(chat list item) you clicked on.
   const navigateToChat = function() {
     if (props.convoID) { //Props.Convo ID is present when simply clicking on a chat list item that is already loaded in your chat list. If it is null, this means that you are clicking on a chat list item from the search list.
       navigate(`/chat/${props.convoID}`);
-    } else {
+    } 
+    //If there is no props.convoID present, that means we are clicking on chat list item from search list and thus want to eihter: Start a new convo OR open an existing conversation we previously closed.
+    else {
       axios.get('api/getthenewconversation', {
         params: {
           contactid: props.contactID //This contact ID is passed down from the search list to chat list item component.
         }
       })
         .then(response => {
-          console.log('Hello from your response IN THE NEW PROMISES', response);
           newConvoID = response.data.rows[0];
+          console.log('HELLO FROM THE NEWEST CONVO ID CHECK', newConvoID)
+          //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
           if (!newConvoID) {
+            (console.log('HELLO FROM INSIDE CONVO ID NULL'))
             axios.post('api/newconversation', {
               contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
               firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
@@ -61,12 +65,20 @@ export default function ChatListItem(props) {
               .then(response => {
                 getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
                 newConvoID = "";
+                (console.log('HELLO FROM INSIDE CONVO ID NULL x2'))
               })
               .catch(err => console.log(err));
           } else {
-            navigate(`/chat/${newConvoID.conversation_id}`);
-            setSearchUser("");
-            newConvoID = "";
+            //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
+            // axios.post('api/addparticipantbacktoconvo', {
+            //   convoID: newConvoID
+            // })
+            // .then(response => {
+              navigate(`/chat/${newConvoID.conversation_id}`);
+              setSearchUser("");
+              newConvoID = "";
+            // })
+            // .catch(err => console.log(err));
           }
         })
         .catch(err => console.log(err));

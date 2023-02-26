@@ -12,6 +12,14 @@ export default function ChatInput(props) {
   }
 
   const handleKeyDown = function(event) {
+    //If message is length or message lenth is 0 and enter is hit, use event prevvent default to stop a space (which is a not null value) to be entered and don't allow submission of message.
+    if ((!userMessage || userMessage.length === 0) && event.key === 'Enter') {
+      event.preventDefault();
+      return;
+    }
+    if (userMessage === " ") {
+      return;
+    }
     if (event.key === 'Enter') {
       setMessageSubmitted('Message Submitted')
       // setUserMessage("")
@@ -20,21 +28,56 @@ export default function ChatInput(props) {
       return;
     }
   }
-  //IF enter button clicked, then make AXIOS post request and deposit userMessage into the database
+  
+  //If enter button clicked, we change messageSubmitted state and trigger axios post request.
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
-      axios.post('api/messagesubmission', {
-        messageSubmitted: userMessage,
-        convoID: props.convoID
+
+      //Upon message submitted state being properly updated we first make a get request to check that both individuals are present within the conversation before sending a new message.
+      axios.get('api/participantspresent', {
+        params: {
+          convoID: props.convoID
+        }
       })
       .then(response => {
-        setUserMessage("") //Reset states upon response to prepare for next message to be sent
-        setMessageSubmitted("")
-        props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+        let loggedInUserID = response.data.loggedInUserID;
+        let firstParticipant = response.data.rows[0];
+        let secondParticipant = response.data.rows[1];
+
+        //Check if BOTH the first participant and second participant are in the convo (not null), and if one of their ids are equal to the loggedinUserID. If so, then loggedInUser is a participant in convo and as a result can send message.
+        if ((firstParticipant && secondParticipant) && (firstParticipant.contact_id === loggedInUserID || secondParticipant.contact_id === loggedInUserID)) {
+          axios.post('api/messagesubmission', {
+            messageSubmitted: userMessage,
+            convoID: props.convoID
+          })
+          .then(response => {
+            setUserMessage("") //Reset states upon response to prepare for next message to be sent
+            setMessageSubmitted("")
+            props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+          })
+          .catch(err => console.log(err));
+        } else {
+          //If the logged in user did not match any of the returning participants, or if one of the values is null, then we post request to add the logged in user as participant back to the convo, and then once they are added back, make same post request for message submission.
+          axios.post('api/addparticipantbacktoconvo', {
+            convoID: props.convoID
+          })
+          .then(response => {
+            axios.post('api/messagesubmission', {
+              messageSubmitted: userMessage,
+              convoID: props.convoID
+            })
+            .then(response => {
+              setUserMessage("") //Reset states upon response to prepare for next message to be sent
+              setMessageSubmitted("")
+              props.setRefreshMessages(response.data) //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+            })
+            .catch(err => console.log(err));
+          })
+          .catch(err => console.log(err));
+        }
       })
       .catch(err => console.log(err));
     }
-
   }, [messageSubmitted])
 
 
