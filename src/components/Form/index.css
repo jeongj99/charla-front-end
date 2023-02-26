@@ -30,8 +30,7 @@
   transform: rotate(60deg);
   top: -290px;
   left: -70px;
-  background: rgb(36, 14, 121);
-  background: linear-gradient(90deg, rgba(36, 14, 121, 1) 20%, rgba(95, 39, 192, 1) 100%);
+  background-color: #1c1e21;
 }
 
 .form-header-container {
