@@ -39,24 +39,22 @@ export default function ChatListItem(props) {
       .catch(err => console.log(err));
   };
 
-  //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not POST request will be made to create new conversation with the user(chat list item) you clicked on.
+  //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not, this means we are clicking from SEARCH LIST and POST request will be made to create new conversation with the user(chat list item) you clicked on.
   const navigateToChat = function() {
     if (props.convoID) { //Props.Convo ID is present when simply clicking on a chat list item that is already loaded in your chat list. If it is null, this means that you are clicking on a chat list item from the search list.
       navigate(`/chat/${props.convoID}`);
-    } 
+    }
     //If there is no props.convoID present, that means we are clicking on chat list item from search list and thus want to eihter: Start a new convo OR open an existing conversation we previously closed.
     else {
       axios.get('api/getthenewconversation', {
         params: {
-          contactid: props.contactID //This contact ID is passed down from the search list to chat list item component.
+          contactid: props.contactID //This contact ID of user you clicked on is passed down from the search list to chat list item component.
         }
       })
         .then(response => {
           newConvoID = response.data.rows[0];
-          console.log('HELLO FROM THE NEWEST CONVO ID CHECK', newConvoID)
           //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
           if (!newConvoID) {
-            (console.log('HELLO FROM INSIDE CONVO ID NULL'))
             axios.post('api/newconversation', {
               contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
               firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
@@ -65,20 +63,21 @@ export default function ChatListItem(props) {
               .then(response => {
                 getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
                 newConvoID = "";
-                (console.log('HELLO FROM INSIDE CONVO ID NULL x2'))
               })
               .catch(err => console.log(err));
-          } else {
-            //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
-            // axios.post('api/addparticipantbacktoconvo', {
-            //   convoID: newConvoID
-            // })
-            // .then(response => {
-              navigate(`/chat/${newConvoID.conversation_id}`);
-              setSearchUser("");
-              newConvoID = "";
-            // })
-            // .catch(err => console.log(err));
+          }
+          else {
+            // console.log('HELLO FROM newconvoID on TUESDAY FEB 27', newConvoID);
+            // //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
+            axios.post('api/addparticipantbacktoconvo', {
+              convoID: newConvoID
+            })
+              .then(response => {
+                navigate(`/chat/${newConvoID.conversation_id}`);
+                setSearchUser("");
+                newConvoID = "";
+              })
+              .catch(err => console.log(err));
           }
         })
         .catch(err => console.log(err));
@@ -91,12 +90,12 @@ export default function ChatListItem(props) {
         convoID: props.convoID
       }
     })
-    .then(response => {
-      console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
-      setConvoDeleted(response);
-      navigate('/chat')
-    })
-    .catch(err => console.log(err));
+      .then(response => {
+        console.log('HELLO FROM DELETE RESPONSE ON WEDNESDAY', response);
+        setConvoDeleted(response);
+        navigate('/chat');
+      })
+      .catch(err => console.log(err));
   };
 
   return (
@@ -110,9 +109,9 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-        { //Here if a message is present in the chat list item component, this means it is in the chat list not the search list. Only apply X for delte convo when in chat list.
-          message ? <i onClick={deleteConvo} className={'fa-solid fa-xmark'}></i> : <i className={''}></i> 
-        }
+      { //Here if a message is present in the chat list item component, this means it is in the chat list not the search list. Only apply X for delte convo when in chat list.
+        message ? <i onClick={deleteConvo} className={'fa-solid fa-xmark'}></i> : <i className={''}></i>
+      }
     </main>
   );
 }
