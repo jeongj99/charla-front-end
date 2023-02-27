@@ -84,7 +84,8 @@ export default function ChatListItem(props) {
     }
   };
 
-  const deleteConvo = function() {
+  const deleteConvo = function(event) {
+    event.stopPropagation();
     axios.delete('api/deleteparticipant', {
       params: {
         convoID: props.convoID
