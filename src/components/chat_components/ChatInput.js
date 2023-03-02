@@ -82,6 +82,10 @@ export default function ChatInput(props) {
 
 
   return (
-    <textarea value={userMessage} className="text-area" placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown}></textarea>
+    <>
+    {
+      props.convoID ? <textarea value={userMessage} className="text-area" placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown}></textarea> : <textarea disabled value={userMessage} className="text-area"></textarea>
+    }
+    </>
   );
 }
