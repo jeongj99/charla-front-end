@@ -85,7 +85,7 @@ export default function ChatListItem(props) {
   };
 
   const deleteConvo = function(event) {
-    event.stopPropagation();
+    event.stopPropagation(); //Add event stop propogation to prevent bubbling  that could trigger navigatetochat which would cause loading of messages after clicking delete (since <i> is in <main>)
     axios.delete('api/deleteparticipant', {
       params: {
         convoID: props.convoID
