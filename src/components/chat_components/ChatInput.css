@@ -26,3 +26,17 @@
 .text-area::placeholder {
   font-family: 'Shrikhand', cursive;
 }
+
+.text-area-disabled {
+  height: 15%;
+  background-color: #ddd;
+  color: #666;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: large;
+  padding: 1em;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  outline: none;
+  line-height: 1.4;
+}
