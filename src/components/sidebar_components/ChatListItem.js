@@ -107,7 +107,7 @@ export default function ChatListItem(props) {
       <div className="chat-list-item-conversation">
         <h3>{props.firstName} {props.lastName}</h3>
         {
-          props.profileID === props.messageOwnerID ? <p>{props.message}</p> : <p>You: {props.message}</p>
+          props.profileID === props.messageOwnerID || props.messageOwnerID === 5 ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
       { //Here if a message is present in the chat list item component, this means it is in the chat list not the search list. Only apply X for delte convo when in chat list.
