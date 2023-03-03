@@ -26,9 +26,11 @@
   background-color: white;
   margin-left: 1em;
   border-radius: 50%;
-  min-width: 110px; /* This prevents picture from shrinking on screen resizing*/
+  min-width: 110px;
+  /* This prevents picture from shrinking on screen resizing*/
   /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
-  overflow: hidden; /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
+  overflow: hidden;
+  /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
 }
 
 /* Ensure that photo is made to perfectly fit the parent div container  */
@@ -49,11 +51,15 @@
   padding-bottom: 0.2em;
   padding-left: 1em;
   padding-right: 1em;
+  width: 210px;
 }
 
 .chat-list-item-conversation p {
   font-size: medium;
   /* overflow: hidden; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* This is to target the CSS of the x button in the corner */
