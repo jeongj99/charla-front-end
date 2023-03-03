@@ -67,7 +67,6 @@ export default function ChatListItem(props) {
               .catch(err => console.log(err));
           }
           else {
-            // console.log('HELLO FROM newconvoID on TUESDAY FEB 27', newConvoID);
             // //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
             axios.post('api/addparticipantbacktoconvo', {
               convoID: newConvoID
@@ -85,7 +84,7 @@ export default function ChatListItem(props) {
   };
 
   const deleteConvo = function(event) {
-    event.stopPropagation();
+    event.stopPropagation(); //Add event stop propogation to prevent bubbling  that could trigger navigatetochat which would cause loading of messages after clicking delete (since <i> is in <main>)
     axios.delete('api/deleteparticipant', {
       params: {
         convoID: props.convoID

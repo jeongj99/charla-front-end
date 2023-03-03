@@ -22,7 +22,7 @@
   background-color: white;
   margin-left: 1em;
   border-radius: 50%;
-  min-width: 110px; /* This prevents piiture from shrinking on screen resizing*/
+  min-width: 110px; /* This prevents picture from shrinking on screen resizing*/
   /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
   overflow: hidden; /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
 }
