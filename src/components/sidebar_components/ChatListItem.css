@@ -1,6 +1,6 @@
 .chat-list-item-container {
-  /* height: 120px; */
-  height: 11%;
+  height: 120px;
+  /* height: 11%; */
   width: 100%;
   display: flex;
   align-items: center;
