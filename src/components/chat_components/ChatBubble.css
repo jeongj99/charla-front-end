@@ -1,7 +1,18 @@
+.chat-bubble-container-1 {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chat-bubble-container-2 {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .chat-bubble-user-1 {
   display: flex;
   align-items: center;
   width: fit-content;
+  max-width: 400px;
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
@@ -12,14 +23,16 @@
   font-size: large;
   position: relative;
   /* These following two lines allow for text bubbles being received from contact you are speaking with hang left and only take up at most 50% of screen */
-  margin-right: 50%;
-  margin-left: 2%;
+  /* margin-right: 50%;
+  margin-left: 2%; */
+  word-break: break-all;
 }
 
 .chat-bubble-user-2 {
   display: flex;
   align-items: center;
   width: fit-content;
+  max-width: 400px;
   margin: 1em;
   padding: 1em;
   border-radius: 1em;
@@ -29,7 +42,6 @@
   font-family: inherit;
   font-size: large;
   position: relative;
-  margin-left: auto;
 }
 
 .chat-bubble-admin-message {
