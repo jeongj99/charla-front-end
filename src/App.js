@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import io from 'socket.io-client';
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -10,6 +11,8 @@ import Chat from "./pages/Chat";
 import AuthContext from "./context/AuthProvider";
 
 import './App.css';
+
+const socket = io.connect("http://localhost:8001");
 
 function App() {
   const { auth } = useContext(AuthContext);
