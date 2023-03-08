@@ -12,7 +12,9 @@ import AuthContext from "./context/AuthProvider";
 
 import './App.css';
 
-const socket = io.connect("http://localhost:8001");
+const socket = io.connect("http://localhost:8001", {
+  withCredentials: true,
+});
 
 function App() {
   const { auth } = useContext(AuthContext);
