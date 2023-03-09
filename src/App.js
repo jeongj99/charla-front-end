@@ -8,11 +8,13 @@ import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Chat from "./pages/Chat";
 import AuthContext from "./context/AuthProvider";
+import useSocketSetup from "./useSocketSetup";
 
 import './App.css';
 
 function App() {
   const { auth } = useContext(AuthContext);
+  useSocketSetup();
 
   return (
     <BrowserRouter>
