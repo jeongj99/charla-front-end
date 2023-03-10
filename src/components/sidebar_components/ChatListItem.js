@@ -27,7 +27,7 @@ export default function ChatListItem(props) {
 
   //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
 
-  //COMMENT OUT FOR NOW!!!!!!!!!
+  //COMMENT OUT FOR NOW!!!!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
   // const getTheNewlyCreatedConversation = function() {
   //   axios.get('api/getthenewconversation', {
   //     params: {
@@ -58,7 +58,8 @@ export default function ChatListItem(props) {
           newConvoID = response.data.rows[0];
           //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
           if (!newConvoID) {
-            // COMMENT OUT FOR NOW TO DO SOCKET LOGIC!!!!!!
+
+            // COMMENT OUT FOR NOW TO DO SOCKET LOGIC!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
             // axios.post('api/newconversation', {
             //   contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
             //   firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
@@ -69,6 +70,8 @@ export default function ChatListItem(props) {
             //     newConvoID = "";
             //   })
             //   .catch(err => console.log(err));
+
+            //COMMENT OUT IF YOU WANT TO USE AXIOS LOGIC
             socket.emit("new_convo", {
               contactid: props.contactID,
               firstName: props.firstName,
