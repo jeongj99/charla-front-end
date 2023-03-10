@@ -2,6 +2,7 @@ import { Profiler, useEffect, useState } from "react";
 import "./ChatListItem.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+import socket from "../../socket";
 
 export default function ChatListItem(props) {
   const { setSearchUser, setConvoDeleted, message } = props;
@@ -25,19 +26,21 @@ export default function ChatListItem(props) {
   const navigate = useNavigate();
 
   //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
-  const getTheNewlyCreatedConversation = function() {
-    axios.get('api/getthenewconversation', {
-      params: {
-        contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both IDs to db query and get correct conversation.
-      }
-    })
-      .then(response => {
-        newConvoID = response.data.rows[0].conversation_id;
-        navigate(`/chat/${newConvoID}`);
-        setSearchUser(""); //Upon getting the new conversation, we clear the searchUser state so that chat list is now rerendered with new convo you just started as a part of the list, instead of search list.
-      })
-      .catch(err => console.log(err));
-  };
+
+  //COMMENT OUT FOR NOW!!!!!!!!!
+  // const getTheNewlyCreatedConversation = function() {
+  //   axios.get('api/getthenewconversation', {
+  //     params: {
+  //       contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both IDs to db query and get correct conversation.
+  //     }
+  //   })
+  //     .then(response => {
+  //       newConvoID = response.data.rows[0].conversation_id;
+  //       navigate(`/chat/${newConvoID}`);
+  //       setSearchUser(""); //Upon getting the new conversation, we clear the searchUser state so that chat list is now rerendered with new convo you just started as a part of the list, instead of search list.
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not, this means we are clicking from SEARCH LIST and POST request will be made to create new conversation with the user(chat list item) you clicked on.
   const navigateToChat = function() {
@@ -55,16 +58,30 @@ export default function ChatListItem(props) {
           newConvoID = response.data.rows[0];
           //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
           if (!newConvoID) {
-            axios.post('api/newconversation', {
-              contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
-              firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
+            // COMMENT OUT FOR NOW TO DO SOCKET LOGIC!!!!!!
+            // axios.post('api/newconversation', {
+            //   contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
+            //   firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
+            //   lastName: props.lastName
+            // })
+            //   .then(response => {
+            //     getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
+            //     newConvoID = "";
+            //   })
+            //   .catch(err => console.log(err));
+            socket.emit("new_convo", {
+              contactid: props.contactID,
+              firstName: props.firstName,
               lastName: props.lastName
-            })
-              .then(response => {
-                getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
+            }, ({ error, done }) => {
+              if (done) {
+                navigate(`/chat/${newConvoID}`);
+                setSearchUser("");
                 newConvoID = "";
-              })
-              .catch(err => console.log(err));
+                return;
+              }
+              console.log(error);
+            });
           }
           else {
             // //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
