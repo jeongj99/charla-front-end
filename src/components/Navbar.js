@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import socket from "../../socket";
 
 import AuthContext from "../context/AuthProvider";
 
@@ -24,6 +25,7 @@ export default function Navbar() {
     try {
       const response = await axios.post("/api/logout", {});
       setAuth(response.data.auth);
+      socket.disconnect();
       navigate("/");
     } catch ({ response }) {
       console.log(response.data.error);
