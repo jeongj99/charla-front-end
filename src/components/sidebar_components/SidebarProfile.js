@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
+import socket from "../../socket";
 
 import AuthContext from '../../context/AuthProvider';
 
@@ -30,6 +31,7 @@ export default function SidebarProfile() {
     try {
       const response = await axios.post("/api/logout", {});
       setAuth(response.data.auth);
+      socket.disconnect();
     } catch ({ response }) {
       console.log(response.data.error);
     }
