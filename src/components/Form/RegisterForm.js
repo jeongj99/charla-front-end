@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
+import socket from "../../socket";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
@@ -38,6 +39,7 @@ export default function RegisterForm(props) {
       setPasswordRegister("");
       setConfirmPassword("");
       setErrorMessage("");
+      socket.connect();
       navigate("/chat");
     }
   };

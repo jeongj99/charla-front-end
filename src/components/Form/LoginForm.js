@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
+import socket from "../../socket";
 
 import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
 import Marginer from "../Marginer";
@@ -30,6 +31,7 @@ export default function LoginForm(props) {
       setEmailLogin("");
       setPasswordLogin("");
       setErrorMessage("");
+      socket.connect();
       navigate("/chat");
     } catch ({ response }) {
       console.log(response.data.error);
