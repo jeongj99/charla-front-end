@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
-import socket from "../../socket";
+import socket from "../socket";
 
 import AuthContext from "../context/AuthProvider";
 
