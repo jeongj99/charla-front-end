@@ -79,7 +79,6 @@ export default function ChatListItem(props) {
               lastName: props.lastName
             }, ({ error, done, data }) => {
               if (done) {
-                console.log('hello testing socket', data);
                 navigate(`/chat/${data.id}`);
                 setSearchUser("");
                 newConvoID = "";

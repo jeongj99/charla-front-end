@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "../../api/axios";
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
@@ -6,6 +6,7 @@ import socket from "../../socket";
 
 export default function ChatList(props) {
   const { chatListState, setChatListState, refreshMessages, setConvoMessages, convoDeleted, setConvoDeleted } = props;
+  let socketChat = null;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
@@ -24,10 +25,16 @@ export default function ChatList(props) {
   useEffect(() => {
     try {
       fetchChatListInfo();
+      console.log(chatListState);
     } catch (err) {
       console.log(err);
     }
   }, [refreshMessages, convoDeleted]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
+
+  socket.on('new_convo', chatData => {
+    let socketChat = chatData.rows[0];
+    console.log(socketChat);
+  });
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 
@@ -50,6 +57,18 @@ export default function ChatList(props) {
   return (
     <div className="chat-list-container">
       <ul>
+        {socketChat &&
+          <ChatListItem
+            key={socketChat.conversation_id}
+            convoID={socketChat.conversation_id}
+            firstName={socketChat.contact.first_name}
+            lastName={socketChat.contact.last_name}
+            messageOwnerID={socketChat.message_owner_id}
+            message={socketChat.message_text}
+            profilePic={socketChat.contact.profile_photo_url}
+            setConvoDeleted={setConvoDeleted}
+            setConvoMessages={setConvoMessages}
+          />}
         {listOfChats}
       </ul>
     </div>
