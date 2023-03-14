@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from "../../api/axios";
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
+import socket from "../../socket";
 
 export default function ChatList(props) {
-  const { chatListState, setChatListState, refreshMessages, setConvoMessages, convoDeleted, setConvoDeleted } = props;  
+  const { chatListState, setChatListState, refreshMessages, setConvoMessages, convoDeleted, setConvoDeleted } = props;
 
   const fetchChatListInfo = async () => {
     const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
@@ -19,7 +20,7 @@ export default function ChatList(props) {
     }
     setChatListState(chatInfo);
   };
-  
+
   useEffect(() => {
     try {
       fetchChatListInfo();
