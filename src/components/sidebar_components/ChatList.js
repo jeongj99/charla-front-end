@@ -26,15 +26,14 @@ export default function ChatList(props) {
     try {
       fetchChatListInfo();
       console.log(chatListState);
+      socket.on('new_convo', chatData => {
+        let socketChat = chatData.rows[0];
+        console.log(socketChat);
+      });
     } catch (err) {
       console.log(err);
     }
-  }, [refreshMessages, convoDeleted]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
-
-  socket.on('new_convo', chatData => {
-    let socketChat = chatData.rows[0];
-    console.log(socketChat);
-  });
+  }, [chatListState, fetchChatListInfo]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
 
   const listOfChats = chatListState.data?.map((chatObj) => {
 
