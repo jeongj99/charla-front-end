@@ -56,7 +56,6 @@ export default function ChatListItem(props) {
       })
         .then(response => {
           newConvoID = response.data.rows[0];
-          console.log(newConvoID);
           //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
           if (!newConvoID) {
 
@@ -87,19 +86,32 @@ export default function ChatListItem(props) {
               console.log(error);
             });
           } else {
-            // //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
-            axios.post('api/addparticipantbacktoconvo', {
-              convoID: newConvoID
+            axios.get('api/amipresent', {
+              params: {
+                convoID: newConvoID
+              }
             })
               .then(response => {
-                navigate(`/chat/${newConvoID.conversation_id}`);
-                setSearchUser("");
-                newConvoID = "";
+                const amIPresent = response;
+                console.log(amIPresent.data);
+
+                if (amIPresent) {
+                  navigate(`/chat/${amIPresent.conversation_id}`);
+                } else {
+                  axios.post('api/addparticipantbacktoconvo', {
+                    convoID: newConvoID
+                  })
+                    .then(response => {
+                      navigate(`/chat/${newConvoID.conversation_id}`);
+                      setSearchUser("");
+                      newConvoID = "";
+                    })
+                    .catch(err => console.log(err));
+                }
               })
               .catch(err => console.log(err));
           }
-        })
-        .catch(err => console.log(err));
+        });
     }
   };
 
