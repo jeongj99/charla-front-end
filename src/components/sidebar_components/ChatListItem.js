@@ -88,7 +88,7 @@ export default function ChatListItem(props) {
             });
           } else {
             // //If the convoID here is not null, this means it was a conversation that still exists, but we had previously closed (removed ourselves as a participant). Thus we want to insert ourselves back as a participant in the conversation!
-            axios.post('api/addparticipantbacktoconvo', {
+            axios.post('api/addloggedinuserbacktoconvo', {
               convoID: newConvoID
             })
               .then(response => {
