@@ -92,11 +92,12 @@ export default function ChatListItem(props) {
               }
             })
               .then(response => {
-                const amIPresent = response;
-                console.log('Hello from IAM PRESENT', amIPresent.data);
+                const amIPresent = response.data;
+
+                console.log(amIPresent);
 
                 if (amIPresent) {
-                  console.log('IS AM I PRESENT WORKING', amIPresent.conversation_id)
+                  console.log(amIPresent);
                   navigate(`/chat/${amIPresent.conversation_id}`);
                 } else {
                   axios.post('api/addloggedinuserbacktoconvo', {
