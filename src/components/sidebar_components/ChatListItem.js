@@ -100,7 +100,7 @@ export default function ChatListItem(props) {
                   console.log(amIPresent);
                   navigate(`/chat/${amIPresent.conversation_id}`);
                 } else {
-                  axios.post('api/addparticipantbacktoconvo', {
+                  axios.post('api/addloggedinuserbacktoconvo', {
                     convoID: newConvoID
                   })
                     .then(response => {
