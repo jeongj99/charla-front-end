@@ -93,12 +93,13 @@ export default function ChatListItem(props) {
             })
               .then(response => {
                 const amIPresent = response;
-                console.log(amIPresent.data);
+                console.log('Hello from IAM PRESENT', amIPresent.data);
 
                 if (amIPresent) {
+                  console.log('IS AM I PRESENT WORKING', amIPresent.conversation_id)
                   navigate(`/chat/${amIPresent.conversation_id}`);
                 } else {
-                  axios.post('api/addparticipantbacktoconvo', {
+                  axios.post('api/addloggedinuserbacktoconvo', {
                     convoID: newConvoID
                   })
                     .then(response => {

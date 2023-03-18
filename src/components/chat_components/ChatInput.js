@@ -56,25 +56,26 @@ export default function ChatInput(props) {
                 props.setRefreshMessages(response.data); //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
               })
               .catch(err => console.log(err));
-          } else {
-            // If the logged in user did not match any of the returning participants, or if one of the values is null, then we post request to add the logged in user as participant back to the convo, and then once they are added back, make same post request for message submission.
-            axios.post('api/addparticipantbacktoconvo', {
-              convoID: props.convoID
-            })
-              .then(response => {
-                axios.post('api/messagesubmission', {
-                  messageSubmitted: userMessage,
-                  convoID: props.convoID
-                })
-                  .then(response => {
-                    setUserMessage(""); //Reset states upon response to prepare for next message to be sent
-                    setMessageSubmitted("");
-                    props.setRefreshMessages(response.data); //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
-                  })
-                  .catch(err => console.log(err));
-              })
-              .catch(err => console.log(err));
-          }
+          } 
+          // else {
+          //   // If the logged in user did not match any of the returning participants, or if one of the values is null, then we post request to add the logged in user as participant back to the convo, and then once they are added back, make same post request for message submission.
+          //   axios.post('api/addparticipantbacktoconvo', {
+          //     convoID: props.convoID
+          //   })
+          //     .then(response => {
+          //       axios.post('api/messagesubmission', {
+          //         messageSubmitted: userMessage,
+          //         convoID: props.convoID
+          //       })
+          //         .then(response => {
+          //           setUserMessage(""); //Reset states upon response to prepare for next message to be sent
+          //           setMessageSubmitted("");
+          //           props.setRefreshMessages(response.data); //Although response.data empty, this allows for trigger in state refreshMessage state, used to refresh Chat-Messages and ChatListItem component with latest message!
+          //         })
+          //         .catch(err => console.log(err));
+          //     })
+          //     .catch(err => console.log(err));
+          // }
         })
         .catch(err => console.log(err));
     }
