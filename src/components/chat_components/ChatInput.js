@@ -5,12 +5,12 @@ import "./ChatInput.css";
 export default function ChatInput(props) {
   const [userMessage, setUserMessage] = useState(""); //This state holds the current user Message being typed and represents what is being seen on the textarea value
   const [messageSubmitted, setMessageSubmitted] = useState(""); //This state confirms whether a messaege has been submitted via clicking the enter button
-
+  
   const userMessageInput = function(event) {
     setUserMessage(event.target.value);
     console.log(userMessage);
   };
-
+  
   const handleKeyDown = function(event) {
     //If message is length or message lenth is 0 and enter is hit, use event prevvent default to stop a space (which is a not null value) to be entered and don't allow submission of message.
     if ((!userMessage || userMessage.length === 0) && event.key === 'Enter') {
@@ -29,20 +29,50 @@ export default function ChatInput(props) {
     }
   };
 
+  /////////////////Helper Function - Is passed the conversation name and returns the contact IDS within the name in an array
+  const getContactIDFromConvoName = (conversationName) => {
+  
+    let wholeConversationName = conversationName.split(' ')
+  
+    let contactID1 = wholeConversationName[3]
+    let contactID2 = wholeConversationName[5]
+  
+    return [contactID1, contactID2]
+  
+  }
+  
   //If enter button clicked, we change messageSubmitted state and trigger axios post request.
   useEffect(() => {
     if (messageSubmitted === 'Message Submitted') {
-
+      
       //Upon message submitted state being properly updated we first make a get request to check that both individuals are present within the conversation before sending a new message.
       axios.get('api/participantspresent', {
         params: {
           convoID: props.convoID
         }
       })
-        .then(response => {
-          let loggedInUserID = response.data.loggedInUserID;
-          let firstParticipant = response.data.rows[0];
-          let secondParticipant = response.data.rows[1];
+      .then(response => {
+        let loggedInUserID = response.data.loggedInUserID;
+        let firstParticipant = response.data.rows[0]; //Participant one will represent the logged in user, matches loggedinuserID
+        let secondParticipant = response.data.rows[1]; //Participant two will represent the contact the logged in user is speaking with
+        // console.log('Hello from your first participant', firstParticipant)
+        // console.log('Hello from your second participant', secondParticipant)
+
+        //If the second participant is undefined, this means the contact you are starting a convo with left the conversation, so we need to add them back. First do axios get request to get the contact ID of the person you are speaking with. 
+        if (!secondParticipant) {
+          //This axios request will return one conversation name
+          axios.get('api/useconvoIDtogetcontactID', {
+            params: {
+              convoID: props.convoID
+            }
+          })
+          .then(response => {
+            // console.log('Hello from YOUR CONVRERSATION NAME', response.data.rows[0].conversation_name)
+            // console.log('Hello from your function acting on return from back end', getContactIDFromConvoName(response.data.rows[0].conversation_name))
+            
+          })
+          .catch(err => console.log(err));
+          }
 
           //Check if BOTH the first participant and second participant are in the convo (not null), and if one of their ids are equal to the loggedinUserID. If so, then loggedInUser is a participant in convo and as a result can send message.
           if ((firstParticipant && secondParticipant) && (firstParticipant.contact_id === loggedInUserID || secondParticipant.contact_id === loggedInUserID)) {
