@@ -38,6 +38,7 @@ export default function ChatInput(props) {
     let contactID1 = wholeConversationName[3];
     let contactID2 = wholeConversationName[5];
 
+    //In the future should ensure that array that is returned is in numerical order from lowest to highest, that way can save some code down the line
     return [contactID1, contactID2];
 
   };
@@ -56,8 +57,6 @@ export default function ChatInput(props) {
           let loggedInUserID = response.data.loggedInUserID;
           let firstParticipant = response.data.rows[0]; //Participant one will represent the logged in user, matches loggedinuserID
           let secondParticipant = response.data.rows[1]; //Participant two will represent the contact the logged in user is speaking with
-          console.log('Hello from your first participant', firstParticipant)
-          console.log('Hello from your second participant', secondParticipant)
 
           //If the second participant is undefined, this means the contact you are starting a convo with left the conversation, so we need to add them back. First do axios get request to get the contact ID of the person you are speaking with. 
           if (!secondParticipant) {
@@ -71,10 +70,6 @@ export default function ChatInput(props) {
                 //Use helper function to extract IDS from conversation name and store in own respective variables. Also ensure we convert these to a number upn return
                 let contact1 = Number(getContactIDFromConvoName(response.data.rows[0].conversation_name)[0]);
                 let contact2 = Number(getContactIDFromConvoName(response.data.rows[0].conversation_name)[1]);
-                console.log('Hello from contact 1', typeof contact1)
-                console.log('Hello from contact 2', typeof contact2)
-                console.log('This is the logged in user ID', typeof loggedInUserID)
-
 
                 //Check which contact doesn't equal the loggedinuserID, this will be the ID of the individual who has left the convo and thus we will use their ID to add them back to the convo via post request
                 if (contact1 !== loggedInUserID) {
@@ -96,7 +91,6 @@ export default function ChatInput(props) {
                     .then(response => {
                       secondParticipant = { contact_id: contact2 }
                       setMissingParticipantSuccessfullyAddedBack(secondParticipant);
-                      console.log('Hello from secondparticipant within the post request', secondParticipant)
                     })
                     .catch(err => console.log(err));
                 }
