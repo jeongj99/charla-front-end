@@ -5,6 +5,7 @@ import "./ChatInput.css";
 export default function ChatInput(props) {
   const [userMessage, setUserMessage] = useState(""); //This state holds the current user Message being typed and represents what is being seen on the textarea value
   const [messageSubmitted, setMessageSubmitted] = useState(""); //This state confirms whether a messaege has been submitted via clicking the enter button
+  const [missingParticipantSuccesffulyAddedBack, setMissingParticipantSuccessfullyAddedBack] = useState("") //This state is triggered to a value/activated once a response returns from successfully adding participant back to convo
 
   const userMessageInput = function(event) {
     setUserMessage(event.target.value);
@@ -83,6 +84,7 @@ export default function ChatInput(props) {
                   })
                     .then(response => {
                       secondParticipant = { contact_id: contact1}
+                      setMissingParticipantSuccessfullyAddedBack(secondParticipant);
                     })
                     .catch(err => console.log(err));
                 }
@@ -93,6 +95,7 @@ export default function ChatInput(props) {
                   })
                     .then(response => {
                       secondParticipant = { contact_id: contact2 }
+                      setMissingParticipantSuccessfullyAddedBack(secondParticipant);
                       console.log('Hello from secondparticipant within the post request', secondParticipant)
                     })
                     .catch(err => console.log(err));
@@ -104,7 +107,8 @@ export default function ChatInput(props) {
           console.log('Hello from secondParticipant after the post request', secondParticipant)
 
           //Check if BOTH the first participant and second participant are in the convo (not null), and if one of their ids are equal to the loggedinUserID. If so, then loggedInUser is a participant in convo and as a result can send message.
-          if ((firstParticipant && secondParticipant) && (firstParticipant.contact_id === loggedInUserID || secondParticipant.contact_id === loggedInUserID)) {
+          //IMPORTANT NOTE: Allow this to fire whether it has a value or is null isn't ideal, add fix soon!
+          if ((missingParticipantSuccesffulyAddedBack || !missingParticipantSuccesffulyAddedBack) && (firstParticipant.contact_id === loggedInUserID || secondParticipant.contact_id === loggedInUserID)) {
             axios.post('api/messagesubmission', {
               messageSubmitted: userMessage,
               convoID: props.convoID
