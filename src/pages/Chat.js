@@ -18,10 +18,8 @@ export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
 
   const {
-    state,
-  } = useChatData();
-
-  console.log(state);
+    state
+  } = useChatData(id);
 
   // //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   // useEffect(() => {
