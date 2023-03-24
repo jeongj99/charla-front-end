@@ -3,7 +3,9 @@ export function getContactInfoForConvo(state, convoID) {
     return null;
   }
 
-  if (state.conversations[0]) {
-    console.log(state.conversations[0].conversation_id);
+  if (state) {
+    const convoInfo = state.conversations.find(convo => convo.conversation_id === +convoID);
+
+    return convoInfo.otherParticipant;
   }
 }
