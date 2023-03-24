@@ -1,4 +1,4 @@
-export function getContactInfoForConvo(state, convoID) {
+export const getContactInfoForConvo = (state, convoID) => {
   if (!convoID) {
     return null;
   }
@@ -8,4 +8,4 @@ export function getContactInfoForConvo(state, convoID) {
 
     return convoInfo.otherParticipant;
   }
-}
+};
