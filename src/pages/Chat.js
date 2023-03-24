@@ -55,20 +55,20 @@ export default function Chat() {
           </div>
           {id && <ChatContactHeader contactInfo={contactInfo} />}
         </div>
-        {/* <div className="chat-main-container">
+        <div className="chat-main-container">
           <aside className="sidebar">
-            <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList convoDeleted={convoDeleted} setConvoDeleted={setConvoDeleted} setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}
+            {/* <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
+            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList convoDeleted={convoDeleted} setConvoDeleted={setConvoDeleted} setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />} */}
+            <ChatList conversationsList={state.conversations} />
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
           </aside>
           <section className="chat">
-            <ChatMessages convoDeleted={convoDeleted} userID={userID} setConvoMessages={setConvoMessages} convoMessages={convoMessages} refreshMessages={refreshMessages} />
-            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} />
+            {/* <ChatMessages convoDeleted={convoDeleted} userID={userID} setConvoMessages={setConvoMessages} convoMessages={convoMessages} refreshMessages={refreshMessages} />
+            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} /> */}
           </section>
-        </div> */}
-        Hello
+        </div>
       </div>}
     </>
   );
