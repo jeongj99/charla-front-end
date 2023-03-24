@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "../api/axios";
 
 export default function useChatData(id) {
-  const [state, setState] = useState({
-    conversations: [],
-    messages: []
-  });
+  const [state, setState] = useState(null);
 
   const fetchChatData = async (id) => {
     const conversationsResult = await axios.get("api/conversations");
-    setState(prev => ({ ...prev, conversations: conversationsResult.data }));
+    setState({ conversations: conversationsResult.data });
 
     if (id) {
       const messagesResult = await axios.get("api/messages", {
