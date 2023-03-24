@@ -17,14 +17,15 @@ export default function ChatContactHeader({ contactInfo }) {
   //     }
   //   }
   // }
+  console.log(contactInfo);
 
   return (
     <div className="chat-contact-header-container">
       <div className='chat-contact-header-contact-image-container'>
-        <img className='chat-contact-header-contact-image' src={contactInfo.profile_photo_url}></img>
+        <img className='chat-contact-header-contact-image' src={contactInfo.profilePhotoUrl}></img>
       </div>
       <div className='chat-contact-header-contact-name'>
-        {contactInfo.first_name} {contactInfo.last_name}
+        {contactInfo.firstName} {contactInfo.lastName}
       </div>
     </div>
   );
