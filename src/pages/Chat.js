@@ -2,13 +2,13 @@
 import { useParams } from 'react-router-dom';
 // import axios from "../api/axios";
 
-// import SideBarSearch from '../components/sidebar_components/SideBarSearch';
-// import ChatList from '../components/sidebar_components/ChatList';
-// import SearchList from '../components/sidebar_components/SearchList';
-// import ChatInput from '../components/chat_components/ChatInput';
-// import ChatMessages from '../components/chat_components/ChatMessages';
-// import SidebarProfile from '../components/sidebar_components/SidebarProfile';
-// import ChatContactHeader from '../components/chat_components/ChatContactHeader';
+import SideBarSearch from '../components/sidebar_components/SideBarSearch';
+import ChatList from '../components/sidebar_components/ChatList';
+import SearchList from '../components/sidebar_components/SearchList';
+import ChatInput from '../components/chat_components/ChatInput';
+import ChatMessages from '../components/chat_components/ChatMessages';
+import SidebarProfile from '../components/sidebar_components/SidebarProfile';
+import ChatContactHeader from '../components/chat_components/ChatContactHeader';
 import useChatData from "../hooks/useChatData";
 import { getContactInfoForConvo } from "../helpers/selectors";
 
@@ -23,7 +23,7 @@ export default function Chat() {
   } = useChatData(id);
 
 
-  getContactInfoForConvo(state, id);
+  const contactInfo = getContactInfoForConvo(state, id);
 
   // //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   // useEffect(() => {
@@ -48,12 +48,12 @@ export default function Chat() {
 
   return (
     <>
-      <div className="chat-container">
+      {state && <div className="chat-container">
         <div className="top-bar">
           <div className="topbar-logo">
             Charla <SiXdadevelopers className='charlaLogo' />
           </div>
-          {/* {id && <ChatContactHeader contactInfo={contactInfo} />} */}
+          {id && <ChatContactHeader contactInfo={contactInfo} />}
         </div>
         {/* <div className="chat-main-container">
           <aside className="sidebar">
@@ -69,7 +69,7 @@ export default function Chat() {
           </section>
         </div> */}
         Hello
-      </div>
+      </div>}
     </>
   );
 }
