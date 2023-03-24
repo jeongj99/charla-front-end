@@ -17,7 +17,6 @@ export default function ChatContactHeader({ contactInfo }) {
   //     }
   //   }
   // }
-  console.log(contactInfo);
 
   return (
     <div className="chat-contact-header-container">
