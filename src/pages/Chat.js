@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from "../api/axios";
+// import axios from "../api/axios";
 
-import SideBarSearch from '../components/sidebar_components/SideBarSearch';
-import ChatList from '../components/sidebar_components/ChatList';
-import SearchList from '../components/sidebar_components/SearchList';
-import ChatInput from '../components/chat_components/ChatInput';
-import ChatMessages from '../components/chat_components/ChatMessages';
-import SidebarProfile from '../components/sidebar_components/SidebarProfile';
-import ChatContactHeader from '../components/chat_components/ChatContactHeader';
+// import SideBarSearch from '../components/sidebar_components/SideBarSearch';
+// import ChatList from '../components/sidebar_components/ChatList';
+// import SearchList from '../components/sidebar_components/SearchList';
+// import ChatInput from '../components/chat_components/ChatInput';
+// import ChatMessages from '../components/chat_components/ChatMessages';
+// import SidebarProfile from '../components/sidebar_components/SidebarProfile';
+// import ChatContactHeader from '../components/chat_components/ChatContactHeader';
 import useChatData from "../hooks/useChatData";
+import { getContactInfoForConvo } from "../helpers/selectors";
 
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
@@ -20,6 +21,9 @@ export default function Chat() {
   const {
     state
   } = useChatData(id);
+
+
+  getContactInfoForConvo(state, id);
 
   // //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
   // useEffect(() => {
@@ -45,13 +49,13 @@ export default function Chat() {
   return (
     <>
       <div className="chat-container">
-        {/* <div className="top-bar">
+        <div className="top-bar">
           <div className="topbar-logo">
             Charla <SiXdadevelopers className='charlaLogo' />
           </div>
-          {id && <ChatContactHeader chatListState={chatListState} id={id} />}
+          {/* {id && <ChatContactHeader contactInfo={contactInfo} />} */}
         </div>
-        <div className="chat-main-container">
+        {/* <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
             {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList convoDeleted={convoDeleted} setConvoDeleted={setConvoDeleted} setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />}

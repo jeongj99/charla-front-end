@@ -17,7 +17,6 @@ export default function useChatData(id) {
           id
         }
       });
-      console.log(messagesResult);
       setState(prev => ({ ...prev, messages: messagesResult.data }));
     }
   };
