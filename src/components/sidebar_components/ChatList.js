@@ -4,51 +4,24 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 import socket from "../../socket";
 
-export default function ChatList(props) {
-  const { chatListState, setChatListState, refreshMessages, setConvoMessages, convoDeleted, setConvoDeleted } = props;
-  let socketChat = null;
-
-  const fetchChatListInfo = async () => {
-    const chatInfo = await axios.get('api/chat/list/message'); //This get request will retrieve the latest message from each of the conversations the logged in user has.
-    for (const element of chatInfo.data) {
-      const response = await axios.get('api/chat/list/profile', {
-        params: {
-          conversationID: element.conversation_id
-        }
-      });
-
-      element.contact = response.data;
-    }
-    setChatListState(chatInfo);
-  };
-
-  useEffect(() => {
-    try {
-      fetchChatListInfo();
-    } catch (err) {
-      console.log(err);
-    }
-  }, [refreshMessages, convoDeleted]); //Add refreshMessages to useEffect, so that if a message is submitted, refreshMessage state is updated, and as a side effect chatlistitem component will be dynamically updated.
-
+export default function ChatList({ conversationsList }) {
   socket.on('new_convo', chatData => {
     let socketChat = chatData.rows[0];
     console.log(socketChat);
   });
 
-  const listOfChats = chatListState.data?.map((chatObj) => {
+  const listOfChats = conversationsList.map(conversation => {
 
     return (
       <ChatListItem
-        key={chatObj.conversation_id}
-        convoID={chatObj.conversation_id} //From each conversation object in the chatListState, we are going to pass down the conversation ID to the Chat List Item component.
-        profileID={chatObj.contact.id}
-        firstName={chatObj.contact.first_name}
-        lastName={chatObj.contact.last_name}
-        messageOwnerID={chatObj.message_owner_id}
-        message={chatObj.message_text}
-        profilePic={chatObj.contact.profile_photo_url}
-        setConvoDeleted={setConvoDeleted}
-        setConvoMessages={setConvoMessages}
+        key={conversation.conversation_id}
+        convoID={conversation.conversation_id} //From each conversation object in the chatListState, we are going to pass down the conversation ID to the Chat List Item component.
+        profileID={conversation.otherParticipant.id}
+        firstName={conversation.otherParticipant.firstName}
+        lastName={conversation.otherParticipant.lastName}
+        profilePic={conversation.otherParticipant.profilePhotoUrl}
+        messageOwnerID={conversation.lastMessage.senderContactID}
+        message={conversation.lastMessage.messageText}
       />
     );
   });
@@ -56,7 +29,7 @@ export default function ChatList(props) {
   return (
     <div className="chat-list-container">
       <ul>
-        {socketChat &&
+        {/* {socketChat &&
           <ChatListItem
             key={socketChat.conversation_id}
             convoID={socketChat.conversation_id}
@@ -67,7 +40,7 @@ export default function ChatList(props) {
             profilePic={socketChat.contact.profile_photo_url}
             setConvoDeleted={setConvoDeleted}
             setConvoMessages={setConvoMessages}
-          />}
+          />} */}
         {listOfChats}
       </ul>
     </div>
