@@ -39,8 +39,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {/* {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList conversationsList={state.conversations} />} */}
-            <ChatList conversationsList={state.conversations} />
+            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} /> : <ChatList conversationsList={state.conversations} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
