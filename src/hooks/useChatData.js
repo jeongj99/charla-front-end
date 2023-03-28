@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "../api/axios";
 
 export default function useChatData(id) {
   const [state, setState] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
 
   const fetchChatData = async (id) => {
     const conversationsResult = await axios.get("api/conversations");
@@ -23,7 +24,37 @@ export default function useChatData(id) {
     fetchChatData(id);
   }, [id]);
 
+  const searchForUser = useCallback(async (searchValue) => {
+    const searchedUsersResult = await axios.get('api/searchuser', {
+      params: {
+        searchValue
+      }
+    });
+    setState(prev => ({ ...prev, searchedUsers: searchedUsersResult.data }));
+  }, []);
+
+  useEffect(() => {
+    if (searchValue.length > 0) {
+      console.log('hi if');
+      searchForUser(searchValue);
+    }
+  }, [searchForUser, searchValue]);
+
+  useEffect(() => {
+    if (searchValue.length === 0 && state && 'searchedUsers' in state) {
+      console.log('hi else');
+      setState(prev => {
+        const { searchedUsers, ...rest } = prev;
+        return rest;
+      });
+    }
+  }, [searchValue, state]);
+
+
   return {
-    state
+    state,
+    searchValue,
+    setSearchValue,
+    searchForUser
   };
 }
