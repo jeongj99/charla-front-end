@@ -19,32 +19,13 @@ export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
 
   const {
-    state
+    state,
+    searchValue,
+    setSearchValue,
   } = useChatData(id);
 
 
   const contactInfo = getContactInfoForConvo(state, id);
-
-  // //Axios Request for Search Bar in SideBar. This along with search states above lifted into this Chat Page so that either ChatList or SearchList can be loaded in sidebar based on state of search.
-  // useEffect(() => {
-  //   //IF statement added in order to ensure useEffect only triggered when search bar is receiving input
-  //   if (searchUser.length > 0) {
-  //     axios.get('api/searchuser', {
-  //       params: {
-  //         searchedUser: searchUser
-  //       }
-  //     })
-  //       .then(response => {
-  //         console.log('Hello from axios', response.data);
-  //         setUsersFound(response);
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // }, [searchUser]);
-
-  // const SearchForUser = function(event) {
-  //   setSearchUser(event.target.value);
-  // };
 
   return (
     <>
@@ -57,8 +38,8 @@ export default function Chat() {
         </div>
         <div className="chat-main-container">
           <aside className="sidebar">
-            {/* <SideBarSearch searchUser={searchUser} SearchForUser={SearchForUser} />
-            {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList convoDeleted={convoDeleted} setConvoDeleted={setConvoDeleted} setConvoMessages={setConvoMessages} chatListState={chatListState} setChatListState={setChatListState} refreshMessages={refreshMessages} />} */}
+            <SideBarSearch value={searchValue} onChange={setSearchValue} />
+            {/* {searchUser ? <SearchList setSearchUser={setSearchUser} usersFound={usersFound} /> : <ChatList conversationsList={state.conversations} />} */}
             <ChatList conversationsList={state.conversations} />
             <div className="sidebar-profile">
               <SidebarProfile />
