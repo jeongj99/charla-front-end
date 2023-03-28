@@ -35,14 +35,12 @@ export default function useChatData(id) {
 
   useEffect(() => {
     if (searchValue.length > 0) {
-      console.log('hi if');
       searchForUser(searchValue);
     }
   }, [searchForUser, searchValue]);
 
   useEffect(() => {
     if (searchValue.length === 0 && state && 'searchedUsers' in state) {
-      console.log('hi else');
       setState(prev => {
         const { searchedUsers, ...rest } = prev;
         return rest;
