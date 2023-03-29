@@ -1,25 +1,16 @@
 import './ChatMessages.css';
 import ChatBubble from './ChatBubble';
 import ScrollableFeed from 'react-scrollable-feed';
-import { useEffect } from 'react';
 
-export default function ChatMessages(props) {
-  const { userID, setConvoMessages, convoDeleted } = props;
-
-  useEffect(() => {
-    setConvoMessages("")
-
-  }, [convoDeleted])
-
-  const listOfMessages = props.convoMessages.rows?.map((msgObj) => {
+export default function ChatMessages({ messagesList }) {
+  const listOfMessages = messagesList.map(message => {
 
     return (
       <ChatBubble
-        key={msgObj.id}
-        messages={msgObj.message_text}
-        contact={msgObj.contact_id}
-        dateTime={msgObj.sent_datetime}
-        userID={userID}
+        key={message.id}
+        messages={message.message_text}
+        contact={message.contact_id}
+        dateTime={message.sent_datetime}
       />
     );
   });
