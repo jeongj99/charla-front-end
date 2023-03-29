@@ -13,7 +13,7 @@ export default function LoginForm(props) {
   const [emailLogin, setEmailLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +28,7 @@ export default function LoginForm(props) {
       });
 
       setAuth(response.data.authenticated);
+      setLoggedInUser(response.data.loggedInUser);
       setEmailLogin("");
       setPasswordLogin("");
       setErrorMessage("");

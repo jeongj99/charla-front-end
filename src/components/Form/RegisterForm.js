@@ -17,7 +17,7 @@ export default function RegisterForm(props) {
   const [passwordRegister, setPasswordRegister] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const register = async () => {
@@ -33,6 +33,7 @@ export default function RegisterForm(props) {
       setErrorMessage(response.data.message);
     } else {
       setAuth(response.data.authenticated);
+      setLoggedInUser(response.data.loggedInUser);
       setFirstNameRegister("");
       setLastNameRegister("");
       setUsernameRegister("");
