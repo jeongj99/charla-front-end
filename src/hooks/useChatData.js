@@ -48,6 +48,10 @@ export default function useChatData(id) {
     }
   }, [searchValue, state]);
 
+  const navigateToChat = () => {
+    
+  };
+
 
   return {
     state,
