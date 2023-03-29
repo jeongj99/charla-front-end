@@ -46,8 +46,8 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            {/* <ChatMessages convoDeleted={convoDeleted} userID={userID} setConvoMessages={setConvoMessages} convoMessages={convoMessages} refreshMessages={refreshMessages} />
-            <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} /> */}
+            {(id && state.messages) && <ChatMessages messagesList={state.messages} />}
+            {/* <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} /> */}
           </section>
         </div>
       </div>}
