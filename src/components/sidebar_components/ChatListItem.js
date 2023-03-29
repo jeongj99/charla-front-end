@@ -1,12 +1,10 @@
-import { Profiler, useEffect, useState } from "react";
-import "./ChatListItem.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import socket from "../../socket";
 
-export default function ChatListItem(props) {
-  const { setSearchUser, message } = props;
+import "./ChatListItem.css";
 
+export default function ChatListItem(props) {
   const navigate = useNavigate();
 
   //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
@@ -26,79 +24,79 @@ export default function ChatListItem(props) {
   // };
 
   //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not, this means we are clicking from SEARCH LIST and POST request will be made to create new conversation with the user(chat list item) you clicked on.
-  const navigateToChat = function() {
-    if (props.convoID) { //Props.Convo ID is present when simply clicking on a chat list item that is already loaded in your chat list. If it is null, this means that you are clicking on a chat list item from the search list.
-      navigate(`/chat/${props.convoID}`);
-    }
-    //If there is no props.convoID present, that means we are clicking on chat list item from search list and thus want to eihter: Start a new convo OR open an existing conversation we previously closed.
-    // else {
-    //   axios.get('api/getthenewconversation', {
-    //     params: {
-    //       contactid: props.contactID //This contact ID of user you clicked on is passed down from the search list to chat list item component.
-    //     }
-    //   })
-    //     .then(response => {
-    //       newConvoID = response.data.rows[0];
-    //       //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
-    //       if (!newConvoID) {
+  // const navigateToChat = function() {
+  //   if (props.convoID) { //Props.Convo ID is present when simply clicking on a chat list item that is already loaded in your chat list. If it is null, this means that you are clicking on a chat list item from the search list.
+  //     navigate(`/chat/${props.convoID}`);
+  //   }
+  //If there is no props.convoID present, that means we are clicking on chat list item from search list and thus want to eihter: Start a new convo OR open an existing conversation we previously closed.
+  // else {
+  //   axios.get('api/getthenewconversation', {
+  //     params: {
+  //       contactid: props.contactID //This contact ID of user you clicked on is passed down from the search list to chat list item component.
+  //     }
+  //   })
+  //     .then(response => {
+  //       newConvoID = response.data.rows[0];
+  //       //If the convoID from the get request is null, this means no convo exists between you and this user. So we are going to make a post request to start a new conversation with this indivdual. 
+  //       if (!newConvoID) {
 
-    //         // COMMENT OUT FOR NOW TO DO SOCKET LOGIC!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
-    //         // axios.post('api/newconversation', {
-    //         //   contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
-    //         //   firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
-    //         //   lastName: props.lastName
-    //         // })
-    //         //   .then(response => {
-    //         //     getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
-    //         //     newConvoID = "";
-    //         //   })
-    //         //   .catch(err => console.log(err));
+  //         // COMMENT OUT FOR NOW TO DO SOCKET LOGIC!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
+  //         // axios.post('api/newconversation', {
+  //         //   contactid: props.contactID, //Send over the contact ID of the selected user to the back end, will create new convo in DB between this ID and logged in user ID.
+  //         //   firstName: props.firstName, //Send over first name and last name in order to insert into intro message addressing who you started convo with.
+  //         //   lastName: props.lastName
+  //         // })
+  //         //   .then(response => {
+  //         //     getTheNewlyCreatedConversation(); //This function will now GET the conversation that was just created (POST) between selected user and logged in user. We pass it the ID of the contact we are starting convo with.
+  //         //     newConvoID = "";
+  //         //   })
+  //         //   .catch(err => console.log(err));
 
-    //         //COMMENT OUT IF YOU WANT TO USE AXIOS LOGIC DO NOT DELETE
-    //         socket.emit("new_convo", {
-    //           contactid: props.contactID,
-    //           firstName: props.firstName,
-    //           lastName: props.lastName
-    //         }, ({ error, done, data }) => {
-    //           if (done) {
-    //             navigate(`/chat/${data.id}`);
-    //             setSearchUser("");
-    //             newConvoID = "";
-    //             return;
-    //           }
-    //           console.log(error);
-    //         });
-    //       } else {
-    //         axios.get('api/amipresent', {
-    //           params: {
-    //             convoID: newConvoID
-    //           }
-    //         })
-    //           .then(response => {
-    //             const amIPresent = response.data;
+  //         //COMMENT OUT IF YOU WANT TO USE AXIOS LOGIC DO NOT DELETE
+  //         socket.emit("new_convo", {
+  //           contactid: props.contactID,
+  //           firstName: props.firstName,
+  //           lastName: props.lastName
+  //         }, ({ error, done, data }) => {
+  //           if (done) {
+  //             navigate(`/chat/${data.id}`);
+  //             setSearchUser("");
+  //             newConvoID = "";
+  //             return;
+  //           }
+  //           console.log(error);
+  //         });
+  //       } else {
+  //         axios.get('api/amipresent', {
+  //           params: {
+  //             convoID: newConvoID
+  //           }
+  //         })
+  //           .then(response => {
+  //             const amIPresent = response.data;
 
-    //             console.log(amIPresent);
+  //             console.log(amIPresent);
 
-    //             if (amIPresent) {
-    //               console.log(amIPresent);
-    //               navigate(`/chat/${amIPresent.conversation_id}`);
-    //             } else {
-    //               axios.post('api/addloggedinuserbacktoconvo', {
-    //                 convoID: newConvoID
-    //               })
-    //                 .then(response => {
-    //                   navigate(`/chat/${newConvoID.conversation_id}`);
-    //                   setSearchUser("");
-    //                   newConvoID = "";
-    //                 })
-    //                 .catch(err => console.log(err));
-    //             }
-    //           })
-    //           .catch(err => console.log(err));
-    //       }
-    //     });
-    // }
-  };
+  //             if (amIPresent) {
+  //               console.log(amIPresent);
+  //               navigate(`/chat/${amIPresent.conversation_id}`);
+  //             } else {
+  //               axios.post('api/addloggedinuserbacktoconvo', {
+  //                 convoID: newConvoID
+  //               })
+  //                 .then(response => {
+  //                   navigate(`/chat/${newConvoID.conversation_id}`);
+  //                   setSearchUser("");
+  //                   newConvoID = "";
+  //                 })
+  //                 .catch(err => console.log(err));
+  //             }
+  //           })
+  //           .catch(err => console.log(err));
+  //       }
+  //     });
+  // }
+  // };
 
   // const deleteConvo = function(event) {
   //   event.stopPropagation(); //Add event stop propogation to prevent bubbling that could trigger navigatetochat which would cause loading of messages after clicking delete (since <i> is in <main>)
