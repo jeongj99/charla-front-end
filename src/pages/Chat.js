@@ -46,8 +46,14 @@ export default function Chat() {
             </div>
           </aside>
           <section className="chat">
-            {(id && state.messages) && <ChatMessages messagesList={state.messages} />}
-            {/* <ChatInput setRefreshMessages={setRefreshMessages} convoID={id} /> */}
+            {
+              (id && state.messages) ?
+                <ChatMessages messagesList={state.messages} /> :
+                <div className="chat-no-convo">
+                  <h3>Select a conversation</h3>
+                </div>
+            }
+            {id && <ChatInput convoID={id} />}
           </section>
         </div>
       </div>}

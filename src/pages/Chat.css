@@ -58,4 +58,15 @@
   display: flex;
   flex-direction: column;
   width: 75%;
+  background-color: #1c1e21;
+}
+
+.chat-no-convo {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-size: xx-large;
 }
