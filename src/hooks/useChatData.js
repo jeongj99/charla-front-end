@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 export default function useChatData(id) {
   const [state, setState] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   const fetchChatData = async (id) => {
     const conversationsResult = await axios.get("api/conversations");
@@ -48,8 +50,8 @@ export default function useChatData(id) {
     }
   }, [searchValue, state]);
 
-  const navigateToChat = () => {
-    
+  const navigateToChat = (convoID) => {
+    navigate(`/chat/${convoID}`);
   };
 
 
@@ -57,6 +59,7 @@ export default function useChatData(id) {
     state,
     searchValue,
     setSearchValue,
-    searchForUser
+    searchForUser,
+    navigateToChat
   };
 }
