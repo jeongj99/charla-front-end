@@ -1,12 +1,9 @@
 import axios from "../../api/axios";
-import { useNavigate } from "react-router-dom";
 import socket from "../../socket";
 
 import "./ChatListItem.css";
 
 export default function ChatListItem(props) {
-  const navigate = useNavigate();
-
   //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
   //COMMENT OUT FOR NOW!!!!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
   // const getTheNewlyCreatedConversation = function() {
@@ -112,7 +109,7 @@ export default function ChatListItem(props) {
   // };
 
   return (
-    <main className="chat-list-item-container" onClick={navigateToChat}>
+    <main className="chat-list-item-container" onClick={() => props.navigateToChat(props.convoID)}>
       <div className="chat-list-item-user-photo-container">
         <img className="chat-list-item-user-photo" alt='profile-pic' src={props.profilePic} />
       </div>
@@ -122,9 +119,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID || props.messageOwnerID === 5 ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-      { //Here if a message is present in the chat list item component, this means it is in the chat list not the search list. Only apply X for delte convo when in chat list.
-        message ? <i className={'fa-solid fa-xmark'}></i> : <i className={''}></i>
-      }
+      <i className='fa-solid fa-xmark'></i>
     </main>
   );
 }
