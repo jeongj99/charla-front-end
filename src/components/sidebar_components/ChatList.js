@@ -4,7 +4,7 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 import socket from "../../socket";
 
-export default function ChatList({ conversationsList, navigateToChat }) {
+export default function ChatList({ conversationsList, navigateToChat, removeYourselfFromConvo }) {
   socket.on('new_convo', chatData => {
     let socketChat = chatData.rows[0];
     console.log(socketChat);
@@ -23,6 +23,7 @@ export default function ChatList({ conversationsList, navigateToChat }) {
         messageOwnerID={conversation.lastMessage.senderContactID}
         message={conversation.lastMessage.messageText}
         navigateToChat={navigateToChat}
+        removeYourselfFromConvo={removeYourselfFromConvo}
       />
     );
   });

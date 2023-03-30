@@ -119,7 +119,7 @@ export default function ChatListItem(props) {
           props.profileID === props.messageOwnerID || props.messageOwnerID === 5 ? <p>{props.message}</p> : <p>You: {props.message}</p>
         }
       </div>
-      <i className='fa-solid fa-xmark'></i>
+      <i className='fa-solid fa-xmark' onClick={event => props.removeYourselfFromConvo(event, props.convoID)}></i>
     </main>
   );
 }

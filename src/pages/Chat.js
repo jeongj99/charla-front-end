@@ -22,7 +22,8 @@ export default function Chat() {
     state,
     searchValue,
     setSearchValue,
-    navigateToChat
+    navigateToChat,
+    removeYourselfFromConvo
   } = useChatData(id);
 
 
@@ -40,7 +41,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} /> : <ChatList conversationsList={state.conversations} navigateToChat={navigateToChat} />}
+            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} /> : <ChatList conversationsList={state.conversations} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
