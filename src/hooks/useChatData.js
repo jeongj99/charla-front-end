@@ -50,8 +50,22 @@ export default function useChatData(id) {
     }
   }, [searchValue, state]);
 
-  const navigateToChat = (convoID) => {
+  const navigateToChat = convoID => {
     navigate(`/chat/${convoID}`);
+  };
+
+  const removeYourselfFromConvo = async (event, convoID) => {
+    event.stopPropagation();
+
+    const deleteData = await axios.delete('api/deleteparticipant', {
+      params: {
+        convoID
+      }
+    });
+
+    if (deleteData.data.success) {
+      navigate('/chat');
+    }
   };
 
 
@@ -60,6 +74,7 @@ export default function useChatData(id) {
     searchValue,
     setSearchValue,
     searchForUser,
-    navigateToChat
+    navigateToChat,
+    removeYourselfFromConvo
   };
 }
