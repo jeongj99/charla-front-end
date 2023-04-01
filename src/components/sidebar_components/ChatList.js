@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-import axios from "../../api/axios";
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 import socket from "../../socket";

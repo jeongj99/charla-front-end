@@ -1,6 +1,3 @@
-import axios from "../../api/axios";
-import socket from "../../socket";
-
 import "./ChatListItem.css";
 
 export default function ChatListItem(props) {
