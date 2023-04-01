@@ -64,6 +64,12 @@ export default function useChatData(id) {
     });
 
     if (deleteData.data.success) {
+      setState(prev => {
+        const updatedConversations = prev.conversations.filter(
+          convo => convo.conversation_id !== convoID
+        );
+        return { ...prev, conversations: updatedConversations };
+      });
       navigate('/chat');
     }
   };
