@@ -2,13 +2,13 @@ import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 import socket from "../../socket";
 
-export default function ChatList({ conversationsList, navigateToChat, removeYourselfFromConvo }) {
+export default function ChatList({ chatList, navigateToChat, removeYourselfFromConvo }) {
   socket.on('new_convo', chatData => {
     let socketChat = chatData.rows[0];
     console.log(socketChat);
   });
 
-  const listOfChats = conversationsList.map(conversation => {
+  const listOfChats = chatList.map(conversation => {
 
     return (
       <ChatListItem

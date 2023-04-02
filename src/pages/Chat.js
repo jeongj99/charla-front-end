@@ -10,7 +10,7 @@ import ChatMessages from '../components/chat_components/ChatMessages';
 import SidebarProfile from '../components/sidebar_components/SidebarProfile';
 import ChatContactHeader from '../components/chat_components/ChatContactHeader';
 import useChatData from "../hooks/useChatData";
-import { getContactInfoForConvo } from "../helpers/selectors";
+import { getContactInfoForConvo, getFilteredConversations } from "../helpers/selectors";
 
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
@@ -30,6 +30,8 @@ export default function Chat() {
 
   const contactInfo = getContactInfoForConvo(state, id);
 
+  const chatList = getFilteredConversations(state);
+
   return (
     <>
       {state && <div className="chat-container">
@@ -42,7 +44,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className="sidebar">
             <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList conversationsList={state.conversations} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
+            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
