@@ -1,27 +1,6 @@
 import "./ChatListItem.css";
 
 export default function ChatListItem(props) {
-  //This function will be called after the POST request that creates a new conversation below. This function gets that newly created conversation, specifically the ID, so that we can then useNavigate to chat/newConvoID.
-  //COMMENT OUT FOR NOW!!!!!!!!! REMOVE COMMENT IF YOU WANT TO USE AXIOS LOGIC BACK
-  // const getTheNewlyCreatedConversation = function() {
-  //   axios.get('api/getthenewconversation', {
-  //     params: {
-  //       contactid: props.contactID //This is the ID of the individual you are trying to start a conversation with. Will use both IDs to db query and get correct conversation.
-  //     }
-  //   })
-  //     .then(response => {
-  //       newConvoID = response.data.rows[0].conversation_id;
-  //       navigate(`/chat/${newConvoID}`);
-  //       setSearchUser(""); //Upon getting the new conversation, we clear the searchUser state so that chat list is now rerendered with new convo you just started as a part of the list, instead of search list.
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  //The navigate to chat function will check if a props.convoID exists for this chatListItem component. If so, this mean it is a preexisting convo in the CHAT LIST and it will open the conversation. If not, this means we are clicking from SEARCH LIST and POST request will be made to create new conversation with the user(chat list item) you clicked on.
-  // const navigateToChat = function() {
-  //   if (props.convoID) { //Props.Convo ID is present when simply clicking on a chat list item that is already loaded in your chat list. If it is null, this means that you are clicking on a chat list item from the search list.
-  //     navigate(`/chat/${props.convoID}`);
-  //   }
   //If there is no props.convoID present, that means we are clicking on chat list item from search list and thus want to eihter: Start a new convo OR open an existing conversation we previously closed.
   // else {
   //   axios.get('api/getthenewconversation', {
@@ -90,19 +69,6 @@ export default function ChatListItem(props) {
   //       }
   //     });
   // }
-  // };
-
-  // const deleteConvo = function(event) {
-  //   event.stopPropagation(); //Add event stop propogation to prevent bubbling that could trigger navigatetochat which would cause loading of messages after clicking delete (since <i> is in <main>)
-  //   axios.delete('api/deleteparticipant', {
-  //     params: {
-  //       convoID: props.convoID
-  //     }
-  //   })
-  //     .then(response => {
-  //       navigate('/chat');
-  //     })
-  //     .catch(err => console.log(err));
   // };
 
   return (
