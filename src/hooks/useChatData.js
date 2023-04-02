@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
+import socket from "../socket";
 
 export default function useChatData(id) {
   const [state, setState] = useState(null);
@@ -76,11 +77,12 @@ export default function useChatData(id) {
     }
   };
 
-  const searchListItemOnClick = async (contactID) => {
+  const searchListItemOnClick = async (contactID, contactFirstName, contactLastName) => {
     const conversationExists = state.conversations.find(conversation => conversation.otherParticipant.id === contactID);
     if (conversationExists && conversationExists.amIPresent) {
       navigate(`/chat/${conversationExists.conversation_id}`);
       setSearchValue("");
+      return;
     } else if (conversationExists && !conversationExists.amIPresent) {
       const updateParticipantStatusData = await axios.put(`api/participantstatus/${conversationExists.conversation_id}`, { amIPresent: true });
 
@@ -98,7 +100,24 @@ export default function useChatData(id) {
           })
         }));
         navigate(`/chat/${conversationExists.conversation_id}`);
+        return;
       }
+    }
+
+    if (!conversationExists) {
+      socket.emit("new_convo", {
+        contactID,
+        firstName: contactFirstName,
+        lastName: contactLastName
+      }, ({ error, done, data }) => {
+        if (done) {
+          setState(prev => ({ ...prev, conversations: [data, ...prev.conversations] }));
+          setSearchValue("");
+          navigate(`/chat/${data.conversation_id}`);
+          return;
+        }
+        console.log(error);
+      });
     }
   };
 
