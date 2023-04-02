@@ -3,7 +3,7 @@ export const getContactInfoForConvo = (state, convoID) => {
     return null;
   }
 
-  if (state) {
+  if (state && state.conversations) {
     const convoInfo = state.conversations.find(convo => convo.conversation_id === +convoID);
 
     return convoInfo.otherParticipant;
@@ -11,7 +11,7 @@ export const getContactInfoForConvo = (state, convoID) => {
 };
 
 export const getFilteredConversations = state => {
-  if (state) {
+  if (state && state.conversations) {
     const filteredConvos = state.conversations.filter(conversation => conversation.amIPresent === true);
 
     return filteredConvos;
