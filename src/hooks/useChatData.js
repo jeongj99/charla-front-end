@@ -100,6 +100,7 @@ export default function useChatData(id) {
           })
         }));
         navigate(`/chat/${conversationExists.conversation_id}`);
+        setSearchValue("");
         return;
       }
     }
