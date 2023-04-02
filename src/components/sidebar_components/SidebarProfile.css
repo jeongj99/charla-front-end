@@ -32,6 +32,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-right: 2px;
+  /* padding-right: 2px; */
   cursor: pointer;
 }
