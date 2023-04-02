@@ -9,19 +9,8 @@ import "./SidebarProfile.css";
 import { BiHome, BiLogOut } from "react-icons/bi";
 
 export default function SidebarProfile() {
-  const { setAuth } = useContext(AuthContext);
-  const [loggedInName, setLoggedInName] = useState(null);
+  const { loggedInUser, setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    axios.get("api/loggedin")
-      .then(response => {
-        setLoggedInName(`${response.data.loggedInUser.firstName} ${response.data.loggedInUser.lastName}`);
-      })
-      .catch(error => {
-        console.log('Hello', error);
-      });
-  }, []);
 
   const backHome = () => {
     navigate("/");
@@ -31,6 +20,7 @@ export default function SidebarProfile() {
     try {
       const response = await axios.post("/api/logout", {});
       setAuth(response.data.auth);
+      setLoggedInUser(null);
       socket.disconnect();
     } catch ({ response }) {
       console.log(response.data.error);
@@ -39,7 +29,7 @@ export default function SidebarProfile() {
 
   return (
     <main className="sidebar-profile-container">
-      <p className="sidebar-profile-name">{loggedInName}</p>
+      <p className="sidebar-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</p>
       <div className="sidebar-profile-buttons">
         <button onClick={backHome}>
           <BiHome />
