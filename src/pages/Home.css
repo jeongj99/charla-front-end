@@ -2,6 +2,7 @@
   top: 70px;
   width: 100vw;
   height: 100vh;
+  background-color: #343434;
 }
 
 .home-section {
@@ -24,9 +25,10 @@
 .home-section-left {
   /* width: 100%; */
   height: 100%;
+  padding-top: 5%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -37,4 +39,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.home-section-brand-name {
+  font-family: 'Shrikhand', cursive;
+  color: whitesmoke;
+  font-size: 50px
+}
+
+.home-section-slogan {
+  font-family: 'Poppins';
+  color: whitesmoke;
+  font-size: xx-large;
+}
+
+.home-image {
+  margin: auto;
 }
