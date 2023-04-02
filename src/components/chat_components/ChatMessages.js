@@ -17,7 +17,7 @@ export default function ChatMessages({ messagesList }) {
 
 
   return (
-    <div className="chat-messages">
+    <div className="chat-messages-container">
       <ScrollableFeed>
         {listOfMessages}
       </ScrollableFeed>

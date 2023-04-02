@@ -5,7 +5,7 @@ import "./ChatInput.css";
 export default function ChatInput(props) {
   const [userMessage, setUserMessage] = useState(""); //This state holds the current user Message being typed and represents what is being seen on the textarea value
   const [messageSubmitted, setMessageSubmitted] = useState(""); //This state confirms whether a messaege has been submitted via clicking the enter button
-  const [missingParticipantSuccesffulyAddedBack, setMissingParticipantSuccessfullyAddedBack] = useState("") //This state is triggered to a value/activated once a response returns from successfully adding participant back to convo
+  const [missingParticipantSuccesffulyAddedBack, setMissingParticipantSuccessfullyAddedBack] = useState(""); //This state is triggered to a value/activated once a response returns from successfully adding participant back to convo
 
   const userMessageInput = function(event) {
     setUserMessage(event.target.value);
@@ -78,7 +78,7 @@ export default function ChatInput(props) {
                     convoID: props.convoID
                   })
                     .then(response => {
-                      secondParticipant = { contact_id: contact1}
+                      secondParticipant = { contact_id: contact1 };
                       setMissingParticipantSuccessfullyAddedBack(secondParticipant);
                     })
                     .catch(err => console.log(err));
@@ -89,7 +89,7 @@ export default function ChatInput(props) {
                     convoID: props.convoID
                   })
                     .then(response => {
-                      secondParticipant = { contact_id: contact2 }
+                      secondParticipant = { contact_id: contact2 };
                       setMissingParticipantSuccessfullyAddedBack(secondParticipant);
                     })
                     .catch(err => console.log(err));
@@ -98,7 +98,7 @@ export default function ChatInput(props) {
               .catch(err => console.log(err));
           }
 
-          console.log('Hello from secondParticipant after the post request', secondParticipant)
+          console.log('Hello from secondParticipant after the post request', secondParticipant);
 
           //Check if BOTH the first participant and second participant are in the convo (not null), and if one of their ids are equal to the loggedinUserID. If so, then loggedInUser is a participant in convo and as a result can send message.
           //IMPORTANT NOTE: Allow this to fire whether it has a value or is null isn't ideal, add fix soon!
@@ -140,10 +140,10 @@ export default function ChatInput(props) {
 
 
   return (
-    <>
-      {
-        props.convoID ? <textarea className="text-area" value={userMessage} placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown} maxLength="2000"></textarea> : <textarea disabled value={userMessage} className="text-area-disabled"></textarea>
-      }
-    </>
+    <div className="chat-input-container">
+      <form className="message-form">
+        <textarea className="text-area" value={userMessage} placeholder="Start a Charla!" onChange={userMessageInput} onKeyDown={handleKeyDown} maxLength="2000"></textarea>
+      </form>
+    </div>
   );
 }
