@@ -9,3 +9,11 @@ export const getContactInfoForConvo = (state, convoID) => {
     return convoInfo.otherParticipant;
   }
 };
+
+export const getFilteredConversations = state => {
+  if (state) {
+    const filteredConvos = state.conversations.filter(conversation => conversation.amIPresent === true);
+
+    return filteredConvos;
+  }
+};
