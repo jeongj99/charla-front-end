@@ -52,18 +52,14 @@ export default function Chat() {
           <section className="chat">
             {
               (id && state.messages) ?
-                <div className="chat-messages">
-                  <ChatMessages messagesList={state.messages} />
-                </div> :
+                <ChatMessages messagesList={state.messages} /> :
                 <div className="chat-no-convo">
                   <h3>Select a conversation</h3>
                 </div>
             }
             {
               id &&
-              <div className="chat-input">
-                <ChatInput convoID={id} />
-              </div>
+              <ChatInput convoID={id} />
             }
           </section>
         </div>

@@ -6,6 +6,7 @@ import socket from "../socket";
 export default function useChatData(id) {
   const [state, setState] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [messageValue, setMessageValue] = useState("");
   const navigate = useNavigate();
 
   const fetchChatData = async (id) => {
