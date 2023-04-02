@@ -74,6 +74,14 @@ export default function useChatData(id) {
     }
   };
 
+  const searchListItemOnClick = contactID => {
+    const conversationExists = state.conversations.find(conversation => conversation.otherParticipant.id === contactID);
+    if (conversationExists) {
+      navigate(`/chat/${conversationExists.conversation_id}`);
+      setSearchValue("");
+    }
+  };
+
 
   return {
     state,
@@ -81,6 +89,7 @@ export default function useChatData(id) {
     setSearchValue,
     searchForUser,
     navigateToChat,
-    removeYourselfFromConvo
+    removeYourselfFromConvo,
+    searchListItemOnClick
   };
 }
