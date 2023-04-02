@@ -57,9 +57,9 @@ export default function useChatData(id) {
   const removeYourselfFromConvo = async (event, convoID) => {
     event.stopPropagation();
 
-    const updateData = await axios.put(`api/deleteparticipant/${convoID}`, { amIPresent: false });
+    const updateParticipantStatusData = await axios.put(`api/participantstatus/${convoID}`, { amIPresent: false });
 
-    if (updateData.data.success) {
+    if (updateParticipantStatusData.data.success) {
       setState(prevState => ({
         ...prevState,
         conversations: prevState.conversations.map(convo => {
@@ -76,11 +76,29 @@ export default function useChatData(id) {
     }
   };
 
-  const searchListItemOnClick = contactID => {
+  const searchListItemOnClick = async (contactID) => {
     const conversationExists = state.conversations.find(conversation => conversation.otherParticipant.id === contactID);
-    if (conversationExists) {
+    if (conversationExists && conversationExists.amIPresent) {
       navigate(`/chat/${conversationExists.conversation_id}`);
       setSearchValue("");
+    } else if (conversationExists && !conversationExists.amIPresent) {
+      const updateParticipantStatusData = await axios.put(`api/participantstatus/${conversationExists.conversation_id}`, { amIPresent: true });
+
+      if (updateParticipantStatusData) {
+        setState(prevState => ({
+          ...prevState,
+          conversations: prevState.conversations.map(convo => {
+            if (convo.conversation_id === conversationExists.conversation_id) {
+              return {
+                ...convo,
+                amIPresent: true
+              };
+            }
+            return convo;
+          })
+        }));
+        navigate(`/chat/${conversationExists.conversation_id}`);
+      }
     }
   };
 
