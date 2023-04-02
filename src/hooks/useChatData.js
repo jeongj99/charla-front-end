@@ -57,19 +57,21 @@ export default function useChatData(id) {
   const removeYourselfFromConvo = async (event, convoID) => {
     event.stopPropagation();
 
-    const deleteData = await axios.delete('api/deleteparticipant', {
-      params: {
-        convoID
-      }
-    });
+    const updateData = await axios.put(`api/deleteparticipant/${convoID}`, { amIPresent: false });
 
-    if (deleteData.data.success) {
-      setState(prev => {
-        const updatedConversations = prev.conversations.filter(
-          convo => convo.conversation_id !== convoID
-        );
-        return { ...prev, conversations: updatedConversations };
-      });
+    if (updateData.data.success) {
+      setState(prevState => ({
+        ...prevState,
+        conversations: prevState.conversations.map(convo => {
+          if (convo.conversation_id === convoID) {
+            return {
+              ...convo,
+              amIPresent: false
+            };
+          }
+          return convo;
+        })
+      }));
       navigate('/chat');
     }
   };
