@@ -59,23 +59,28 @@ export default function useChatData(id) {
   const removeYourselfFromConvo = async (event, convoID) => {
     event.stopPropagation();
 
-    const updateParticipantStatusData = await axios.put(`api/participantstatus/${convoID}`, { amIPresent: false });
-
-    if (updateParticipantStatusData.data.success) {
-      setState(prevState => ({
-        ...prevState,
-        conversations: prevState.conversations.map(convo => {
-          if (convo.conversation_id === convoID) {
-            return {
-              ...convo,
-              amIPresent: false
-            };
-          }
-          return convo;
-        })
-      }));
-      navigate('/chat');
-    }
+    socket.emit("update_participant_status", {
+      convoID,
+      amIPresent: false
+    }, ({ error, done, data }) => {
+      if (done) {
+        setState(prevState => ({
+          ...prevState,
+          conversations: prevState.conversations.map(convo => {
+            if (convo.conversation_id === convoID) {
+              return {
+                ...convo,
+                amIPresent: data.participating
+              };
+            }
+            return convo;
+          })
+        }));
+        navigate('/chat');
+        return;
+      }
+      console.log(error);
+    });
   };
 
   const searchListItemOnClick = async (contactID, contactFirstName, contactLastName) => {
