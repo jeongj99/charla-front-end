@@ -123,6 +123,34 @@ export default function useChatData(id) {
     }
   };
 
+  const handleKeyDown = (event, convoID, myContactID) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+
+      const messageText = messageValue.trim();
+
+      if (messageText) {
+        setMessageValue(messageText);
+
+        const currentConvo = state.conversations.find(conversation => conversation.conversation_id === convoID);
+
+        if (currentConvo && !currentConvo.otherParticipant.participating) {
+
+        }
+
+        socket.emit("new_message", {
+          convoID,
+          contactID: myContactID
+        }, ({ error, done, data }) => {
+          if (done) {
+
+          }
+          console.log(error);
+        });
+      }
+    }
+  };
+
 
   return {
     state,
@@ -131,6 +159,9 @@ export default function useChatData(id) {
     searchForUser,
     navigateToChat,
     removeYourselfFromConvo,
-    searchListItemOnClick
+    searchListItemOnClick,
+    messageValue,
+    setMessageValue,
+    handleKeyDown
   };
 }

@@ -24,7 +24,10 @@ export default function Chat() {
     setSearchValue,
     navigateToChat,
     removeYourselfFromConvo,
-    searchListItemOnClick
+    searchListItemOnClick,
+    messageValue,
+    setMessageValue,
+    handleKeyDown
   } = useChatData(id);
 
 
@@ -59,7 +62,7 @@ export default function Chat() {
             }
             {
               id &&
-              <ChatInput convoID={id} />
+              <ChatInput convoID={id} value={messageValue} onChange={setMessageValue} handleKeyDown={handleKeyDown} />
             }
           </section>
         </div>
