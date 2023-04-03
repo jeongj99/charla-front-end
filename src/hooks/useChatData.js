@@ -132,30 +132,82 @@ export default function useChatData(id) {
     }
   };
 
-  const handleKeyDown = (event, convoID, myContactID) => {
+  const handleKeyDown = (event, convoID) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
 
       const messageText = messageValue.trim();
 
       if (messageText) {
-        setMessageValue(messageText);
+        const currentConvoIndex = state.conversations.findIndex(conversation => conversation.conversation_id === +convoID);
 
-        const currentConvo = state.conversations.find(conversation => conversation.conversation_id === convoID);
+        if (!currentConvoIndex !== -1) {
+          const currentConvo = state.conversations[currentConvoIndex];
 
-        if (currentConvo && !currentConvo.otherParticipant.participating) {
+          if (!currentConvo.otherParticipant.participating) {
+            socket.emit("new_message", {
+              messageText,
+              convoID,
+              contactID: currentConvo.otherParticipant.id,
+              participating: currentConvo.otherParticipant.participating
+            }, ({ error, done, data }) => {
+              if (done) {
+                const updatedCurrentConvo = {
+                  ...currentConvo,
+                  otherParticipant: {
+                    ...currentConvo.otherParticipant,
+                    participating: true
+                  },
+                  lastMessage: {
+                    id: data.id,
+                    senderContactId: data.contact_id,
+                    messageText: data.message_text,
+                    sentDateTime: data.sent_datetime
+                  },
+                  last_activity_datetime: data.sent_datetime
+                };
 
-        }
+                setState(prevState => ({
+                  ...prevState,
+                  conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+                  messages: [data, ...prevState.messages]
+                }));
+                setMessageValue("");
+                return;
+              }
+              console.log(error);
+            });
+          } else {
+            socket.emit("new_message", {
+              messageText,
+              convoID,
+              contactID: currentConvo.otherParticipant.id,
+              participating: currentConvo.otherParticipant.participating
+            }, ({ error, done, data }) => {
+              if (done) {
+                const updatedCurrentConvo = {
+                  ...currentConvo,
+                  lastMessage: {
+                    id: data.id,
+                    senderContactId: data.contact_id,
+                    messageText: data.message_text,
+                    sentDateTime: data.sent_datetime
+                  },
+                  last_activity_datetime: data.sent_datetime
+                };
 
-        socket.emit("new_message", {
-          convoID,
-          contactID: myContactID
-        }, ({ error, done, data }) => {
-          if (done) {
-
+                setState(prevState => ({
+                  ...prevState,
+                  conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+                  messages: [...prevState.messages, data]
+                }));
+                setMessageValue("");
+                return;
+              }
+              console.log(error);
+            });
           }
-          console.log(error);
-        });
+        }
       }
     }
   };
@@ -180,7 +232,6 @@ export default function useChatData(id) {
     });
 
     socket.on('new_convo', (newConversationData) => {
-      console.log(newConversationData);
       setState(prev => ({ ...prev, conversations: [newConversationData, ...prev.conversations] }));
     });
 
@@ -202,4 +253,4 @@ export default function useChatData(id) {
     setMessageValue,
     handleKeyDown
   };
-}
+};
