@@ -83,30 +83,6 @@ export default function useChatData(id) {
     });
   };
 
-  useEffect(() => {
-    socket.on('update_participant_status', (updatedParticipantStatus) => {
-      setState(prevState => ({
-        ...prevState,
-        conversations: prevState.conversations.map(convo => {
-          if (convo.conversation_id === updatedParticipantStatus.conversation_id) {
-            return {
-              ...convo,
-              otherParticipant: {
-                ...convo.otherParticipant,
-                participating: updatedParticipantStatus.participating
-              }
-            };
-          }
-          return convo;
-        })
-      }));
-    });
-
-    return () => {
-      socket.off('update_participant_status');
-    };
-  });
-
   const searchListItemOnClick = async (contactID, contactFirstName, contactLastName) => {
     const conversationExists = state.conversations.find(conversation => conversation.otherParticipant.id === contactID);
     if (conversationExists && conversationExists.amIPresent) {
@@ -114,25 +90,29 @@ export default function useChatData(id) {
       setSearchValue("");
       return;
     } else if (conversationExists && !conversationExists.amIPresent) {
-      const updateParticipantStatusData = await axios.put(`api/participantstatus/${conversationExists.conversation_id}`, { amIPresent: true });
-
-      if (updateParticipantStatusData) {
-        setState(prevState => ({
-          ...prevState,
-          conversations: prevState.conversations.map(convo => {
-            if (convo.conversation_id === conversationExists.conversation_id) {
-              return {
-                ...convo,
-                amIPresent: true
-              };
-            }
-            return convo;
-          })
-        }));
-        navigate(`/chat/${conversationExists.conversation_id}`);
-        setSearchValue("");
-        return;
-      }
+      socket.emit("update_participant_status", {
+        convoID: conversationExists.conversation_id,
+        amIPresent: true
+      }, ({ error, done, data }) => {
+        if (done) {
+          setState(prevState => ({
+            ...prevState,
+            conversations: prevState.conversations.map(convo => {
+              if (convo.conversation_id === conversationExists.conversation_id) {
+                return {
+                  ...convo,
+                  amIPresent: data.participating
+                };
+              }
+              return convo;
+            })
+          }));
+          navigate(`/chat/${conversationExists.conversation_id}`);
+          setSearchValue("");
+          return;
+        }
+        console.log(error);
+      });
     }
 
     if (!conversationExists) {
@@ -180,6 +160,35 @@ export default function useChatData(id) {
     }
   };
 
+  useEffect(() => {
+    socket.on('update_participant_status', (updatedParticipantStatus) => {
+      setState(prevState => ({
+        ...prevState,
+        conversations: prevState.conversations.map(convo => {
+          if (convo.conversation_id === updatedParticipantStatus.conversation_id) {
+            return {
+              ...convo,
+              otherParticipant: {
+                ...convo.otherParticipant,
+                participating: updatedParticipantStatus.participating
+              }
+            };
+          }
+          return convo;
+        })
+      }));
+    });
+
+    socket.on('new_convo', (newConversationData) => {
+      console.log(newConversationData);
+      setState(prev => ({ ...prev, conversations: [newConversationData, ...prev.conversations] }));
+    });
+
+    return () => {
+      socket.off('update_participant_status');
+      socket.off('new_convo');
+    };
+  });
 
   return {
     state,
