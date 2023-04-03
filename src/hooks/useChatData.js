@@ -83,6 +83,30 @@ export default function useChatData(id) {
     });
   };
 
+  useEffect(() => {
+    socket.on('update_participant_status', (updatedParticipantStatus) => {
+      setState(prevState => ({
+        ...prevState,
+        conversations: prevState.conversations.map(convo => {
+          if (convo.conversation_id === updatedParticipantStatus.conversation_id) {
+            return {
+              ...convo,
+              otherParticipant: {
+                ...convo.otherParticipant,
+                participating: updatedParticipantStatus.participating
+              }
+            };
+          }
+          return convo;
+        })
+      }));
+    });
+
+    return () => {
+      socket.off('update_participant_status');
+    };
+  });
+
   const searchListItemOnClick = async (contactID, contactFirstName, contactLastName) => {
     const conversationExists = state.conversations.find(conversation => conversation.otherParticipant.id === contactID);
     if (conversationExists && conversationExists.amIPresent) {
