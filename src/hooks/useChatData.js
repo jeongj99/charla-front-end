@@ -144,69 +144,38 @@ export default function useChatData(id) {
         if (!currentConvoIndex !== -1) {
           const currentConvo = state.conversations[currentConvoIndex];
 
-          if (!currentConvo.otherParticipant.participating) {
-            socket.emit("new_message", {
-              messageText,
-              convoID,
-              contactID: currentConvo.otherParticipant.id,
-              participating: currentConvo.otherParticipant.participating
-            }, ({ error, done, data }) => {
-              if (done) {
-                const updatedCurrentConvo = {
-                  ...currentConvo,
-                  otherParticipant: {
-                    ...currentConvo.otherParticipant,
-                    participating: true
-                  },
-                  lastMessage: {
-                    id: data.id,
-                    senderContactId: data.contact_id,
-                    messageText: data.message_text,
-                    sentDateTime: data.sent_datetime
-                  },
-                  last_activity_datetime: data.sent_datetime
-                };
+          socket.emit("new_message", {
+            messageText,
+            convoID,
+            contactID: currentConvo.otherParticipant.id,
+            participating: currentConvo.otherParticipant.participating
+          }, ({ error, done, data }) => {
+            if (done) {
+              const updatedCurrentConvo = {
+                ...currentConvo,
+                otherParticipant: {
+                  ...currentConvo.otherParticipant,
+                  participating: true
+                },
+                lastMessage: {
+                  id: data.id,
+                  senderContactId: data.contact_id,
+                  messageText: data.message_text,
+                  sentDateTime: data.sent_datetime
+                },
+                last_activity_datetime: data.sent_datetime
+              };
 
-                setState(prevState => ({
-                  ...prevState,
-                  conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
-                  messages: [data, ...prevState.messages]
-                }));
-                setMessageValue("");
-                return;
-              }
-              console.log(error);
-            });
-          } else {
-            socket.emit("new_message", {
-              messageText,
-              convoID,
-              contactID: currentConvo.otherParticipant.id,
-              participating: currentConvo.otherParticipant.participating
-            }, ({ error, done, data }) => {
-              if (done) {
-                const updatedCurrentConvo = {
-                  ...currentConvo,
-                  lastMessage: {
-                    id: data.id,
-                    senderContactId: data.contact_id,
-                    messageText: data.message_text,
-                    sentDateTime: data.sent_datetime
-                  },
-                  last_activity_datetime: data.sent_datetime
-                };
-
-                setState(prevState => ({
-                  ...prevState,
-                  conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
-                  messages: [...prevState.messages, data]
-                }));
-                setMessageValue("");
-                return;
-              }
-              console.log(error);
-            });
-          }
+              setState(prevState => ({
+                ...prevState,
+                conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+                messages: [...prevState.messages, data]
+              }));
+              setMessageValue("");
+              return;
+            }
+            console.log(error);
+          });
         }
       }
     }
@@ -235,9 +204,43 @@ export default function useChatData(id) {
       setState(prev => ({ ...prev, conversations: [newConversationData, ...prev.conversations] }));
     });
 
+    socket.on('new_message', (newMessageData) => {
+      const currentConvoIndex = state.conversations.findIndex(conversation => conversation.conversation_id === newMessageData.conversation_id);
+
+      if (!currentConvoIndex !== -1) {
+        const currentConvo = state.conversations[currentConvoIndex];
+
+        const updatedCurrentConvo = {
+          ...currentConvo,
+          lastMessage: {
+            id: newMessageData.id,
+            senderContactId: newMessageData.contact_id,
+            messageText: newMessageData.message_text,
+            sentDateTime: newMessageData.sent_datetime
+          },
+          last_activity_datetime: newMessageData.sent_datetime,
+          amIPresent: true
+        };
+
+        if (id && +id === newMessageData.conversation_id) {
+          setState(prevState => ({
+            ...prevState,
+            conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+            messages: [...prevState.messages, newMessageData]
+          }));
+        } else {
+          setState(prevState => ({
+            ...prevState,
+            conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)]
+          }));
+        }
+      }
+    });
+
     return () => {
       socket.off('update_participant_status');
       socket.off('new_convo');
+      socket.off('new_message');
     };
   });
 
