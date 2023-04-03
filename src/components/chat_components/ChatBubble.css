@@ -22,9 +22,6 @@
   font-family: inherit;
   font-size: large;
   position: relative;
-  /* These following two lines allow for text bubbles being received from contact you are speaking with hang left and only take up at most 50% of screen */
-  /* margin-right: 50%;
-  margin-left: 2%; */
   word-break: break-all;
 }
 

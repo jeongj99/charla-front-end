@@ -1,6 +1,4 @@
-// import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import axios from "../api/axios";
 
 import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
