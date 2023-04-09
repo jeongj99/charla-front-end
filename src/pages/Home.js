@@ -23,7 +23,7 @@ export default function Home() {
         <section className={homeSectionClass}>
           <div className="home-section-left">
             <h1 className="home-section-brand-name">Charla</h1>
-            <img src={img1} alt="" />
+            <img className="home-image" src={img1} alt="" />
             <p className="home-section-slogan">Experience the power of online conversation with Charla!</p>
           </div>
           <div className="home-section-right">

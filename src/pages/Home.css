@@ -44,7 +44,7 @@
 .home-section-brand-name {
   font-family: 'Shrikhand', cursive;
   color: whitesmoke;
-  font-size: 50px
+  font-size: 50px;
 }
 
 .home-section-slogan {
@@ -54,5 +54,7 @@
 }
 
 .home-image {
-  margin: auto;
+  height: 70%;
+  width: 90%;
+  /* margin: auto; */
 }
