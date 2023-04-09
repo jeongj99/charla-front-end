@@ -17,7 +17,7 @@ export default function Navbar() {
 
   const closeMobileMenu = () => setClick(false);
 
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth, setAuth, setLoggedInUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -25,6 +25,7 @@ export default function Navbar() {
     try {
       const response = await axios.post("/api/logout", {});
       setAuth(response.data.auth);
+      setLoggedInUser(null);
       socket.disconnect();
       navigate("/");
     } catch ({ response }) {

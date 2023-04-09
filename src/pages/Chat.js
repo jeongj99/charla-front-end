@@ -1,6 +1,4 @@
-// import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import axios from "../api/axios";
 
 import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
@@ -24,7 +22,10 @@ export default function Chat() {
     setSearchValue,
     navigateToChat,
     removeYourselfFromConvo,
-    searchListItemOnClick
+    searchListItemOnClick,
+    messageValue,
+    setMessageValue,
+    handleKeyDown
   } = useChatData(id);
 
 
@@ -57,7 +58,10 @@ export default function Chat() {
                   <h3>Select a conversation</h3>
                 </div>
             }
-            {id && <ChatInput convoID={id} />}
+            {
+              id &&
+              <ChatInput convoID={id} value={messageValue} onChange={setMessageValue} handleKeyDown={handleKeyDown} />
+            }
           </section>
         </div>
       </div>}

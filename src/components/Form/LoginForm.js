@@ -59,7 +59,10 @@ export default function LoginForm(props) {
           </p>
         </div>
       }
-      <CommonLink muted>Don't have an account? <CommonLink bold onClick={props.switchForm}>Register</CommonLink></CommonLink>
+      <div className="switch-form-link-container">
+        <CommonLink muted>Don't have an account? </CommonLink>
+        <CommonLink bold onClick={props.switchForm}>Register</CommonLink>
+      </div>
     </CommonContainer>
   );
 };

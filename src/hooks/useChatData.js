@@ -6,6 +6,7 @@ import socket from "../socket";
 export default function useChatData(id) {
   const [state, setState] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const [messageValue, setMessageValue] = useState("");
   const navigate = useNavigate();
 
   const fetchChatData = async (id) => {
@@ -58,23 +59,28 @@ export default function useChatData(id) {
   const removeYourselfFromConvo = async (event, convoID) => {
     event.stopPropagation();
 
-    const updateParticipantStatusData = await axios.put(`api/participantstatus/${convoID}`, { amIPresent: false });
-
-    if (updateParticipantStatusData.data.success) {
-      setState(prevState => ({
-        ...prevState,
-        conversations: prevState.conversations.map(convo => {
-          if (convo.conversation_id === convoID) {
-            return {
-              ...convo,
-              amIPresent: false
-            };
-          }
-          return convo;
-        })
-      }));
-      navigate('/chat');
-    }
+    socket.emit("update_participant_status", {
+      convoID,
+      amIPresent: false
+    }, ({ error, done, data }) => {
+      if (done) {
+        setState(prevState => ({
+          ...prevState,
+          conversations: prevState.conversations.map(convo => {
+            if (convo.conversation_id === convoID) {
+              return {
+                ...convo,
+                amIPresent: data.participating
+              };
+            }
+            return convo;
+          })
+        }));
+        navigate('/chat');
+        return;
+      }
+      console.log(error);
+    });
   };
 
   const searchListItemOnClick = async (contactID, contactFirstName, contactLastName) => {
@@ -84,24 +90,29 @@ export default function useChatData(id) {
       setSearchValue("");
       return;
     } else if (conversationExists && !conversationExists.amIPresent) {
-      const updateParticipantStatusData = await axios.put(`api/participantstatus/${conversationExists.conversation_id}`, { amIPresent: true });
-
-      if (updateParticipantStatusData) {
-        setState(prevState => ({
-          ...prevState,
-          conversations: prevState.conversations.map(convo => {
-            if (convo.conversation_id === conversationExists.conversation_id) {
-              return {
-                ...convo,
-                amIPresent: true
-              };
-            }
-            return convo;
-          })
-        }));
-        navigate(`/chat/${conversationExists.conversation_id}`);
-        return;
-      }
+      socket.emit("update_participant_status", {
+        convoID: conversationExists.conversation_id,
+        amIPresent: true
+      }, ({ error, done, data }) => {
+        if (done) {
+          setState(prevState => ({
+            ...prevState,
+            conversations: prevState.conversations.map(convo => {
+              if (convo.conversation_id === conversationExists.conversation_id) {
+                return {
+                  ...convo,
+                  amIPresent: data.participating
+                };
+              }
+              return convo;
+            })
+          }));
+          navigate(`/chat/${conversationExists.conversation_id}`);
+          setSearchValue("");
+          return;
+        }
+        console.log(error);
+      });
     }
 
     if (!conversationExists) {
@@ -121,6 +132,117 @@ export default function useChatData(id) {
     }
   };
 
+  const handleKeyDown = (event, convoID) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+
+      const messageText = messageValue.trim();
+
+      if (messageText) {
+        const currentConvoIndex = state.conversations.findIndex(conversation => conversation.conversation_id === +convoID);
+
+        if (!currentConvoIndex !== -1) {
+          const currentConvo = state.conversations[currentConvoIndex];
+
+          socket.emit("new_message", {
+            messageText,
+            convoID,
+            contactID: currentConvo.otherParticipant.id,
+            participating: currentConvo.otherParticipant.participating
+          }, ({ error, done, data }) => {
+            if (done) {
+              const updatedCurrentConvo = {
+                ...currentConvo,
+                otherParticipant: {
+                  ...currentConvo.otherParticipant,
+                  participating: true
+                },
+                lastMessage: {
+                  id: data.id,
+                  senderContactId: data.contact_id,
+                  messageText: data.message_text,
+                  sentDateTime: data.sent_datetime
+                },
+                last_activity_datetime: data.sent_datetime
+              };
+
+              setState(prevState => ({
+                ...prevState,
+                conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+                messages: [...prevState.messages, data]
+              }));
+              setMessageValue("");
+              return;
+            }
+            console.log(error);
+          });
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    socket.on('update_participant_status', (updatedParticipantStatus) => {
+      setState(prevState => ({
+        ...prevState,
+        conversations: prevState.conversations.map(convo => {
+          if (convo.conversation_id === updatedParticipantStatus.conversation_id) {
+            return {
+              ...convo,
+              otherParticipant: {
+                ...convo.otherParticipant,
+                participating: updatedParticipantStatus.participating
+              }
+            };
+          }
+          return convo;
+        })
+      }));
+    });
+
+    socket.on('new_convo', (newConversationData) => {
+      setState(prev => ({ ...prev, conversations: [newConversationData, ...prev.conversations] }));
+    });
+
+    socket.on('new_message', (newMessageData) => {
+      const currentConvoIndex = state.conversations.findIndex(conversation => conversation.conversation_id === newMessageData.conversation_id);
+
+      if (!currentConvoIndex !== -1) {
+        const currentConvo = state.conversations[currentConvoIndex];
+
+        const updatedCurrentConvo = {
+          ...currentConvo,
+          lastMessage: {
+            id: newMessageData.id,
+            senderContactId: newMessageData.contact_id,
+            messageText: newMessageData.message_text,
+            sentDateTime: newMessageData.sent_datetime
+          },
+          last_activity_datetime: newMessageData.sent_datetime,
+          amIPresent: true
+        };
+
+        if (id && +id === newMessageData.conversation_id) {
+          setState(prevState => ({
+            ...prevState,
+            conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)],
+            messages: [...prevState.messages, newMessageData]
+          }));
+        } else {
+          setState(prevState => ({
+            ...prevState,
+            conversations: [updatedCurrentConvo, ...prevState.conversations.slice(0, currentConvoIndex), ...prevState.conversations.slice(currentConvoIndex + 1)]
+          }));
+        }
+      }
+    });
+
+    return () => {
+      socket.off('update_participant_status');
+      socket.off('new_convo');
+      socket.off('new_message');
+    };
+  });
 
   return {
     state,
@@ -129,6 +251,9 @@ export default function useChatData(id) {
     searchForUser,
     navigateToChat,
     removeYourselfFromConvo,
-    searchListItemOnClick
+    searchListItemOnClick,
+    messageValue,
+    setMessageValue,
+    handleKeyDown
   };
-}
+};

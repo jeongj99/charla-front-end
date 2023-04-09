@@ -1,5 +1,17 @@
+.chat-input-container {
+  position: absolute;
+  bottom: 0;
+  width: 75%;
+}
+
+.message-form {
+  height: 100%;
+  width: 100%;
+}
+
 .text-area {
-  height: 15%;
+  height: 100%;
+  width: 100%;
   background-color: #ddd;
   color: #666;
   font-family: inherit;
@@ -11,6 +23,7 @@
   outline: none;
   line-height: 1.4;
   transition: all 0.2s;
+  margin: 0;
 }
 
 .text-area:hover {

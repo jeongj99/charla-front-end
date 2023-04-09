@@ -1,13 +1,7 @@
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
-import socket from "../../socket";
 
 export default function ChatList({ chatList, navigateToChat, removeYourselfFromConvo }) {
-  socket.on('new_convo', chatData => {
-    let socketChat = chatData.rows[0];
-    console.log(socketChat);
-  });
-
   const listOfChats = chatList.map(conversation => {
 
     return (
@@ -18,7 +12,7 @@ export default function ChatList({ chatList, navigateToChat, removeYourselfFromC
         firstName={conversation.otherParticipant.firstName}
         lastName={conversation.otherParticipant.lastName}
         profilePic={conversation.otherParticipant.profilePhotoUrl}
-        messageOwnerID={conversation.lastMessage.senderContactID}
+        messageOwnerID={conversation.lastMessage.senderContactId}
         message={conversation.lastMessage.messageText}
         navigateToChat={navigateToChat}
         removeYourselfFromConvo={removeYourselfFromConvo}
@@ -29,18 +23,6 @@ export default function ChatList({ chatList, navigateToChat, removeYourselfFromC
   return (
     <div className="chat-list-container">
       <ul>
-        {/* {socketChat &&
-          <ChatListItem
-            key={socketChat.conversation_id}
-            convoID={socketChat.conversation_id}
-            firstName={socketChat.contact.first_name}
-            lastName={socketChat.contact.last_name}
-            messageOwnerID={socketChat.message_owner_id}
-            message={socketChat.message_text}
-            profilePic={socketChat.contact.profile_photo_url}
-            setConvoDeleted={setConvoDeleted}
-            setConvoMessages={setConvoMessages}
-          />} */}
         {listOfChats}
       </ul>
     </div>

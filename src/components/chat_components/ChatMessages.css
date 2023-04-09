@@ -1,7 +1,4 @@
-.chat-messages {
-  height: 100%;
+.chat-messages-container {
   background-color: #1c1e21;
-  /* background-color: #ffffff;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png"); */
-  overflow: scroll;
+  height: 580px;
 }

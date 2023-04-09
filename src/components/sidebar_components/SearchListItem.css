@@ -1,15 +1,11 @@
 .search-list-item-container {
   height: 120px;
-  /* height: 11%; */
   width: 100%;
   display: flex;
   align-items: center;
   background-color: #1c1e21;
   color: whitesmoke;
   margin-bottom: 0.5em;
-  /* max-height: 11%;
-  overflow: hidden; */
-
 }
 
 .search-list-item-container:hover {
@@ -27,10 +23,7 @@
   margin-left: 1em;
   border-radius: 50%;
   min-width: 110px;
-  /* This prevents picture from shrinking on screen resizing*/
-  /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
   overflow: hidden;
-  /* This line is needed in order to prevent image size of image within DIV, in this case square corners, from being seen on top of rounded corners of the parent DIV*/
 }
 
 /* Ensure that photo is made to perfectly fit the parent div container  */
@@ -44,7 +37,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* height: 50%; */
   font-family: inherit;
   color: whitesmoke;
   padding-top: 0.2em;
@@ -52,32 +44,4 @@
   padding-left: 1em;
   padding-right: 1em;
   width: 210px;
-}
-
-.search-list-item-conversation p {
-  font-size: medium;
-  /* overflow: hidden; */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* This is to target the CSS of the x button in the corner */
-.search-list-item-container i {
-  visibility: hidden;
-  position: relative;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: 5%;
-  margin-top: 3%;
-}
-
-.search-list-item-container:hover i {
-  visibility: visible;
-  cursor: pointer;
-  position: relative;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: 5%;
-  margin-top: 3%;
 }
