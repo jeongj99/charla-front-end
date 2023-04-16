@@ -24,6 +24,7 @@
   background-attachment: fixed;
   height: 100%;
   width: 25%;
+  min-width: 357.25px;
   border-right: solid #2f3135 1px;
 }
 
@@ -44,6 +45,7 @@
   justify-content: flex-start;
   height: 100%;
   width: 25%;
+  min-width: 357.25px;
   border-right: solid #2f3135 1px;
 }
 
