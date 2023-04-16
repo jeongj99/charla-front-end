@@ -34,6 +34,12 @@
   width: 400px;
 }
 
+.alex-header-links-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .alex-header {
   color: whitesmoke;
   display: flex;
@@ -59,6 +65,12 @@ border-radius: 1em;
 
 .jordan-container {
   width: 400px;
+}
+
+.jordan-header-links-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .jordan-header {
