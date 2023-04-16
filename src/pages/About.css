@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   padding-top: 70px;
+  margin-bottom: 50px;
 }
 
 .about-us-container {
@@ -44,6 +45,15 @@ height: 400px;
 width: 400px;
 }
 
+.alex-description {
+  color: whitesmoke;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #2f3135;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+}
+
 .jordan-container {
   width: 400px;
 }
@@ -57,4 +67,13 @@ width: 400px;
 .jordan-photo {
 height: 400px;
 width: 400px;
+}
+
+.jordan-description {
+  color: whitesmoke;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  background-color: #2f3135;
+  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
 }
