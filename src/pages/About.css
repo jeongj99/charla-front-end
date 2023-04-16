@@ -1,5 +1,60 @@
 .about-container {
   top: 70px;
+  width: 100%;
+  height: 100%;
+  background-color: #343434;
+}
+
+.about-section {
+  /* width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center; */
+}
+
+.page-title {
+  font-family: 'Shrikhand', cursive;
+  font-size: 5em;
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+}
+
+.about-us-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100vw;
   height: 100vh;
+}
+
+.alex-container {
+  width: 400px;
+}
+
+.alex-header {
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+}
+
+.alex-photo {
+height: 400px;
+width: 400px;
+}
+
+.jordan-container {
+  width: 400px;
+}
+
+.jordan-header {
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+}
+
+.jordan-photo {
+height: 400px;
+width: 400px;
 }
