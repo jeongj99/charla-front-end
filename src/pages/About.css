@@ -38,6 +38,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1em;
 }
 
 .alex-links-container {
@@ -76,6 +77,7 @@ border-radius: 1em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1.5em;
 }
 
 .jordan-links-container {
