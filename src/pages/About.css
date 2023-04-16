@@ -40,6 +40,11 @@
   align-items: center;
 }
 
+.alex-links-container {
+  display: flex;
+  align-items: center;
+}
+
 .alex-header {
   color: whitesmoke;
   display: flex;
@@ -73,6 +78,11 @@ border-radius: 1em;
   align-items: center;
 }
 
+.jordan-links-container {
+  display: flex;
+  align-items: center;
+}
+
 .jordan-header {
   font-family: inherit;
   color: whitesmoke;
@@ -93,4 +103,17 @@ border-radius: 1em;
   border-radius: 1em;
   background-color: #2f3135;
   background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+}
+
+@media only screen and (max-width: 961px) {
+  .about-us-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-title {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
+
 }

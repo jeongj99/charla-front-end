@@ -8,7 +8,7 @@ import { AiFillLinkedin } from "react-icons/ai";
 
 
 export default function About() {
-  let iconStyles = { color: "white", fontSize: "2.0em", marginLeft: "0.3em", cursor: "pointer" };
+  let iconStyles = { color: "whitesmoke", fontSize: "2.0em", marginLeft: "0.3em", cursor: "pointer" };
 
   return (
     <>
