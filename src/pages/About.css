@@ -114,8 +114,8 @@ border-radius: 1em;
   }
 
   .page-title {
-    padding-left: 250px;
-    padding-right: 250px;
+    padding-left: 50%;
+    padding-right: 50%;
   }
 
 }
