@@ -46,6 +46,7 @@ width: 400px;
 }
 
 .alex-description {
+  font-family: inherit;
   color: whitesmoke;
   margin: 1em;
   padding: 1em;
@@ -59,6 +60,7 @@ width: 400px;
 }
 
 .jordan-header {
+  font-family: inherit;
   color: whitesmoke;
   display: flex;
   justify-content: center;
