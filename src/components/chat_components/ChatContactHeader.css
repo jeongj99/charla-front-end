@@ -28,3 +28,9 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media screen and (max-width: 725px) {
+  .chat-contact-header-container {
+    display: none;
+  }
+}
