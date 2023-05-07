@@ -100,6 +100,10 @@
     border-right: transparent;
   }
 
+  .topbar-logo-vanish {
+    display: none;
+  }
+
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -117,6 +121,20 @@
 
 @media screen and (min-width: 725px) {
   .topbar-logo {
+    border-right: solid #2f3135 1px;
+  }
+
+  .topbar-logo-vanish {
+    font-family: "Shrikhand", cursive;
+    font-size: xx-large;
+    color: whitesmoke;
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    background-attachment: fixed;
+    height: 100%;
+    width: 25%;
+    min-width: 357.25px;
     border-right: solid #2f3135 1px;
   }
 

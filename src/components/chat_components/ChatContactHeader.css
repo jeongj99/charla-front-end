@@ -33,4 +33,20 @@
   .chat-contact-header-container {
     display: none;
   }
+
+  .chat-contact-header-container-mobile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 725px) {
+  .chat-contact-header-container-mobile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 75%;
+  }
 }
