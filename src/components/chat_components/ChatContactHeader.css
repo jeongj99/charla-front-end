@@ -29,6 +29,11 @@
   object-fit: cover;
 }
 
+/*These media queries are meant to work with mobile: 
+- When screen size shrunk, new css is applied. 
+- Just in case screen is stretched out (right after having been stretched out), original css of container is applied to new CSS name. 
+- Please do not remove these queries and be very careful in testing if you are going to adjust them!*/
+
 @media screen and (max-width: 725px) {
   .chat-contact-header-container {
     display: none;
