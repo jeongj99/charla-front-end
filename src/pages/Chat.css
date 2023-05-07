@@ -48,6 +48,16 @@
   border-right: solid #2f3135 1px;
 }
 
+.sidebar-once-chat-item-clicked-in-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  width: 25%;
+  min-width: 357.25px;
+  border-right: solid #2f3135 1px;
+}
+
 .sidebar-profile {
   height: 5%;
   color: inherit;
@@ -75,16 +85,19 @@
     display: none;
   }
 
-  /* .chat-mobile {
-      display: flex;
-  flex-direction: column;
-  width: 75%;
-  background-color: #1c1e21;
-
-  } */
+  .chat-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #1c1e21;
+  }
 
   .chat-no-convo {
     display: none;
+  }
+
+  .topbar-logo {
+    border-right: transparent;
   }
 
   .sidebar {
@@ -96,11 +109,49 @@
     min-width: 357.25px;
     border-right: solid #2f3135 1px;
   }
+
+  .sidebar-once-chat-item-clicked-in-mobile {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 725px) {
   .topbar-logo {
     border-right: solid #2f3135 1px;
-
   }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 25%;
+    min-width: 357.25px;
+    border-right: solid #2f3135 1px;
+  }
+
+  .chat {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: #1c1e21;
+  }
+
+  .chat-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: #1c1e21;
+  }
+
+  .sidebar-once-chat-item-clicked-in-mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    width: 25%;
+    min-width: 357.25px;
+    border-right: solid #2f3135 1px;
+  }
+
 }

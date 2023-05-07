@@ -12,9 +12,11 @@ import { getContactInfoForConvo, getFilteredConversations } from "../helpers/sel
 
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
+import { useState } from 'react';
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
+  const [showChat, setShowChat] = useState(false)
 
   const {
     state,
@@ -28,6 +30,9 @@ export default function Chat() {
     handleKeyDown
   } = useChatData(id);
 
+  const displayChat = () => {
+    setShowChat (true)
+  }
 
   const contactInfo = getContactInfoForConvo(state, id);
 
@@ -43,14 +48,14 @@ export default function Chat() {
           {id && <ChatContactHeader contactInfo={contactInfo} />}
         </div>
         <div className="chat-main-container">
-          <aside className="sidebar">
+          <aside className={showChat ? "sidebar-once-chat-item-clicked-in-mobile" : "sidebar"}>
             <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
+            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList displayChat={displayChat} chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
           </aside>
-          <section className="chat">
+          <section className={showChat ? "chat-mobile": "chat"}>
             {
               (id && state.messages) ?
                 <ChatMessages messagesList={state.messages} /> :
@@ -60,7 +65,7 @@ export default function Chat() {
             }
             {
               id &&
-              <ChatInput convoID={id} value={messageValue} onChange={setMessageValue} handleKeyDown={handleKeyDown} />
+            <ChatInput showChat={showChat} convoID={id} value={messageValue} onChange={setMessageValue} handleKeyDown={handleKeyDown} />
             }
           </section>
         </div>

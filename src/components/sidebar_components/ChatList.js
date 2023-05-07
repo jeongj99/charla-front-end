@@ -1,7 +1,7 @@
 import './ChatList.css';
 import ChatListItem from "./ChatListItem";
 
-export default function ChatList({ chatList, navigateToChat, removeYourselfFromConvo }) {
+export default function ChatList({ chatList, navigateToChat, removeYourselfFromConvo, displayChat }) {
   const listOfChats = chatList.map(conversation => {
 
     return (
@@ -22,7 +22,7 @@ export default function ChatList({ chatList, navigateToChat, removeYourselfFromC
 
   return (
     <div className="chat-list-container">
-      <ul>
+      <ul onClick={displayChat}>
         {listOfChats}
       </ul>
     </div>

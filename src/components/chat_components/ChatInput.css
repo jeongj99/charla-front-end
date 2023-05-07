@@ -1,7 +1,7 @@
 .chat-input-container {
   position: absolute;
   bottom: 0;
-  width: 75%;
+  width: inherit;
 }
 
 .message-form {
@@ -37,7 +37,7 @@
 }
 
 .text-area::placeholder {
-  font-family: 'Shrikhand', cursive;
+  font-family: "Shrikhand", cursive;
 }
 
 .text-area-disabled {
