@@ -1,16 +1,16 @@
-import Navbar from "../components/Navbar";
-import "./About.css";
-import alexPhoto from "../images/Alex-Photo.jpeg";
-import jordanPhoto from "../images/Jordan-Photo.jpeg";
-import { GoMarkGithub } from "react-icons/go";
-import { AiFillLinkedin } from "react-icons/ai";
+import Navbar from '../components/Navbar';
+import './About.css';
+import alexPhoto from '../images/Alex-Photo.jpeg';
+import jordanPhoto from '../images/Jordan-Photo.jpeg';
+import { GoMarkGithub } from 'react-icons/go';
+import { AiFillLinkedin } from 'react-icons/ai';
 
 export default function About() {
   let iconStyles = {
-    color: "whitesmoke",
-    fontSize: "2.0em",
-    marginLeft: "0.3em",
-    cursor: "pointer",
+    color: 'whitesmoke',
+    fontSize: '2.0em',
+    marginLeft: '0.3em',
+    cursor: 'pointer',
   };
 
   return (

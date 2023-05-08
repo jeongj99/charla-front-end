@@ -1,5 +1,5 @@
-import "./ChatList.css";
-import ChatListItem from "./ChatListItem";
+import './ChatList.css';
+import ChatListItem from './ChatListItem';
 
 export default function ChatList({
   chatList,

@@ -1,6 +1,6 @@
-import SearchListItem from "./SearchListItem";
+import SearchListItem from './SearchListItem';
 
-import "./SearchList.css";
+import './SearchList.css';
 
 export default function SearchList({ searchedUsers, searchListItemOnClick }) {
   const listOfSearchedUsers = searchedUsers.map((searchedUser) => {

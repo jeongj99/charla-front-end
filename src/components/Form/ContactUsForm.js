@@ -1,30 +1,30 @@
-import { useState } from "react";
-import axios from "../../api/axios";
+import { useState } from 'react';
+import axios from '../../api/axios';
 
 import {
   CommonContainer,
   CommonForm,
   CommonInput,
   CommonSubmitButton,
-} from "./Common";
-import Marginer from "../Marginer";
+} from './Common';
+import Marginer from '../Marginer';
 
-import { RiErrorWarningLine } from "react-icons/ri";
+import { RiErrorWarningLine } from 'react-icons/ri';
 
 export default function RegisterForm(props) {
-  const [fullName, setFullName] = useState("");
-  const [feedback, setFeedback] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [feedback, setFeedback] = useState('');
 
   const submitFeedback = async () => {
-    const response = await axios.post("api/feedback", {
+    const response = await axios.post('api/feedback', {
       fullName,
       feedback,
     });
 
     if (response.data.error) {
     } else {
-      setFullName("");
-      setFeedback("");
+      setFullName('');
+      setFeedback('');
     }
   };
 

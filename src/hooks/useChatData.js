@@ -1,20 +1,20 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
-import socket from "../socket";
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from '../api/axios';
+import socket from '../socket';
 
 export default function useChatData(id) {
   const [state, setState] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
-  const [messageValue, setMessageValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [messageValue, setMessageValue] = useState('');
   const navigate = useNavigate();
 
   const fetchChatData = async (id) => {
-    const conversationsResult = await axios.get("api/conversations");
+    const conversationsResult = await axios.get('api/conversations');
     setState({ conversations: conversationsResult.data });
 
     if (id) {
-      const messagesResult = await axios.get("api/messages", {
+      const messagesResult = await axios.get('api/messages', {
         params: {
           id,
         },
@@ -29,7 +29,7 @@ export default function useChatData(id) {
   }, [id]);
 
   const searchForUser = useCallback(async (searchValue) => {
-    const searchedUsersResult = await axios.get("api/searchuser", {
+    const searchedUsersResult = await axios.get('api/searchuser', {
       params: {
         searchValue,
       },
@@ -44,7 +44,7 @@ export default function useChatData(id) {
   }, [searchForUser, searchValue]);
 
   useEffect(() => {
-    if (searchValue.length === 0 && state && "searchedUsers" in state) {
+    if (searchValue.length === 0 && state && 'searchedUsers' in state) {
       setState((prev) => {
         const { searchedUsers, ...rest } = prev;
         return rest;
@@ -60,7 +60,7 @@ export default function useChatData(id) {
     event.stopPropagation();
 
     socket.emit(
-      "update_participant_status",
+      'update_participant_status',
       {
         convoID,
         amIPresent: false,
@@ -79,7 +79,7 @@ export default function useChatData(id) {
               return convo;
             }),
           }));
-          navigate("/chat");
+          navigate('/chat');
           return;
         }
         console.log(error);
@@ -97,11 +97,11 @@ export default function useChatData(id) {
     );
     if (conversationExists && conversationExists.amIPresent) {
       navigate(`/chat/${conversationExists.conversation_id}`);
-      setSearchValue("");
+      setSearchValue('');
       return;
     } else if (conversationExists && !conversationExists.amIPresent) {
       socket.emit(
-        "update_participant_status",
+        'update_participant_status',
         {
           convoID: conversationExists.conversation_id,
           amIPresent: true,
@@ -123,7 +123,7 @@ export default function useChatData(id) {
               }),
             }));
             navigate(`/chat/${conversationExists.conversation_id}`);
-            setSearchValue("");
+            setSearchValue('');
             return;
           }
           console.log(error);
@@ -133,7 +133,7 @@ export default function useChatData(id) {
 
     if (!conversationExists) {
       socket.emit(
-        "new_convo",
+        'new_convo',
         {
           contactID,
           firstName: contactFirstName,
@@ -145,7 +145,7 @@ export default function useChatData(id) {
               ...prev,
               conversations: [data, ...prev.conversations],
             }));
-            setSearchValue("");
+            setSearchValue('');
             navigate(`/chat/${data.conversation_id}`);
             return;
           }
@@ -156,7 +156,7 @@ export default function useChatData(id) {
   };
 
   const handleKeyDown = (event, convoID) => {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
 
       const messageText = messageValue.trim();
@@ -170,7 +170,7 @@ export default function useChatData(id) {
           const currentConvo = state.conversations[currentConvoIndex];
 
           socket.emit(
-            "new_message",
+            'new_message',
             {
               messageText,
               convoID,
@@ -203,7 +203,7 @@ export default function useChatData(id) {
                   ],
                   messages: [...prevState.messages, data],
                 }));
-                setMessageValue("");
+                setMessageValue('');
                 return;
               }
               console.log(error);
@@ -215,7 +215,7 @@ export default function useChatData(id) {
   };
 
   useEffect(() => {
-    socket.on("update_participant_status", (updatedParticipantStatus) => {
+    socket.on('update_participant_status', (updatedParticipantStatus) => {
       setState((prevState) => ({
         ...prevState,
         conversations: prevState.conversations.map((convo) => {
@@ -235,14 +235,14 @@ export default function useChatData(id) {
       }));
     });
 
-    socket.on("new_convo", (newConversationData) => {
+    socket.on('new_convo', (newConversationData) => {
       setState((prev) => ({
         ...prev,
         conversations: [newConversationData, ...prev.conversations],
       }));
     });
 
-    socket.on("new_message", (newMessageData) => {
+    socket.on('new_message', (newMessageData) => {
       const currentConvoIndex = state.conversations.findIndex(
         (conversation) =>
           conversation.conversation_id === newMessageData.conversation_id
@@ -287,9 +287,9 @@ export default function useChatData(id) {
     });
 
     return () => {
-      socket.off("update_participant_status");
-      socket.off("new_convo");
-      socket.off("new_message");
+      socket.off('update_participant_status');
+      socket.off('new_convo');
+      socket.off('new_message');
     };
   });
 

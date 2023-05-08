@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../../api/axios";
-import socket from "../../socket";
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from '../../api/axios';
+import socket from '../../socket';
 
 import {
   CommonContainer,
@@ -9,25 +9,25 @@ import {
   CommonLink,
   CommonInput,
   CommonSubmitButton,
-} from "./Common";
-import Marginer from "../Marginer";
-import AuthContext from "../../context/AuthProvider";
+} from './Common';
+import Marginer from '../Marginer';
+import AuthContext from '../../context/AuthProvider';
 
-import { RiErrorWarningLine } from "react-icons/ri";
+import { RiErrorWarningLine } from 'react-icons/ri';
 
 export default function RegisterForm(props) {
-  const [firstNameRegister, setFirstNameRegister] = useState("");
-  const [lastNameRegister, setLastNameRegister] = useState("");
-  const [usernameRegister, setUsernameRegister] = useState("");
-  const [emailRegister, setEmailRegister] = useState("");
-  const [passwordRegister, setPasswordRegister] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [firstNameRegister, setFirstNameRegister] = useState('');
+  const [lastNameRegister, setLastNameRegister] = useState('');
+  const [usernameRegister, setUsernameRegister] = useState('');
+  const [emailRegister, setEmailRegister] = useState('');
+  const [passwordRegister, setPasswordRegister] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const register = async () => {
-    const response = await axios.post("api/register", {
+    const response = await axios.post('api/register', {
       firstName: firstNameRegister,
       lastName: lastNameRegister,
       username: usernameRegister,
@@ -40,20 +40,20 @@ export default function RegisterForm(props) {
     } else {
       setAuth(response.data.authenticated);
       setLoggedInUser(response.data.loggedInUser);
-      setFirstNameRegister("");
-      setLastNameRegister("");
-      setUsernameRegister("");
-      setPasswordRegister("");
-      setConfirmPassword("");
-      setErrorMessage("");
+      setFirstNameRegister('');
+      setLastNameRegister('');
+      setUsernameRegister('');
+      setPasswordRegister('');
+      setConfirmPassword('');
+      setErrorMessage('');
       socket.connect();
-      navigate("/chat");
+      navigate('/chat');
     }
   };
 
   const validateConfirmPassword = () => {
     if (passwordRegister !== confirmPassword) {
-      setErrorMessage("Passwords do not match!");
+      setErrorMessage('Passwords do not match!');
     } else {
       register();
     }

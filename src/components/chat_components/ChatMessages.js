@@ -1,6 +1,6 @@
-import "./ChatMessages.css";
-import ChatBubble from "./ChatBubble";
-import ScrollableFeed from "react-scrollable-feed";
+import './ChatMessages.css';
+import ChatBubble from './ChatBubble';
+import ScrollableFeed from 'react-scrollable-feed';
 
 export default function ChatMessages({ messagesList }) {
   const listOfMessages = messagesList.map((message) => {

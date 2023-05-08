@@ -37,7 +37,7 @@
 }
 
 .text-area::placeholder {
-  font-family: "Shrikhand", cursive;
+  font-family: 'Shrikhand', cursive;
 }
 
 .text-area-disabled {

@@ -1,6 +1,6 @@
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client';
 
-const socket = io.connect("http://localhost:8001", {
+const socket = io.connect('http://localhost:8001', {
   autoConnect: false,
   withCredentials: true,
 });

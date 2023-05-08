@@ -1,4 +1,4 @@
-import "./ChatContactHeader.css";
+import './ChatContactHeader.css';
 
 export default function ChatContactHeader({ contactInfo }) {
   return (

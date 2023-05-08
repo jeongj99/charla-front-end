@@ -13,7 +13,7 @@
 }
 
 .page-title {
-  font-family: "Shrikhand", cursive;
+  font-family: 'Shrikhand', cursive;
   font-size: 5em;
   color: whitesmoke;
   display: flex;
@@ -65,7 +65,7 @@
   padding: 1em;
   border-radius: 1em;
   background-color: #2f3135;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
 }
 
 .jordan-container {
@@ -103,7 +103,7 @@
   padding: 1em;
   border-radius: 1em;
   background-color: #2f3135;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
 }
 
 @media only screen and (max-width: 961px) {

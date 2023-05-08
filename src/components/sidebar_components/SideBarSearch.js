@@ -1,4 +1,4 @@
-import "./SideBarSearch.css";
+import './SideBarSearch.css';
 
 export default function SideBarSearch({ value, onChange }) {
   return (

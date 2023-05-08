@@ -1,6 +1,6 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import "./Common.css";
+import './Common.css';
 
 export function CommonContainer(props) {
   return <div className="common-container">{props.children}</div>;
@@ -20,8 +20,8 @@ export function CommonForm(props) {
 
 export function CommonLink(props) {
   const commonLinkClass = classNames({
-    "muted-link": props.muted,
-    "bold-link": props.bold,
+    'muted-link': props.muted,
+    'bold-link': props.bold,
   });
 
   return (

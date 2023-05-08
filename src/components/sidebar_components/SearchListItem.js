@@ -1,4 +1,4 @@
-import "./SearchListItem.css";
+import './SearchListItem.css';
 
 export default function SearchListItem(props) {
   return (

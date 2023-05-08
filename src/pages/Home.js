@@ -1,19 +1,19 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import classNames from "classnames";
-import Navbar from "../components/Navbar";
-import Form from "../components/Form";
-import AuthContext from "../context/AuthProvider";
-import "./Home.css";
-import img1 from "../images/Sample-phone.png";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
+import Navbar from '../components/Navbar';
+import Form from '../components/Form';
+import AuthContext from '../context/AuthProvider';
+import './Home.css';
+import img1 from '../images/Sample-phone.png';
 export default function Home() {
   const { auth } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const homeSectionClass = classNames({
-    "home-section-loggedIn": auth,
-    "home-section": !auth,
+    'home-section-loggedIn': auth,
+    'home-section': !auth,
   });
 
   return (
@@ -30,8 +30,8 @@ export default function Home() {
           </div>
           <div className="home-section-right">
             {auth ? (
-              <button onClick={() => navigate("/chat")}>
-                Go to your chats{" "}
+              <button onClick={() => navigate('/chat')}>
+                Go to your chats{' '}
               </button>
             ) : (
               <Form />

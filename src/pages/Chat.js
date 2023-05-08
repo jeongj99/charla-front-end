@@ -1,20 +1,20 @@
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 
-import SideBarSearch from "../components/sidebar_components/SideBarSearch";
-import ChatList from "../components/sidebar_components/ChatList";
-import SearchList from "../components/sidebar_components/SearchList";
-import ChatInput from "../components/chat_components/ChatInput";
-import ChatMessages from "../components/chat_components/ChatMessages";
-import SidebarProfile from "../components/sidebar_components/SidebarProfile";
-import ChatContactHeader from "../components/chat_components/ChatContactHeader";
-import useChatData from "../hooks/useChatData";
+import SideBarSearch from '../components/sidebar_components/SideBarSearch';
+import ChatList from '../components/sidebar_components/ChatList';
+import SearchList from '../components/sidebar_components/SearchList';
+import ChatInput from '../components/chat_components/ChatInput';
+import ChatMessages from '../components/chat_components/ChatMessages';
+import SidebarProfile from '../components/sidebar_components/SidebarProfile';
+import ChatContactHeader from '../components/chat_components/ChatContactHeader';
+import useChatData from '../hooks/useChatData';
 import {
   getContactInfoForConvo,
   getFilteredConversations,
-} from "../helpers/selectors";
+} from '../helpers/selectors';
 
-import "./Chat.css";
-import { SiXdadevelopers } from "react-icons/si";
+import './Chat.css';
+import { SiXdadevelopers } from 'react-icons/si';
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem

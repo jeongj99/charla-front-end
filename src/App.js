@@ -1,16 +1,16 @@
-import { useContext } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import About from "./pages/About";
-import ContactUs from "./pages/ContactUs";
-import Chat from "./pages/Chat";
-import AuthContext from "./context/AuthProvider";
-import useSocketSetup from "./useSocketSetup";
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import About from './pages/About';
+import ContactUs from './pages/ContactUs';
+import Chat from './pages/Chat';
+import AuthContext from './context/AuthProvider';
+import useSocketSetup from './useSocketSetup';
 
-import "./App.css";
+import './App.css';
 
 function App() {
   const { auth } = useContext(AuthContext);

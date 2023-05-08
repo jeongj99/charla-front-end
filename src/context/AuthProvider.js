@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-import axios from "../api/axios";
+import { createContext, useState, useEffect } from 'react';
+import axios from '../api/axios';
 
 const AuthContext = createContext({});
 
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const authenticate = async () => {
     try {
-      const response = await axios.post("api/authenticate", {});
+      const response = await axios.post('api/authenticate', {});
       setAuth(response.data.authenticated);
       setLoggedInUser(response.data.contact);
     } catch (error) {
