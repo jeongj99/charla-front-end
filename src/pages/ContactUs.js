@@ -15,7 +15,9 @@ export default function ContactUs() {
               <div className="form-header-container">
                 <h2 className="form-header-message">Contact</h2>
                 <h2 className="form-header-message">Us</h2>
-                <h5 className="form-header-small-message">Please send your feedback!</h5>
+                <h5 className="form-header-small-message">
+                  Please send your feedback!
+                </h5>
               </div>
             </div>
             <div className="form-middle-container">
@@ -23,7 +25,7 @@ export default function ContactUs() {
             </div>
           </div>
         </section>
-      </div >
+      </div>
     </>
   );
 }

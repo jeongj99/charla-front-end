@@ -13,7 +13,7 @@ import { IconContext } from "react-icons/lib";
 export default function Navbar() {
   const [click, setClick] = useState(false);
 
-  const handleClick = () => setClick(prev => !prev);
+  const handleClick = () => setClick((prev) => !prev);
 
   const closeMobileMenu = () => setClick(false);
 
@@ -39,46 +39,67 @@ export default function Navbar() {
         <nav className="navbar">
           <div className="navbar-container container">
             <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-              Charla <SiXdadevelopers className='charlaLogo' />
+              Charla <SiXdadevelopers className="charlaLogo" />
             </Link>
             <div className="menu-icon" onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item">
-                <NavLink to="/about" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
                   About
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact-us" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
+                <NavLink
+                  to="/contact-us"
+                  className={({ isActive }) =>
+                    "nav-links" + (isActive ? " activated" : "")
+                  }
+                  onClick={closeMobileMenu}
+                >
                   Contact Us
                 </NavLink>
               </li>
-              {
-                !auth &&
+              {!auth && (
                 <li className="nav-item">
-                  <NavLink to="/login" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      "nav-links" + (isActive ? " activated" : "")
+                    }
+                    onClick={closeMobileMenu}
+                  >
                     Log In
                   </NavLink>
                 </li>
-              }
-              {
-                !auth &&
+              )}
+              {!auth && (
                 <li className="nav-item">
-                  <NavLink to="/register" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu} >
+                  <NavLink
+                    to="/register"
+                    className={({ isActive }) =>
+                      "nav-links" + (isActive ? " activated" : "")
+                    }
+                    onClick={closeMobileMenu}
+                  >
                     Register
                   </NavLink>
                 </li>
-              }
-              {
-                auth &&
+              )}
+              {auth && (
                 <li className="nav-item">
                   <div className="nav-links logout" onClick={logout}>
                     Log Out
                   </div>
                 </li>
-              }
+              )}
             </ul>
           </div>
         </nav>

@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const authenticate = async () => {
     try {
-      const response = await axios.post('api/authenticate', {});
+      const response = await axios.post("api/authenticate", {});
       setAuth(response.data.authenticated);
       setLoggedInUser(response.data.contact);
     } catch (error) {
@@ -25,9 +25,11 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ auth, setAuth, loggedInUser, setLoggedInUser }}>
+    <AuthContext.Provider
+      value={{ auth, setAuth, loggedInUser, setLoggedInUser }}
+    >
       {isReady && children}
-    </AuthContext.Provider >
+    </AuthContext.Provider>
   );
 };
 

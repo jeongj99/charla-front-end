@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import socket from "../../socket";
 
-import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
+import {
+  CommonContainer,
+  CommonForm,
+  CommonLink,
+  CommonInput,
+  CommonSubmitButton,
+} from "./Common";
 import Marginer from "../Marginer";
 import AuthContext from "../../context/AuthProvider";
 
@@ -21,12 +27,12 @@ export default function RegisterForm(props) {
   const navigate = useNavigate();
 
   const register = async () => {
-    const response = await axios.post('api/register', {
+    const response = await axios.post("api/register", {
       firstName: firstNameRegister,
       lastName: lastNameRegister,
       username: usernameRegister,
       email: emailRegister,
-      password: passwordRegister
+      password: passwordRegister,
     });
 
     if (response.data.error) {
@@ -56,28 +62,61 @@ export default function RegisterForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
-        <CommonInput type="text" placeholder="First Name" value={firstNameRegister} onChange={setFirstNameRegister} />
-        <CommonInput type="text" placeholder="Last Name" value={lastNameRegister} onChange={setLastNameRegister} />
-        <CommonInput type="text" placeholder="Username" value={usernameRegister} onChange={setUsernameRegister} />
-        <CommonInput type="email" placeholder="Email" value={emailRegister} onChange={setEmailRegister} />
-        <CommonInput type="password" placeholder="Password" value={passwordRegister} onChange={setPasswordRegister} />
-        <CommonInput type="password" placeholder="Confirm Password" value={confirmPassword} onChange={setConfirmPassword} />
+        <CommonInput
+          type="text"
+          placeholder="First Name"
+          value={firstNameRegister}
+          onChange={setFirstNameRegister}
+        />
+        <CommonInput
+          type="text"
+          placeholder="Last Name"
+          value={lastNameRegister}
+          onChange={setLastNameRegister}
+        />
+        <CommonInput
+          type="text"
+          placeholder="Username"
+          value={usernameRegister}
+          onChange={setUsernameRegister}
+        />
+        <CommonInput
+          type="email"
+          placeholder="Email"
+          value={emailRegister}
+          onChange={setEmailRegister}
+        />
+        <CommonInput
+          type="password"
+          placeholder="Password"
+          value={passwordRegister}
+          onChange={setPasswordRegister}
+        />
+        <CommonInput
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={setConfirmPassword}
+        />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
       <Marginer direction="vertical" margin="1.6em" />
-      <CommonSubmitButton onClick={validateConfirmPassword}>Register</CommonSubmitButton>
+      <CommonSubmitButton onClick={validateConfirmPassword}>
+        Register
+      </CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      {
-        errorMessage &&
+      {errorMessage && (
         <div className="register-validation">
           <p>
             <RiErrorWarningLine /> {errorMessage}
           </p>
         </div>
-      }
+      )}
       <div className="switch-form-link-container">
         <CommonLink muted>Already have an account? </CommonLink>
-        <CommonLink bold onClick={props.switchForm}>Log In</CommonLink>
+        <CommonLink bold onClick={props.switchForm}>
+          Log In
+        </CommonLink>
       </div>
     </CommonContainer>
   );

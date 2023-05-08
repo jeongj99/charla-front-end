@@ -1,9 +1,12 @@
-import './ChatList.css';
+import "./ChatList.css";
 import ChatListItem from "./ChatListItem";
 
-export default function ChatList({ chatList, navigateToChat, removeYourselfFromConvo }) {
-  const listOfChats = chatList.map(conversation => {
-
+export default function ChatList({
+  chatList,
+  navigateToChat,
+  removeYourselfFromConvo,
+}) {
+  const listOfChats = chatList.map((conversation) => {
     return (
       <ChatListItem
         key={conversation.conversation_id}
@@ -22,11 +25,7 @@ export default function ChatList({ chatList, navigateToChat, removeYourselfFromC
 
   return (
     <div className="chat-list-container">
-      <ul>
-        {listOfChats}
-      </ul>
+      <ul>{listOfChats}</ul>
     </div>
-
-
   );
 }

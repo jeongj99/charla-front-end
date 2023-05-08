@@ -1,9 +1,9 @@
-import SearchListItem from './SearchListItem';
+import SearchListItem from "./SearchListItem";
 
-import './SearchList.css';
+import "./SearchList.css";
 
 export default function SearchList({ searchedUsers, searchListItemOnClick }) {
-  const listOfSearchedUsers = searchedUsers.map(searchedUser => {
+  const listOfSearchedUsers = searchedUsers.map((searchedUser) => {
     return (
       <SearchListItem
         key={searchedUser.id}
@@ -18,11 +18,7 @@ export default function SearchList({ searchedUsers, searchListItemOnClick }) {
 
   return (
     <div className="search-list-container">
-      <ul>
-        {listOfSearchedUsers}
-      </ul>
+      <ul>{listOfSearchedUsers}</ul>
     </div>
-
-
   );
 }

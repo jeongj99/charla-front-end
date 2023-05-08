@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../api/axios";
 import socket from "../../socket";
 
-import AuthContext from '../../context/AuthProvider';
+import AuthContext from "../../context/AuthProvider";
 
 import "./SidebarProfile.css";
 import { BiHome, BiLogOut } from "react-icons/bi";
@@ -29,7 +29,9 @@ export default function SidebarProfile() {
 
   return (
     <main className="sidebar-profile-container">
-      <p className="sidebar-profile-name">{loggedInUser.firstName} {loggedInUser.lastName}</p>
+      <p className="sidebar-profile-name">
+        {loggedInUser.firstName} {loggedInUser.lastName}
+      </p>
       <div className="sidebar-profile-buttons">
         <button onClick={backHome}>
           <BiHome />

@@ -34,7 +34,7 @@
 }
 
 .navbar-logo {
-  font-family: 'Shrikhand', cursive;
+  font-family: "Shrikhand", cursive;
   font-size: xx-large;
   color: whitesmoke;
   justify-self: start;
@@ -72,7 +72,7 @@
 }
 
 .nav-links {
-  font-family: 'Shrikhand', cursive;
+  font-family: "Shrikhand", cursive;
   color: #fff;
   font-size: x-large;
   display: flex;
@@ -95,7 +95,7 @@
 }
 
 .logout {
-  cursor: pointer
+  cursor: pointer;
 }
 
 @media screen and (max-width: 960px) {

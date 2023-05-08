@@ -10,7 +10,7 @@ import Chat from "./pages/Chat";
 import AuthContext from "./context/AuthProvider";
 import useSocketSetup from "./useSocketSetup";
 
-import './App.css';
+import "./App.css";
 
 function App() {
   const { auth } = useContext(AuthContext);
@@ -25,7 +25,10 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/chat" element={auth ? <Chat /> : <Navigate to="/" />} />
-        <Route path="/chat/:id" element={auth ? <Chat /> : <Navigate to="/" />} />
+        <Route
+          path="/chat/:id"
+          element={auth ? <Chat /> : <Navigate to="/" />}
+        />
       </Routes>
     </BrowserRouter>
   );
