@@ -2,7 +2,7 @@ import SearchListItem from './SearchListItem';
 
 import './SearchList.css';
 
-export default function SearchList({ searchedUsers, searchListItemOnClick }) {
+export default function SearchList({ searchedUsers, searchListItemOnClick, displayChat }) {
   const listOfSearchedUsers = searchedUsers.map(searchedUser => {
     return (
       <SearchListItem
@@ -18,7 +18,7 @@ export default function SearchList({ searchedUsers, searchListItemOnClick }) {
 
   return (
     <div className="search-list-container">
-      <ul>
+      <ul onClick={displayChat}>
         {listOfSearchedUsers}
       </ul>
     </div>

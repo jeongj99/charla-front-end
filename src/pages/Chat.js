@@ -50,7 +50,7 @@ export default function Chat() {
         <div className="chat-main-container">
           <aside className={showChat ? "sidebar-once-chat-item-clicked-in-mobile" : "sidebar"}>
             <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {state.searchedUsers ? <SearchList searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList displayChat={displayChat} chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
+            {state.searchedUsers ? <SearchList displayChat={displayChat} searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList displayChat={displayChat} chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
             <div className="sidebar-profile">
               <SidebarProfile />
             </div>
