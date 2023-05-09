@@ -45,7 +45,7 @@ export default function Chat() {
           <div className={showChat ? "topbar-logo-vanish" : "topbar-logo"}>
             Charla <SiXdadevelopers className='charlaLogo' />
           </div>
-          {id && <ChatContactHeader showChat={showChat} contactInfo={contactInfo} />}
+          {id && <ChatContactHeader setShowChat={setShowChat} showChat={showChat} contactInfo={contactInfo} />}
         </div>
         <div className="chat-main-container">
           <aside className={showChat ? "sidebar-once-chat-item-clicked-in-mobile" : "sidebar"}>
