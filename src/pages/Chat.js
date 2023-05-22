@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
@@ -41,7 +41,9 @@ export default function Chat() {
         <div className="chat-container">
           <div className="top-bar">
             <div className="topbar-logo">
-              Charla <SiXdadevelopers className="charlaLogo" />
+              <Link to="/" className="navbar-logo">
+                Charla <SiXdadevelopers className="charlaLogo" />
+              </Link>
             </div>
             {id && <ChatContactHeader contactInfo={contactInfo} />}
           </div>
