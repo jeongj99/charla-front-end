@@ -27,6 +27,7 @@ export default function Navbar() {
       setAuth(response.data.auth);
       setLoggedInUser(null);
       socket.disconnect();
+      closeMobileMenu();
       navigate('/');
     } catch ({ response }) {
       console.log(response.data.error);
