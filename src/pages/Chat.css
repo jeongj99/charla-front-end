@@ -59,6 +59,7 @@
 }
 
 .sidebar-profile {
+  position: sticky;
   height: 5%;
   color: inherit;
 }
