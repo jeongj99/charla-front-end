@@ -53,10 +53,9 @@
 }
 
 .alex-photo {
-height: 400px;
-width: 400px;
-border-radius: 1em;
-
+  height: 400px;
+  width: 400px;
+  border-radius: 1em;
 }
 
 .alex-description {
@@ -66,7 +65,7 @@ border-radius: 1em;
   padding: 1em;
   border-radius: 1em;
   background-color: #2f3135;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
 }
 
 .jordan-container {
@@ -93,9 +92,9 @@ border-radius: 1em;
 }
 
 .jordan-photo {
-height: 400px;
-width: 400px;
-border-radius: 1em;
+  height: 400px;
+  width: 400px;
+  border-radius: 1em;
 }
 
 .jordan-description {
@@ -104,7 +103,7 @@ border-radius: 1em;
   padding: 1em;
   border-radius: 1em;
   background-color: #2f3135;
-  background-image: url("https://www.transparenttextures.com/patterns/brushed-alum-dark.png");
+  background-image: url('https://www.transparenttextures.com/patterns/brushed-alum-dark.png');
 }
 
 @media only screen and (max-width: 961px) {
@@ -117,5 +116,4 @@ border-radius: 1em;
     padding-left: 50%;
     padding-right: 50%;
   }
-
 }

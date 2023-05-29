@@ -95,7 +95,7 @@
 }
 
 .logout {
-  cursor: pointer
+  cursor: pointer;
 }
 
 @media screen and (max-width: 960px) {

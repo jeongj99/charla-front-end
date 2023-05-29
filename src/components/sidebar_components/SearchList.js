@@ -3,7 +3,7 @@ import SearchListItem from './SearchListItem';
 import './SearchList.css';
 
 export default function SearchList({ searchedUsers, searchListItemOnClick, displayChat }) {
-  const listOfSearchedUsers = searchedUsers.map(searchedUser => {
+  const listOfSearchedUsers = searchedUsers.map((searchedUser) => {
     return (
       <SearchListItem
         key={searchedUser.id}
@@ -17,12 +17,10 @@ export default function SearchList({ searchedUsers, searchListItemOnClick, displ
   });
 
   return (
-    <div className="search-list-container">
+    <div className="search-list-container">;
       <ul onClick={displayChat}>
         {listOfSearchedUsers}
       </ul>
-    </div>
-
-
+    </div >
   );
 }

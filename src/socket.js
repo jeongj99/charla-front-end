@@ -1,6 +1,7 @@
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client';
+import constructBackendURL from './backendUtils';
 
-const socket = io.connect("http://localhost:8001", {
+const socket = io.connect(constructBackendURL(), {
   autoConnect: false,
   withCredentials: true,
 });

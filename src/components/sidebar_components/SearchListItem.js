@@ -1,13 +1,28 @@
-import "./SearchListItem.css";
+import './SearchListItem.css';
 
 export default function SearchListItem(props) {
   return (
-    <main className="search-list-item-container" onClick={() => props.searchListItemOnClick(props.contactID, props.firstName, props.lastName)}>
+    <main
+      className="search-list-item-container"
+      onClick={() =>
+        props.searchListItemOnClick(
+          props.contactID,
+          props.firstName,
+          props.lastName
+        )
+      }
+    >
       <div className="search-list-item-user-photo-container">
-        <img className="search-list-item-user-photo" alt='profile-pic' src={props.profilePic} />
+        <img
+          className="search-list-item-user-photo"
+          alt="profile-pic"
+          src={props.profilePic}
+        />
       </div>
       <div className="search-list-item-conversation">
-        <h3>{props.firstName} {props.lastName}</h3>
+        <h3>
+          {props.firstName} {props.lastName}
+        </h3>
       </div>
     </main>
   );

@@ -3,8 +3,7 @@ import ChatBubble from './ChatBubble';
 import ScrollableFeed from 'react-scrollable-feed';
 
 export default function ChatMessages({ messagesList }) {
-  const listOfMessages = messagesList.map(message => {
-
+  const listOfMessages = messagesList.map((message) => {
     return (
       <ChatBubble
         key={message.id}
@@ -15,12 +14,9 @@ export default function ChatMessages({ messagesList }) {
     );
   });
 
-
   return (
     <div className="chat-messages-container">
-      <ScrollableFeed>
-        {listOfMessages}
-      </ScrollableFeed>
+      <ScrollableFeed>{listOfMessages}</ScrollableFeed>
     </div>
   );
 }

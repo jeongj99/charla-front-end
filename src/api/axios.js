@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
+import constructBackendURL from '../backendUtils';
 
 export default axios.create({
-  baseURL: "http://localhost:8001",
-  withCredentials: true
+  baseURL: constructBackendURL(),
+  withCredentials: true,
 });

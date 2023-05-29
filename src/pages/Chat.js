@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import SideBarSearch from '../components/sidebar_components/SideBarSearch';
 import ChatList from '../components/sidebar_components/ChatList';
@@ -7,8 +7,11 @@ import ChatInput from '../components/chat_components/ChatInput';
 import ChatMessages from '../components/chat_components/ChatMessages';
 import SidebarProfile from '../components/sidebar_components/SidebarProfile';
 import ChatContactHeader from '../components/chat_components/ChatContactHeader';
-import useChatData from "../hooks/useChatData";
-import { getContactInfoForConvo, getFilteredConversations } from "../helpers/selectors";
+import useChatData from '../hooks/useChatData';
+import {
+  getContactInfoForConvo,
+  getFilteredConversations,
+} from '../helpers/selectors';
 
 import "./Chat.css";
 import { SiXdadevelopers } from "react-icons/si";
@@ -16,7 +19,7 @@ import { useState } from 'react';
 
 export default function Chat() {
   const { id } = useParams(); //Refers to the /ID in the URL, will be set by UseNavigate in ChatListItem
-  const [showChat, setShowChat] = useState(false)
+  const [showChat, setShowChat] = useState(false);
 
   const {
     state,
@@ -27,12 +30,12 @@ export default function Chat() {
     searchListItemOnClick,
     messageValue,
     setMessageValue,
-    handleKeyDown
+    handleKeyDown,
   } = useChatData(id);
 
   const displayChat = () => {
-    setShowChat (true)
-  }
+    setShowChat(true);
+  };
 
   const contactInfo = getContactInfoForConvo(state, id);
 
@@ -40,36 +43,58 @@ export default function Chat() {
 
   return (
     <>
-      {state && <div className="chat-container">
-        <div className="top-bar">
-          <div className={showChat ? "topbar-logo-vanish" : "topbar-logo"}>
-            Charla <SiXdadevelopers className='charlaLogo' />
-          </div>
-          {id && <ChatContactHeader setShowChat={setShowChat} showChat={showChat} contactInfo={contactInfo} />}
-        </div>
-        <div className="chat-main-container">
-          <aside className={showChat ? "sidebar-once-chat-item-clicked-in-mobile" : "sidebar"}>
-            <SideBarSearch value={searchValue} onChange={setSearchValue} />
-            {state.searchedUsers ? <SearchList displayChat={displayChat} searchedUsers={state.searchedUsers} searchListItemOnClick={searchListItemOnClick} /> : <ChatList displayChat={displayChat} chatList={chatList} navigateToChat={navigateToChat} removeYourselfFromConvo={removeYourselfFromConvo} />}
-            <div className="sidebar-profile">
-              <SidebarProfile />
+      {state && (
+        <div className="chat-container">
+          <div className="top-bar">
+            <div className={showChat ? "topbar-logo-vanish" : "topbar-logo"}>
+              <Link to="/" className="navbar-logo">
+                Charla <SiXdadevelopers className="charlaLogo" />
+              </Link>
             </div>
-          </aside>
-          <section className={showChat ? "chat-mobile": "chat"}>
-            {
-              (id && state.messages) ?
-                <ChatMessages messagesList={state.messages} /> :
+            {id && <ChatContactHeader setShowChat={setShowChat} showChat={showChat} contactInfo={contactInfo} />}
+          </div>
+          <div className="chat-main-container">
+            <aside className={showChat ? "sidebar-once-chat-item-clicked-in-mobile" : "sidebar"}>
+              <SideBarSearch value={searchValue} onChange={setSearchValue} />
+              {state.searchedUsers ? (
+                <SearchList
+                  displayChat={displayChat}
+                  searchedUsers={state.searchedUsers}
+                  searchListItemOnClick={searchListItemOnClick}
+                />
+              ) : (
+                <ChatList
+                  displayChat={displayChat}
+                  chatList={chatList}
+                  navigateToChat={navigateToChat}
+                  removeYourselfFromConvo={removeYourselfFromConvo}
+                />
+              )}
+              <div className="sidebar-profile">
+                <SidebarProfile />
+              </div>
+            </aside>
+            <section className={showChat ? "chat-mobile" : "chat"}>
+              {id && state.messages ? (
+                <ChatMessages messagesList={state.messages} />
+              ) : (
                 <div className="chat-no-convo">
                   <h3>Select a conversation</h3>
                 </div>
-            }
-            {
-              id &&
-            <ChatInput showChat={showChat} convoID={id} value={messageValue} onChange={setMessageValue} handleKeyDown={handleKeyDown} />
-            }
-          </section>
+              )}
+              {id && (
+                <ChatInput
+                  showChat={showChat}
+                  convoID={id}
+                  value={messageValue}
+                  onChange={setMessageValue}
+                  handleKeyDown={handleKeyDown}
+                />
+              )}
+            </section>
+          </div>
         </div>
-      </div>}
+      )}
     </>
   );
 }

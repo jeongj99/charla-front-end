@@ -1,39 +1,45 @@
-import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "../../api/axios";
-import socket from "../../socket";
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from '../../api/axios';
+import socket from '../../socket';
 
-import { CommonContainer, CommonForm, CommonLink, CommonInput, CommonSubmitButton } from "./Common";
-import Marginer from "../Marginer";
-import AuthContext from "../../context/AuthProvider";
+import {
+  CommonContainer,
+  CommonForm,
+  CommonLink,
+  CommonInput,
+  CommonSubmitButton,
+} from './Common';
+import Marginer from '../Marginer';
+import AuthContext from '../../context/AuthProvider';
 
-import { RiErrorWarningLine } from "react-icons/ri";
+import { RiErrorWarningLine } from 'react-icons/ri';
 
 export default function LoginForm(props) {
-  const [emailLogin, setEmailLogin] = useState("");
-  const [passwordLogin, setPasswordLogin] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [emailLogin, setEmailLogin] = useState('');
+  const [passwordLogin, setPasswordLogin] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setErrorMessage("");
+    setErrorMessage('');
   }, [emailLogin, passwordLogin]);
 
   const login = async () => {
     try {
       const response = await axios.post('api/login', {
         email: emailLogin,
-        password: passwordLogin
+        password: passwordLogin,
       });
 
       setAuth(response.data.authenticated);
       setLoggedInUser(response.data.loggedInUser);
-      setEmailLogin("");
-      setPasswordLogin("");
-      setErrorMessage("");
+      setEmailLogin('');
+      setPasswordLogin('');
+      setErrorMessage('');
       socket.connect();
-      navigate("/chat");
+      navigate('/chat');
     } catch ({ response }) {
       console.log(response.data.error);
       setErrorMessage(response.data.error);
@@ -43,26 +49,42 @@ export default function LoginForm(props) {
   return (
     <CommonContainer>
       <CommonForm>
-        <CommonInput name="email" type="email" placeholder="Email" value={emailLogin} onChange={setEmailLogin} />
-        <CommonInput name="password" type="password" placeholder="Password" value={passwordLogin} onChange={setPasswordLogin} />
+        <CommonInput
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={emailLogin}
+          onChange={setEmailLogin}
+        />
+        <CommonInput
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={passwordLogin}
+          onChange={setPasswordLogin}
+        />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
-      <CommonLink muted href="#">Forgot your password?</CommonLink>
+      <CommonLink muted href="#">
+        Forgot your password?
+      </CommonLink>
       <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton onClick={login}>Log in</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      {
-        errorMessage &&
+      {errorMessage && (
         <div className="login-validation">
           <p>
-            <RiErrorWarningLine />{errorMessage}
+            <RiErrorWarningLine />
+            {errorMessage}
           </p>
         </div>
-      }
+      )}
       <div className="switch-form-link-container">
         <CommonLink muted>Don't have an account? </CommonLink>
-        <CommonLink bold onClick={props.switchForm}>Register</CommonLink>
+        <CommonLink bold onClick={props.switchForm}>
+          Register
+        </CommonLink>
       </div>
     </CommonContainer>
   );
-};
+}
