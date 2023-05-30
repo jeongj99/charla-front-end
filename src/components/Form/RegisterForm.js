@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 import socket from '../../socket';
@@ -13,6 +13,7 @@ import {
 import Marginer from '../Marginer';
 import AuthContext from '../../context/AuthProvider';
 
+import './RegisterForm.css';
 import { RiErrorWarningLine } from 'react-icons/ri';
 
 export default function RegisterForm(props) {
@@ -26,18 +27,20 @@ export default function RegisterForm(props) {
   const { setAuth, setLoggedInUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const register = async () => {
-    const response = await axios.post('api/register', {
-      firstName: firstNameRegister,
-      lastName: lastNameRegister,
-      username: usernameRegister,
-      email: emailRegister,
-      password: passwordRegister,
-    });
+  useEffect(() => {
+    setErrorMessage('');
+  }, [firstNameRegister, lastNameRegister, usernameRegister, emailRegister, passwordRegister, confirmPassword]);
 
-    if (response.data.error) {
-      setErrorMessage(response.data.message);
-    } else {
+  const register = async () => {
+    try {
+      const response = await axios.post('api/register', {
+        firstName: firstNameRegister,
+        lastName: lastNameRegister,
+        username: usernameRegister,
+        email: emailRegister,
+        password: passwordRegister,
+      });
+
       setAuth(response.data.authenticated);
       setLoggedInUser(response.data.loggedInUser);
       setFirstNameRegister('');
@@ -48,6 +51,8 @@ export default function RegisterForm(props) {
       setErrorMessage('');
       socket.connect();
       navigate('/chat');
+    } catch ({ response }) {
+      setErrorMessage(response.data.message);
     }
   };
 
@@ -61,6 +66,15 @@ export default function RegisterForm(props) {
 
   return (
     <CommonContainer>
+      {errorMessage && (
+        <div className="register-validation">
+          <RiErrorWarningLine className='register-validation-symbol'/>
+          <p>
+            {errorMessage}
+          </p>
+        </div>
+      )}
+      <Marginer direction="vertical" margin={10} />
       <CommonForm>
         <CommonInput
           type="text"
@@ -100,18 +114,10 @@ export default function RegisterForm(props) {
         />
       </CommonForm>
       <Marginer direction="vertical" margin={10} />
-      <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton onClick={validateConfirmPassword}>
         Register
       </CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      {errorMessage && (
-        <div className="register-validation">
-          <p>
-            <RiErrorWarningLine /> {errorMessage}
-          </p>
-        </div>
-      )}
       <div className="switch-form-link-container">
         <CommonLink muted>Already have an account? </CommonLink>
         <CommonLink bold onClick={props.switchForm}>
