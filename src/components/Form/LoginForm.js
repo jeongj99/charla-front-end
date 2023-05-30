@@ -13,6 +13,7 @@ import {
 import Marginer from '../Marginer';
 import AuthContext from '../../context/AuthProvider';
 
+import './LoginForm.css';
 import { RiErrorWarningLine } from 'react-icons/ri';
 
 export default function LoginForm(props) {
@@ -48,6 +49,15 @@ export default function LoginForm(props) {
 
   return (
     <CommonContainer>
+      {errorMessage && (
+        <div className="login-validation">
+          <RiErrorWarningLine />
+          <p>
+            {errorMessage}
+          </p>
+        </div>
+      )}
+      <Marginer direction="vertical" margin={10} />
       <CommonForm>
         <CommonInput
           name="email"
@@ -71,14 +81,6 @@ export default function LoginForm(props) {
       <Marginer direction="vertical" margin="1.6em" />
       <CommonSubmitButton onClick={login}>Log in</CommonSubmitButton>
       <Marginer direction="vertical" margin="1em" />
-      {errorMessage && (
-        <div className="login-validation">
-          <p>
-            <RiErrorWarningLine />
-            {errorMessage}
-          </p>
-        </div>
-      )}
       <div className="switch-form-link-container">
         <CommonLink muted>Don't have an account? </CommonLink>
         <CommonLink bold onClick={props.switchForm}>
