@@ -1,0 +1,16 @@
+.register-validation {
+  display: flex;
+  flex: row;
+  color: rgb(199, 62, 62);
+}
+
+.register-validation-symbol {
+  font-size: x-small;
+  margin-top: 2px;
+}
+
+.register-validation p {
+  font-size: x-small;
+  padding: 0 2px;
+  color: rgb(199, 62, 62);
+}

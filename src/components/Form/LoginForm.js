@@ -42,7 +42,6 @@ export default function LoginForm(props) {
       socket.connect();
       navigate('/chat');
     } catch ({ response }) {
-      console.log(response.data.error);
       setErrorMessage(response.data.error);
     }
   };
@@ -51,7 +50,7 @@ export default function LoginForm(props) {
     <CommonContainer>
       {errorMessage && (
         <div className="login-validation">
-          <RiErrorWarningLine />
+          <RiErrorWarningLine className='login-validation-symbol' />
           <p>
             {errorMessage}
           </p>
