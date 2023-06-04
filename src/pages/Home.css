@@ -65,4 +65,8 @@
   .home-section-left {
     display: none;
   }
+
+  .home-container {
+    overflow: auto;
+  }
 }
