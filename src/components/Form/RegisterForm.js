@@ -68,7 +68,7 @@ export default function RegisterForm(props) {
     <CommonContainer>
       {errorMessage && (
         <div className="register-validation">
-          <RiErrorWarningLine className='register-validation-symbol'/>
+          <RiErrorWarningLine className='register-validation-symbol' />
           <p>
             {errorMessage}
           </p>
