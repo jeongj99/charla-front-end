@@ -22,7 +22,7 @@
   font-family: inherit;
   font-size: large;
   position: relative;
-  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .chat-bubble-user-2 {
@@ -39,6 +39,7 @@
   font-family: inherit;
   font-size: large;
   position: relative;
+  word-wrap: break-word;
 }
 
 .chat-bubble-admin-message {
@@ -57,6 +58,7 @@
   /* Use margin-left auto and margin-right auto to position chat bubble in the middle. */
   margin-left: auto;
   margin-right: auto;
+  word-wrap: break-word;
 }
 
 /* Possibly use box-shadow later to indicate newly sent message */
