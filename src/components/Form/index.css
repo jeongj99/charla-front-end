@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   border-radius: 19px;
-  background-color: white;
+  background-color: whitesmoke;
   box-shadow: 0 0 2px rgba(15, 15, 15, 0.5);
   position: relative;
   overflow: hidden;
@@ -43,13 +43,13 @@
   font-size: 30px;
   font-weight: 600;
   line-height: 1.24;
-  color: white;
+  color: whitesmoke;
   z-index: 10;
   margin: 0;
 }
 
 .form-header-small-message {
-  color: white;
+  color: whitesmoke;
   font-weight: 500;
   font-size: 11px;
   z-index: 10;

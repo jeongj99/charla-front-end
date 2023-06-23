@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   background-color: #343434;
+  overflow: hidden;
 }
 
 .home-section {
@@ -34,6 +35,7 @@
 
 .home-section-right {
   /* width: 100%; */
+  padding-top: 5%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -42,13 +44,13 @@
 }
 
 .home-section-brand-name {
-  font-family: 'Shrikhand', cursive;
+  font-family: "Shrikhand", cursive;
   color: whitesmoke;
   font-size: 50px;
 }
 
 .home-section-slogan {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   color: whitesmoke;
   font-size: xx-large;
 }
@@ -57,4 +59,14 @@
   height: 70%;
   width: 90%;
   /* margin: auto; */
+}
+
+@media screen and (max-width: 768px) {
+  .home-section-left {
+    display: none;
+  }
+
+  .home-container {
+    overflow: auto;
+  }
 }
