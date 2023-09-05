@@ -70,3 +70,22 @@
     overflow: auto;
   }
 }
+
+
+.home-button {
+  cursor: pointer;
+  position: relative;
+  font-family: "Poppins";
+  border-radius: 1rem;
+  border: 0;
+  font-size: 1.4rem;
+  height: 4rem;
+  width: 13rem;
+  padding: 0 0.2em;
+  border-style: solid;
+  border-color: #19191a;
+  color: white;
+  background-color: #19191a;
+  margin-top: 2em;
+  box-shadow: 10px 10px 35px 1px rgba(0, 0, 0, 0.77);
+}

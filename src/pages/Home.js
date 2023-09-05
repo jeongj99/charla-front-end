@@ -30,8 +30,8 @@ export default function Home() {
           </div>
           <div className="home-section-right">
             {auth ? (
-              <button onClick={() => navigate('/chat')}>
-                Go to your chats{' '}
+              <button onClick={() => navigate('/chat')} className="home-button">
+                Go to your chats
               </button>
             ) : (
               <Form />
