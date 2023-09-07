@@ -7,9 +7,7 @@ import {
   CommonInput,
   CommonSubmitButton,
 } from './Common';
-import Marginer from '../Marginer';
-
-import { RiErrorWarningLine } from 'react-icons/ri';
+import Marginer from '../Marginer'; 
 
 export default function RegisterForm(props) {
   const [fullName, setFullName] = useState('');
