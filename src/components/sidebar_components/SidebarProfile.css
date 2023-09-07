@@ -12,6 +12,7 @@
 .sidebar-profile-name {
   color: white;
   font-family: inherit;
+  padding-top: 12px;
 }
 
 .sidebar-profile-buttons {
